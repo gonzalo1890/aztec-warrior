@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 27aedf63472a5fc41b376688e2a6979f
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Xolonium
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 9453647d1a5de154d8e86bb6027b0713, type: 3}
+  - {fileID: 12800000, guid: 650fc5023e4c9a147867ab47baac6d32, type: 3}
+  - {fileID: 12800000, guid: c39f5b1d90b375f44b64f6c352c68134, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
