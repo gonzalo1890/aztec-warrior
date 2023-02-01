@@ -13,6 +13,6 @@ public class ButtonSave : MonoBehaviour
     }
     public void ClickButton()
     {
-        GameManager.Instance.canvasManager.SetSelectedItem(gameObject);
+        //GameManager.Instance.canvasManager.SetSelectedItem(gameObject);
     }
 }

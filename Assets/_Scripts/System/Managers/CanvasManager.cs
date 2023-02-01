@@ -4,8 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 public class CanvasManager : MonoBehaviour
 {
-    //Menu
+    //Menu REAL
     public GameObject menuObject;
+    public GameObject redemptionObject;
+    public GameObject GamePanelObject;
+    public GameObject panelDeath;
+
+
+    //Menu ------------------
+
     public GameObject loading;
     public GameObject loadSaveMenu;
     public List<GameObject> savesItems;
@@ -15,16 +22,25 @@ public class CanvasManager : MonoBehaviour
     //Stats
     public Slider[] statsBars;
 
-    //Inventory
-    public GameObject inventoryObject;
-    public GameObject itemContainer;
+    //InventoryGeneral
     public GameObject prefabItem;
-    public GameObject itemSelector;
     public GameObject itemInfo;
     public GameObject itemInfoWorld;
-
     private Item itemSelect;
-    private List <GameObject> itemsInventory = new List<GameObject>();
+    //public GameObject itemSelector;
+
+    //Reward
+    public GameObject RewardObject;
+
+    //InventoryWeapon
+    public GameObject inventoryWeaponObject;
+    public List <Image> itemsInventoryWeapon = new List<Image>();
+
+    //InventorySkill
+    public Image itemSkillAttackImage;
+    public Image itemSkillExtraImage;
+
+
     private RectTransform itemSelectCanvas;
     public List<Color> itemlevelColor;
 
@@ -32,11 +48,22 @@ public class CanvasManager : MonoBehaviour
     public GameObject damageInfoObject;
 
     #region Menu
-    public void OpenMenu()
+    public void OpenMenu(bool value)
     {
-        menuObject.SetActive(!menuObject.activeSelf);
+        menuObject.SetActive(value);
     }
-
+    public void OpenRedemption(bool value)
+    {
+        redemptionObject.SetActive(value);
+    }
+    public void OpenGamePanel(bool value)
+    {
+        GamePanelObject.SetActive(value);
+    }
+    public void OpenDeathPanel(bool value)
+    {
+        panelDeath.SetActive(value);
+    }
     public void SetLoading(bool isActive)
     {
         loading.SetActive(isActive);
@@ -45,53 +72,7 @@ public class CanvasManager : MonoBehaviour
     {
         loadSaveMenu.SetActive(!loadSaveMenu.activeSelf);
     }
-    public void SetSaveGameItems(List<SaveObject> saves)
-    {
-        if (savesItems.Count > 0)
-        {
-            for (int i = 0; i < savesItems.Count; i++)
-            {
-                Destroy(savesItems[i].gameObject);
-            }
-        }
-
-        savesItems.Clear();
-
-
-        if (saves == null)
-        {
-
-            return;
-        }
-
-        for (int i = 0; i < saves.Count; i++)
-        {
-            GameObject item = Instantiate(itemSaveObject, transform.position, transform.rotation) as GameObject;
-            item.transform.SetParent(saveContent);
-            item.GetComponent<RectTransform>().localRotation = Quaternion.identity;
-            item.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-            item.GetComponent<ButtonSave>().saveId = saves[i].Id;
-            item.transform.GetChild(1).GetComponent<Text>().text = saves[i].Id + " - " + saves[i].Date;
-            savesItems.Add(item);
-            //LayoutRebuilder.ForceRebuildLayoutImmediate(transformMyRewards as RectTransform);
-        }
-    }
-
-    public void SetSelectedItem(GameObject save)
-    {
-        for (int i = 0; i < savesItems.Count; i++)
-        {
-            savesItems[i].GetComponent<ButtonSave>().SetButtonActive(false);
-        }
-        for (int i = 0; i < savesItems.Count; i++)
-        {
-            if(savesItems[i].GetComponent<ButtonSave>().gameObject == save)
-            {
-                savesItems[i].GetComponent<ButtonSave>().SetButtonActive(true);
-                GameManager.Instance.playerMenu.indexSaveSelected = savesItems[i].GetComponent<ButtonSave>().saveId;
-            }
-        }
-    }
+    
 
     #endregion
 
@@ -120,16 +101,22 @@ public class CanvasManager : MonoBehaviour
 
     #endregion
 
-    #region Inventory
-    public void OpenInventory()
+    public void OpenReward(bool value)
     {
-        inventoryObject.SetActive(!inventoryObject.activeSelf);
+        RewardObject.SetActive(value);
+    }
+
+
+    #region InventoryWeapon
+    public void OpenInventoryWeapon(bool value)
+    {
+        inventoryWeaponObject.SetActive(value);
     }
 
     public void ItemSelected(RectTransform item)
     {
-        itemSelector.SetActive(true);
-        itemSelector.GetComponent<RectTransform>().position = item.position;
+        //itemSelector.SetActive(true);
+        //itemSelector.GetComponent<RectTransform>().position = item.position;
         itemSelect = item.GetComponent<ItemSaved>().itemSaved;
         itemSelectCanvas = item;
         ItemInfoCanvasProcess(itemSelect);
@@ -138,10 +125,9 @@ public class CanvasManager : MonoBehaviour
     {
         itemSelect = null;
         itemSelectCanvas = null;
-        itemSelector.SetActive(false);
+        //itemSelector.SetActive(false);
         itemInfo.SetActive(false);
     }
-
     public void ItemInfoCanvasProcess(Item item)
     {
         itemInfo.SetActive(true);
@@ -166,46 +152,65 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
-    public void AddItemToInventory(Item item)
+    public void AddItem(Item item, int indexWeapon = -1)
     {
-        GameObject itemInventory = (GameObject)Instantiate(prefabItem, itemContainer.transform) as GameObject;
-        itemInventory.transform.GetChild(0).GetComponent<Text>().text = item.itemName;
-        Item saveItem = item;
-        itemInventory.GetComponent<Button>().onClick.AddListener(() => { UseItem(saveItem, itemInventory); });
-        itemInventory.GetComponent<ItemSaved>().itemSaved = item; //Referencia item guardado en el boton
-        itemsInventory.Add(itemInventory);
+        //GameObject itemAdded = (GameObject)Instantiate(prefabItem) as GameObject;
+        //itemAdded.transform.GetChild(0).GetComponent<Text>().text = item.itemName;
+        //Item saveItem = item;
+
+        if (item.GetComponent<SkillAttack>() != null)
+        {
+            itemSkillAttackImage.sprite = item.itemIcon;
+        }
+
+        if (item.GetComponent<SkillExtra>() != null)
+        {
+            itemSkillExtraImage.sprite = item.itemIcon;
+        }
+
+        if (item.GetComponent<Weapon>() != null)
+        {
+            itemsInventoryWeapon[indexWeapon].sprite = item.itemIcon;
+        }
+
+
     }
+
 
 
     public void UseItem(Item item, GameObject itemCanvas)
     {
         Destroy(itemCanvas);
-        itemSelector.SetActive(false);
+        //itemSelector.SetActive(false);
         itemInfo.SetActive(false);
         GameManager.Instance.playerInventory.UseItem(item);
-        itemsInventory.Remove(itemCanvas);
+        //itemsInventory.Remove(itemCanvas);
     }
 
     public void DropItem()
     {
+
         if(itemSelect != null)
         {
             Destroy(itemSelectCanvas.gameObject);
-            itemSelector.SetActive(false);
+            //itemSelector.SetActive(false);
             itemInfo.SetActive(false);
             GameManager.Instance.playerInventory.DropItem(itemSelect);
-            itemsInventory.Remove(itemSelect.gameObject);
+            //itemsInventory.Remove(itemSelect.gameObject);
         }
+
     }
 
     public void ClearItems()
     {
-        for (int i = 0; i < itemsInventory.Count; i++)
+
+        for (int i = 0; i < itemsInventoryWeapon.Count; i++)
         {
-            Destroy(itemsInventory[i].gameObject);
-            itemSelector.SetActive(false);
+            //Destroy(itemsInventory[i].gameObject);
+            //itemSelector.SetActive(false);
             itemInfo.SetActive(false);
         }
+
     }
 
     #endregion

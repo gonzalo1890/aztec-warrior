@@ -12,14 +12,22 @@ public class GameManager : MonoBehaviour
     public WorldManager worldManager;
 
     public GameObject player;
-    [HideInInspector]
+
     public Player_Inventory playerInventory;
-    [HideInInspector]
+
     public Player_Stats playerStats;
-    [HideInInspector]
-    public Player_Menu playerMenu;
+
+    public Player_Data playerData;
 
     public Player_Weapon playerWeapon;
+
+    public Player_Skill playerSkill;
+
+    public Player_Reward playerReward;
+
+    public Player_Lineage playerLineage;
+
+    public Roguelite roguelite;
 
     public Transform targetInfo;
 
@@ -43,13 +51,23 @@ public class GameManager : MonoBehaviour
 
         playerInventory = player.GetComponent<Player_Inventory>();
         playerStats = player.GetComponent<Player_Stats>();
-        playerMenu = player.GetComponent<Player_Menu>();
+        playerData = player.GetComponent<Player_Data>();
+        playerSkill = player.GetComponent<Player_Skill>();
+        playerReward = player.GetComponent<Player_Reward>();
+        playerLineage = player.GetComponent<Player_Lineage>();
 
-        LoadConfigGame();
+        roguelite = GetComponent<Roguelite>();
+
+        //LoadConfigGame();
 
         SceneManager.LoadScene(2, LoadSceneMode.Additive);
     }
 
+    public void ResetGame()
+    {
+        SceneManager.UnloadSceneAsync(2);
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
+    }
 
     public void SaveConfigGame(int value)
     {
@@ -72,8 +90,6 @@ public class GameManager : MonoBehaviour
             string saveString = File.ReadAllText(Application.persistentDataPath + "/config.ini");
             SaveConfigObject saveObject = JsonUtility.FromJson<SaveConfigObject>(saveString);
             saveId = saveObject.saveId;
-            GameManager.Instance.playerMenu.nextIDSave = saveId;
-            GameManager.Instance.playerMenu.UpdateLoadSaveList();
         }
         else
         {

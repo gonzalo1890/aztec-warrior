@@ -19,7 +19,6 @@ public abstract class Item : MonoBehaviour, Iaction
 
     //Se setea cuando dropeamos un item
     public Vector3 lastPosition = Vector3.zero;
-    public bool isTaked = false;
     public void OnAction(GameObject actionObject)
     {
         GameManager.Instance.playerInventory.SaveItem(this);

@@ -78,8 +78,11 @@ public class EntityTarget : Entity
     {
         target = GameManager.Instance.targetInfo;
         headTarget = target.GetComponent<TargetInfo>().targetHead;
-        transform.GetChild(0).GetComponent<AimIK>().solver.target = headTarget;
-        GetAgentDestination().NewTargetPath(target, DestinationType.Follow);
+        if (entityState != EntityTargetState.OffAI)
+        {
+            transform.GetChild(0).GetComponent<AimIK>().solver.target = headTarget;
+            GetAgentDestination().NewTargetPath(target, DestinationType.Follow);
+        }
     }
 
     float DistanceCheck()
@@ -136,7 +139,7 @@ public class EntityTarget : Entity
         if (Time.time > meleeNextCheck)
         {
             //Attack Melee
-            Debug.Log("Melee Attack");
+            //Debug.Log("Melee Attack");
             meleeNextCheck = Time.time + cadenceMelee;
         }
 
@@ -154,18 +157,18 @@ public class EntityTarget : Entity
     //Ataca a distancia
     void DistanceAttackState()
     {
-        Debug.Log("ENTRO EN ATACK");
+        //Debug.Log("ENTRO EN ATACK");
         RaycastHit hit;
         if (Physics.Linecast(head.position, headTarget.position, out hit, layer))
         {
             if (hit.transform.GetComponent<TargetInfo>() != null)
             {
-                Debug.Log("ENCONTRO TARGET");
+                //Debug.Log("ENCONTRO TARGET");
                 if (Time.time > distanceNextCheck)
                 {
                     FaceTarget();
                     GetAgentDestination().NewTargetPath(this.transform, DestinationType.Still);
-                    Debug.Log("Distance Attack");
+                    //Debug.Log("Distance Attack");
                     GetRecoil().Fire(1f);
                     distanceNextCheck = Time.time + cadenceDistance;
                 }
@@ -208,7 +211,7 @@ public class EntityTarget : Entity
         if(elapsedTime < duration) {
             transform.rotation = Quaternion.Lerp(startingRotation, look, elapsedTime / duration);
             elapsedTime = elapsedTime + Time.deltaTime; // <- move elapsedTime increment here
-            Debug.Log(elapsedTime);
+            //Debug.Log(elapsedTime);
             yield return null;
         }
         transform.rotation = look;

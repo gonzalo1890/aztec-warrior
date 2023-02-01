@@ -7,7 +7,16 @@ public class Player_Inventory : MonoBehaviour
     public List<Item> items = new List<Item>();
     public Transform itemsContainer;
 
-    public Weapon actualWeapon; //ARMA EQUIPADA
+    private int indexActualWeapon;
+
+    public List<Weapon> SlotsWeapon;
+    public List<ItemSaved> weaponItems = new List<ItemSaved>();
+    private Item itemReward;
+    private int slotSelected = -1;
+    private int slotWeapon = 0;
+
+    public Skill actualSkillAttack;
+    public Skill actualSkillExtra;
 
     void Start()
     {
@@ -21,63 +30,92 @@ public class Player_Inventory : MonoBehaviour
 
     void InputProcess()
     {
-        if (Input.GetKeyDown(KeyCode.Q)) //Abrir Inventario
+        if (Input.GetKeyDown(KeyCode.Q)) //Arma Anterior
         {
-            GameManager.Instance.canvasManager.OpenInventory();
+            PreviousWeapon();
+        }
+        if (Input.GetKeyDown(KeyCode.E)) //Arma siguiente
+        {
+            NextWeapon();
         }
 
         if (Input.GetKeyDown(KeyCode.R)) //Soltar objeto seleccionado
         {
-            GameManager.Instance.canvasManager.DropItem();
+            //GameManager.Instance.canvasManager.DropItem();
         }
     }
 
     public void SaveItem(Item item)
     {
-        items.Add(item);
-        GameManager.Instance.canvasManager.AddItemToInventory(item);
-        item.isTaked = true;
-        item.transform.SetParent(itemsContainer);
-        item.transform.localPosition = Vector3.zero;
-        item.GetComponent<Collider>().enabled = false;
-        item.transform.GetChild(0).gameObject.SetActive(false);
+        UseItem(item);
     }
 
+
+    //Cuando tengamos que cargar un arma o una habilidad
     public void UseItem(Item item)
     {
         if (item.GetComponent<Consumable>() != null)
         {
             Consumable consumable = item.GetComponent<Consumable>();
             GameManager.Instance.playerStats.ConsumableProcess(consumable.consumableType, item.itemValue);
-            item.isTaked = false;
-            items.Remove(item);
             Destroy(item.gameObject);
         }
 
-        if(item.GetComponent<Weapon>() != null)
+        if (item.GetComponent<Weapon>() != null)
         {
-            if (actualWeapon != null)
+            if(CheckInventoryWeaponSpace())
             {
-                actualWeapon.isEquiped = false;
-                SaveItem(actualWeapon);
-                GameManager.Instance.playerWeapon.ActiveWeapon(actualWeapon.weaponIndex, false);
+                Weapon weapon = item.GetComponent<Weapon>();
+                weapon.isEquiped = true;
+                GameManager.Instance.playerWeapon.ActiveWeapon(weapon.weaponIndex, true);
+                GameManager.Instance.canvasManager.AddItem(item, slotSelected);
+                SlotsWeapon[slotSelected] = weapon;
+                weaponItems[slotSelected].SetItem(weapon);
             }
-            
+            else
+            {
+                itemReward = item;
+                GameManager.Instance.canvasManager.OpenInventoryWeapon(true);
+                return;
+            }
+        }
+        if (item.GetComponent<Skill>() != null)
+        {
+            if (item.GetComponent<SkillAttack>() != null)
+            {
+                if (actualSkillAttack != null)
+                {
+                    actualSkillAttack.isEquiped = false;
+                }
+                Skill skill = item.GetComponent<Skill>();
+                skill.isEquiped = true;
+                GameManager.Instance.canvasManager.AddItem(item);
+                actualSkillAttack = skill;
+            }
 
-            Weapon weapon = item.GetComponent<Weapon>();
-            weapon.isEquiped = true;
-            GameManager.Instance.playerWeapon.ActiveWeapon(weapon.weaponIndex, true);
-            actualWeapon = weapon;
-
+            if (item.GetComponent<SkillExtra>() != null)
+            {
+                if (actualSkillExtra != null)
+                {
+                    actualSkillExtra.isEquiped = false;
+                }
+                Skill skill = item.GetComponent<Skill>();
+                skill.isEquiped = true;
+                GameManager.Instance.canvasManager.AddItem(item);
+                actualSkillExtra = skill;
+            }
         }
 
+        item.transform.SetParent(itemsContainer);
+        item.transform.localPosition = Vector3.zero;
+        item.GetComponent<Collider>().enabled = false;
+        item.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     public void DropItem(Item item)
     {
         item.transform.SetParent(null);
         items.Remove(item);
-        item.isTaked = false;
         Vector3 newPosition = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
         item.lastPosition = newPosition;
         item.GetComponent<Collider>().enabled = true;
@@ -85,6 +123,115 @@ public class Player_Inventory : MonoBehaviour
     }
 
 
+    void NextWeapon()
+    {
+        if (SlotsWeapon[slotWeapon] != null)
+        {
+            SlotsWeapon[slotWeapon].isEquiped = false;
+        }
+        if (slotWeapon < SlotsWeapon.Count-1)
+        {
+            if (SlotsWeapon[slotWeapon + 1] != null)
+            {
+                slotWeapon = slotWeapon + 1;
+            }
+        }else
+        {
+            slotWeapon = 0;
+        }
+
+        if (SlotsWeapon[slotWeapon] != null)
+        {
+            EquipWeapon(SlotsWeapon[slotWeapon], slotWeapon);
+        }
+    }
+
+    void PreviousWeapon()
+    {
+        if (SlotsWeapon[slotWeapon] != null)
+        {
+            SlotsWeapon[slotWeapon].isEquiped = false;
+        }
+        if (slotWeapon > 0)
+        {
+            if (SlotsWeapon[slotWeapon - 1] != null)
+            {
+                slotWeapon = slotWeapon - 1;
+            }
+        }
+        else
+        {
+            slotWeapon = SlotsWeapon.Count - 1;
+        }
+
+        if (SlotsWeapon[slotWeapon] != null)
+        {
+            EquipWeapon(SlotsWeapon[slotWeapon], slotWeapon);
+        }
+    }
+
+    public bool CheckInventoryWeaponSpace()
+    {
+        for (int i = 0; i < SlotsWeapon.Count; i++)
+        {
+            if(SlotsWeapon[i] == null)
+            {
+                slotSelected = i;
+                return true;
+            }
+        }
+        slotSelected = -1;
+        return false;
+    }
+
+    //Enviamos el arma que va a ser reemplazada
+    public void ReplaceWeapon(Item item)
+    {
+        Weapon weaponItem = item.GetComponent<Weapon>();
+        Weapon weaponReward = itemReward.GetComponent<Weapon>();
+
+        for (int i = 0; i < SlotsWeapon.Count; i++)
+        {
+            if(SlotsWeapon[i] == weaponItem)
+            {
+                DiscardWeapon(weaponItem);
+                SaveWeapon(weaponReward, i);
+                GameManager.Instance.canvasManager.OpenInventoryWeapon(false);
+                return;
+            }
+        }
+    }
+    public void EquipWeapon(Weapon weapon, int slot)
+    {
+        SlotsWeapon[slotWeapon].isEquiped = false;
+        SlotsWeapon[slot].isEquiped = true;
+        GameManager.Instance.playerWeapon.ActiveWeapon(weapon.weaponIndex, true);
+    }
+
+    public void SaveWeapon(Weapon weapon, int slot)
+    {
+        for (int i = 0; i < SlotsWeapon.Count; i++)
+        {
+            SlotsWeapon[i].isEquiped = false;
+        }
+
+        SlotsWeapon[slot] = weapon;
+        EquipWeapon(SlotsWeapon[slot], slot);
+        weaponItems[slot].SetItem(weapon);
+
+        weapon.transform.SetParent(itemsContainer);
+        weapon.transform.localPosition = Vector3.zero;
+        weapon.GetComponent<Collider>().enabled = false;
+        weapon.transform.GetChild(0).gameObject.SetActive(false);        
+        GameManager.Instance.canvasManager.AddItem(weapon, slot);
+
+    }
+
+    public void DiscardWeapon(Weapon weapon)
+    {
+        weapon.transform.SetParent(null);
+        Destroy(weapon);
+    }
 
     public List<int> SaveInventory()
     {

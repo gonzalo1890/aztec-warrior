@@ -13,17 +13,25 @@ public class Agent_Destination : MonoBehaviour
     public Animator anim;
     private bool isNavegate = false;
     Vector3 moveBlend;
+
+    public bool navigation = false;
     // Start is called before the first frame update
     void Start()
     {
         //target = GameManager.Instance.player.transform;
         nav = GetComponent<NavMeshAgent>();
         anim = transform.GetChild(0).GetComponent<Animator>();
+        Invoke("StartNavigation", 1);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!navigation)
+        {
+            return;
+        }
+
         switch (destinationType)
         {
             case DestinationType.Follow:
@@ -40,7 +48,10 @@ public class Agent_Destination : MonoBehaviour
         }
     }
 
-
+    void StartNavigation()
+    {
+        navigation = true;
+    }
     public void NewTargetPath(Transform _target, DestinationType _destinationType)
     {
         destinationType = _destinationType;
@@ -53,7 +64,13 @@ public class Agent_Destination : MonoBehaviour
         AnimationSetup();
         if (target != null & isNavegate)
         {
-            nav.SetDestination(target.position);
+            if (nav != null)
+            {
+                if (nav.isActiveAndEnabled)
+                {
+                    nav.SetDestination(target.position);
+                }
+            }
         }
     }
     void PointState()

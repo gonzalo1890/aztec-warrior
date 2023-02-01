@@ -20,10 +20,15 @@ public class Player_Weapon : MonoBehaviour
     void Update()
     {
         
-    }
+    } 
 
     public void ActiveWeapon(int weapon, bool isActive)
     {
+        for (int i = 0; i < weapons.Count; i++)
+        {
+            weapons[i].SetActive(false);
+        }
+
         weapons[weapon].SetActive(isActive);
 
         if(isActive)

@@ -6,13 +6,8 @@ public class Player_Stats : MonoBehaviour
 {
     public int health = 100;
     private int maxHealth = 100;
-    public int food = 100;
-    private int maxFood = 100;
-    public int water = 100;
-    private int maxWater = 100;
-    public int stamina = 100;
-    private int maxStamina = 100;
 
+    public int spirit = 0;
     private void Start()
     {
         Invoke(nameof(UpdateStats), 1);
@@ -21,9 +16,6 @@ public class Player_Stats : MonoBehaviour
     public void UpdateStats()
     {
         GameManager.Instance.canvasManager.UpdateStats(0, health);
-        GameManager.Instance.canvasManager.UpdateStats(1, food);
-        GameManager.Instance.canvasManager.UpdateStats(2, water);
-        GameManager.Instance.canvasManager.UpdateStats(3, stamina);
     }
 
     public void ConsumableProcess(consumableType consumableType, int value)
@@ -32,6 +24,7 @@ public class Player_Stats : MonoBehaviour
         {
             ChangeHealth(value);
         }
+        /*
         if (consumableType == consumableType.Food)
         {
             ChangeFood(value);
@@ -48,21 +41,24 @@ public class Player_Stats : MonoBehaviour
         {
             ChangeHealth(value);
         }
+        */
     }
 
-    void ChangeHealth(int value)
+    public void ChangeHealth(int value)
     {
         health += value;
         if(health > maxHealth)
         {
             health = maxHealth;
         }
-        if(health < 0)
+        if(health <= 0)
         {
+            GameManager.Instance.roguelite.Death();
             health = 0;
         }
         GameManager.Instance.canvasManager.UpdateStats(0, health);
     }
+    /*
     void ChangeFood(int value)
     {
         food += value;
@@ -76,6 +72,7 @@ public class Player_Stats : MonoBehaviour
         }
         GameManager.Instance.canvasManager.UpdateStats(1, food);
     }
+    
     void ChangeWater(int value)
     {
          water += value;
@@ -89,6 +86,7 @@ public class Player_Stats : MonoBehaviour
         }
         GameManager.Instance.canvasManager.UpdateStats(2, water);
     }
+
     void ChangeStamina(int value)
     {
          stamina += value;
@@ -102,23 +100,19 @@ public class Player_Stats : MonoBehaviour
         }
         GameManager.Instance.canvasManager.UpdateStats(3, stamina);
     }
-
+    */
     public List<int> SaveStats()
     {
         List<int> stats = new List<int>();
         stats.Add(health);
-        stats.Add(food);
-        stats.Add(water);
-        stats.Add(stamina);
+        stats.Add(spirit);
         return stats;
     }
 
     public void LoadStats(List<int> stats)
     {
         health = stats[0];
-        food = stats[1];
-        water = stats[2];
-        stamina = stats[3];
+        spirit = stats[1];
         UpdateStats();
     }
 }
