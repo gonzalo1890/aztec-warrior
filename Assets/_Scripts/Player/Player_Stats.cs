@@ -7,7 +7,15 @@ public class Player_Stats : MonoBehaviour
     public int health = 100;
     private int maxHealth = 100;
 
+    //Lineage
     public int spirit = 0;
+
+    //Weapons
+    public int bullet = 0;
+    public int shell = 0;
+    public int misil = 0;
+    public int granade = 0;
+
     private void Start()
     {
         Invoke(nameof(UpdateStats), 1);
@@ -24,24 +32,29 @@ public class Player_Stats : MonoBehaviour
         {
             ChangeHealth(value);
         }
-        /*
-        if (consumableType == consumableType.Food)
+        
+        if (consumableType == consumableType.Spirit)
         {
-            ChangeFood(value);
+            ChangeSpirit(value);
         }
-        if (consumableType == consumableType.Water)
+
+
+        if (consumableType == consumableType.Bullet)
         {
-            ChangeWater(value);
+            ChangeBullet(value);
         }
-        if (consumableType == consumableType.Stamina)
+        if (consumableType == consumableType.Shell)
         {
-            ChangeStamina(value);
+            ChangeShell(value);
         }
-        if (consumableType == consumableType.Poison)
+        if (consumableType == consumableType.Misil)
         {
-            ChangeHealth(value);
+            ChangeMisil(value);
         }
-        */
+        if (consumableType == consumableType.Granade)
+        {
+            ChangeGranade(value);
+        }
     }
 
     public void ChangeHealth(int value)
@@ -58,49 +71,96 @@ public class Player_Stats : MonoBehaviour
         }
         GameManager.Instance.canvasManager.UpdateStats(0, health);
     }
-    /*
-    void ChangeFood(int value)
+
+    void ChangeSpirit(int value)
     {
-        food += value;
-        if (food > maxFood)
+        spirit += value;
+        if (spirit < 0)
         {
-            food = maxFood;
+            spirit = 0;
         }
-        if (food < 0)
-        {
-            food = 0;
-        }
-        GameManager.Instance.canvasManager.UpdateStats(1, food);
-    }
-    
-    void ChangeWater(int value)
-    {
-         water += value;
-        if (water > maxWater)
-        {
-            water = maxWater;
-        }
-        if (water < 0)
-        {
-            water = 0;
-        }
-        GameManager.Instance.canvasManager.UpdateStats(2, water);
+        GameManager.Instance.canvasManager.UpdateStats(1, spirit);
     }
 
-    void ChangeStamina(int value)
+    void ChangeBullet(int value)
     {
-         stamina += value;
-        if (stamina > maxStamina)
+        bullet += value;
+        if (bullet < 0)
         {
-            stamina = maxStamina;
+            bullet = 0;
         }
-        if (stamina < 0)
-        {
-            stamina = 0;
-        }
-        GameManager.Instance.canvasManager.UpdateStats(3, stamina);
+        UpdateAmmo();
     }
-    */
+
+    void ChangeShell(int value)
+    {
+        shell += value;
+        if (shell < 0)
+        {
+            shell = 0;
+        }
+        UpdateAmmo();
+    }
+
+    void ChangeMisil(int value)
+    {
+        misil += value;
+        if (misil < 0)
+        {
+            misil = 0;
+        }
+        UpdateAmmo();
+    }
+
+    void ChangeGranade(int value)
+    {
+        granade += value;
+        if (granade < 0)
+        {
+            granade = 0;
+        }
+        UpdateAmmo();
+    }
+
+    public void UpdateAmmo()
+    {
+        Weapon actualWeapon = GameManager.Instance.playerInventory.GetActualWeapon();
+
+        int ammo = 0;
+
+        if(actualWeapon.ammoType == AmmoType.Bullet)
+        {
+            ammo = bullet;
+        }
+        if (actualWeapon.ammoType == AmmoType.Shell)
+        {
+            ammo = shell;
+        }
+        if (actualWeapon.ammoType == AmmoType.Misil)
+        {
+            ammo = misil;
+        }
+        if (actualWeapon.ammoType == AmmoType.Granade)
+        {
+            ammo = granade;
+        }
+        GameManager.Instance.canvasManager.UpdateAmmo(ammo);
+    }
+
+    public void ResetAmmo()
+    {
+        bullet = 0;
+        shell = 0;
+        misil = 0;
+        granade = 0;
+
+        GameManager.Instance.canvasManager.UpdateStats(2, bullet);
+        GameManager.Instance.canvasManager.UpdateStats(3, shell);
+        GameManager.Instance.canvasManager.UpdateStats(4, misil);
+        GameManager.Instance.canvasManager.UpdateStats(5, granade);
+    }
+
+
     public List<int> SaveStats()
     {
         List<int> stats = new List<int>();

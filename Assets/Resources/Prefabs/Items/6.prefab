@@ -137,10 +137,10 @@ MonoBehaviour:
   itemLevel: 4
   initPosition: {x: 0, y: 0, z: 0}
   lastPosition: {x: 0, y: 0, z: 0}
-  isTaked: 0
   weaponIndex: 3
   isEquiped: 0
   damage: 200
+  ammoType: 2
   RandomRange: 5
   cadence: 2
   criticalHitProbability: 3

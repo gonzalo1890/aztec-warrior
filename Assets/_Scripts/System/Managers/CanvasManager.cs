@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class CanvasManager : MonoBehaviour
 {
     //Menu REAL
@@ -21,6 +22,8 @@ public class CanvasManager : MonoBehaviour
 
     //Stats
     public Slider[] statsBars;
+    public Text spiritText;
+
 
     //InventoryGeneral
     public GameObject prefabItem;
@@ -35,6 +38,8 @@ public class CanvasManager : MonoBehaviour
     //InventoryWeapon
     public GameObject inventoryWeaponObject;
     public List <Image> itemsInventoryWeapon = new List<Image>();
+    public Image itemsInventoryWeaponEquiped;
+    public TMP_Text AmmoText;
 
     //InventorySkill
     public Image itemSkillAttackImage;
@@ -72,7 +77,7 @@ public class CanvasManager : MonoBehaviour
     {
         loadSaveMenu.SetActive(!loadSaveMenu.activeSelf);
     }
-    
+
 
     #endregion
 
@@ -80,8 +85,17 @@ public class CanvasManager : MonoBehaviour
 
     public void UpdateStats(int stat, int _value)
     {
-        float startValue = statsBars[stat].value;
-        StartCoroutine(AnimStats(startValue, _value, stat));
+        if (stat == 0) //Health
+        {
+            float startValue = statsBars[stat].value;
+            StartCoroutine(AnimStats(startValue, _value, stat));
+        }
+
+        if (stat == 1) //Spirit
+        {
+            
+        }
+
     }
 
     IEnumerator AnimStats(float startValue, float endValue, int stat)
@@ -113,6 +127,16 @@ public class CanvasManager : MonoBehaviour
         inventoryWeaponObject.SetActive(value);
     }
 
+    public void WeaponEquiped(Weapon weapon)
+    {
+        itemsInventoryWeaponEquiped.sprite = weapon.itemIcon;
+
+    }
+
+    public void UpdateAmmo(int value)
+    {
+        AmmoText.text = value.ToString();
+    }
     public void ItemSelected(RectTransform item)
     {
         //itemSelector.SetActive(true);

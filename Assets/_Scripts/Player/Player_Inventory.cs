@@ -122,6 +122,10 @@ public class Player_Inventory : MonoBehaviour
         item.transform.GetChild(0).gameObject.SetActive(true);
     }
 
+    public Weapon GetActualWeapon()
+    {
+        return SlotsWeapon[slotWeapon];
+    }
 
     void NextWeapon()
     {
@@ -206,6 +210,9 @@ public class Player_Inventory : MonoBehaviour
         SlotsWeapon[slotWeapon].isEquiped = false;
         SlotsWeapon[slot].isEquiped = true;
         GameManager.Instance.playerWeapon.ActiveWeapon(weapon.weaponIndex, true);
+        GameManager.Instance.canvasManager.WeaponEquiped(weapon);
+        GameManager.Instance.playerStats.UpdateAmmo();
+
     }
 
     public void SaveWeapon(Weapon weapon, int slot)
@@ -242,6 +249,7 @@ public class Player_Inventory : MonoBehaviour
         }
         return inventory;
     }
+
     public void LoadInventory(List<int> inventory)
     {
         ClearInventory();

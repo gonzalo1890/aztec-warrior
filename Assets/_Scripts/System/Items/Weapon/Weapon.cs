@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum DamageElement { None, Fire, Ice, Electricity, Poison }
+public enum AmmoType { Bullet, Shell, Misil, Granade }
 public abstract class Weapon : Item
 {
     //Con esto elegimos el modelo3d del arma alojado en la camara
@@ -12,6 +13,8 @@ public abstract class Weapon : Item
 
     //Daño base del arma
     public int damage = 10;
+
+    public AmmoType ammoType = AmmoType.Bullet;
     //Rango de aleatoreidad de daño que puede hacer un arma a partir de su daño base
     public int RandomRange = 5;
 

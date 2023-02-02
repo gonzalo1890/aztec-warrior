@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3852873236621837219}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.09, y: 0.43999994, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -150,10 +150,10 @@ MonoBehaviour:
   itemLevel: 1
   initPosition: {x: 0, y: 0, z: 0}
   lastPosition: {x: 0, y: 0, z: 0}
-  isTaked: 0
   weaponIndex: 2
   isEquiped: 0
   damage: 50
+  ammoType: 1
   RandomRange: 10
   cadence: 1.3
   criticalHitProbability: 25

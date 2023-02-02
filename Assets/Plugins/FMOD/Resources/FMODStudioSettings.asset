@@ -149,8 +149,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../AztecWarriorAssets/PRUEBA 3D/PRUEBA 3D.fspro
-  sourceBankPath: ../AztecWarriorAssets/PRUEBA 3D/Build
+  sourceProjectPath: ../AztecWarriorAssets/aztec warrior/aztec warrior.fspro
+  sourceBankPath: ../AztecWarriorAssets/aztec warrior/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -174,7 +174,8 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
-  - MUSIQUITa
+  - musica
+  - pantano
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0

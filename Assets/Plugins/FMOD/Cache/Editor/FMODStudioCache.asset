@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-917322420881584184
+--- !u!114 &-8159349265349107822
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,20 +9,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/PRUEBA/Parameter 1
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/musica.bank
   m_EditorClassIdentifier: 
-  Name: Parameter 1
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 970904026
-    data2: 3126316437
-  Type: 1
-  IsGlobal: 0
-  Labels: []
+  Path: ../AztecWarriorAssets/aztec warrior/Build/Desktop/musica.bank
+  Name: musica
+  StudioPath: bank:/musica
+  lastModified: 638108701640000000
+  FileSizes:
+  - Name: Desktop
+    Value: 1140160
+  Exists: 1
+--- !u!114 &-4212784506883092037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../AztecWarriorAssets/aztec warrior/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638108701620000000
+  FileSizes:
+  - Name: Desktop
+    Value: 1036
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -37,39 +53,21 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 1248408946233402999}
-  - {fileID: 3991045868841071450}
-  - {fileID: 116604755009596533}
+  - {fileID: 199930296624449074}
+  - {fileID: -4212784506883092037}
+  - {fileID: -8159349265349107822}
+  - {fileID: 5773050081770318860}
   EditorEvents:
-  - {fileID: 5913294006890033134}
+  - {fileID: 1038400871795961659}
+  - {fileID: 2448991243287703407}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 3991045868841071450}
+  - {fileID: -4212784506883092037}
   StringsBanks:
-  - {fileID: 1248408946233402999}
-  cacheTime: 638106899660000000
+  - {fileID: 199930296624449074}
+  cacheTime: 638108701640000000
   cacheVersion: 131601
---- !u!114 &116604755009596533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/MUSIQUITa.bank
-  m_EditorClassIdentifier: 
-  Path: ../AztecWarriorAssets/PRUEBA 3D/Build/Desktop/MUSIQUITa.bank
-  Name: MUSIQUITa
-  StudioPath: bank:/MUSIQUITa
-  lastModified: 638106899660000000
-  FileSizes:
-  - Name: Desktop
-    Value: 923136
-  Exists: 1
---- !u!114 &1248408946233402999
+--- !u!114 &199930296624449074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,35 +79,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
-  Path: ../AztecWarriorAssets/PRUEBA 3D/Build/Desktop/Master.strings.bank
+  Path: ../AztecWarriorAssets/aztec warrior/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638106899600000000
+  lastModified: 638108701620000000
   FileSizes:
   - Name: Desktop
-    Value: 960
+    Value: 1004
   Exists: 1
---- !u!114 &3991045868841071450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: ../AztecWarriorAssets/PRUEBA 3D/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638106899600000000
-  FileSizes:
-  - Name: Desktop
-    Value: 1036
-  Exists: 1
---- !u!114 &5913294006890033134
+--- !u!114 &1038400871795961659
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,21 +97,117 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/PRUEBA
+  m_Name: event:/musica
   m_EditorClassIdentifier: 
-  Path: event:/PRUEBA
+  Path: event:/musica
   Guid:
-    Data1: 376364239
-    Data2: 1250100203
-    Data3: 1477418916
-    Data4: -2046228035
+    Data1: -75918827
+    Data2: 1123829854
+    Data3: -473276795
+    Data4: -320909631
   Banks:
-  - {fileID: 116604755009596533}
+  - {fileID: -8159349265349107822}
   IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
+  Is3D: 0
+  IsOneShot: 0
   Parameters:
-  - {fileID: -917322420881584184}
+  - {fileID: 5576592329031370880}
   MinDistance: 1
-  MaxDistance: 300
-  Length: 38400
+  MaxDistance: 20
+  Length: 126806
+--- !u!114 &2448991243287703407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ambiente
+  m_EditorClassIdentifier: 
+  Path: event:/ambiente
+  Guid:
+    Data1: 168484782
+    Data2: 1293935972
+    Data3: 880925324
+    Data4: -291249689
+  Banks:
+  - {fileID: 5773050081770318860}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 2588125254444942986}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 231065
+--- !u!114 &2588125254444942986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ambiente/ambiente
+  m_EditorClassIdentifier: 
+  Name: ambiente
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3923876914
+    data2: 3583646942
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &5576592329031370880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/musica/Musica
+  m_EditorClassIdentifier: 
+  Name: Musica
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 1136525808
+    data2: 2759852363
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &5773050081770318860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/pantano.bank
+  m_EditorClassIdentifier: 
+  Path: ../AztecWarriorAssets/aztec warrior/Build/Desktop/pantano.bank
+  Name: pantano
+  StudioPath: bank:/pantano
+  lastModified: 638108701640000000
+  FileSizes:
+  - Name: Desktop
+    Value: 14519520
+  Exists: 1
