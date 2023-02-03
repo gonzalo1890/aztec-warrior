@@ -135,6 +135,15 @@ public class CanvasManager : MonoBehaviour
 
     public void UpdateAmmo(int value)
     {
+        if(value == -1)
+        {
+            AmmoText.gameObject.SetActive(false);
+        }
+        else
+        {
+            AmmoText.gameObject.SetActive(true);
+        }
+
         AmmoText.text = value.ToString();
     }
     public void ItemSelected(RectTransform item)

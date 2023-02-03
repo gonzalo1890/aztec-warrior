@@ -9,6 +9,10 @@ public class Battle : MonoBehaviour
     public AreaCombat StartArea;
     public bool combat = false;
 
+    public List<GameObject> SpawnHealthPoints;
+    public List<GameObject> SpawnAmmoPoints;
+
+
     public List<Transform> SpawnerPoints = new List<Transform>();
     public List<GameObject> EntitiesSpawn = new List<GameObject>();
 

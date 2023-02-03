@@ -31,7 +31,10 @@ public class Player_CanvasInteract : MonoBehaviour
         {
             if(results[0].gameObject.GetComponent<ItemSaved>() != null)
             {
-                GameManager.Instance.canvasManager.ItemSelected(results[0].gameObject.GetComponent<RectTransform>());
+                if (results[0].gameObject.GetComponent<RectTransform>() != null)
+                {
+                    GameManager.Instance.canvasManager.ItemSelected(results[0].gameObject.GetComponent<RectTransform>());
+                }
             }
             else
             {

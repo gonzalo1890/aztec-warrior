@@ -32,7 +32,9 @@ public class EntityTarget : Entity
 
     float distanceNextCheck;
 
-
+    public GameObject attackArea;
+    public Transform attackPosition;
+    Coroutine coroutineAIM;
     // Start is called before the first frame update
     public override void Start()
     {
@@ -139,6 +141,7 @@ public class EntityTarget : Entity
         if (Time.time > meleeNextCheck)
         {
             //Attack Melee
+            anim.SetTrigger("Melee");
             //Debug.Log("Melee Attack");
             meleeNextCheck = Time.time + cadenceMelee;
         }
@@ -152,6 +155,18 @@ public class EntityTarget : Entity
             GetAgentDestination().NewTargetPath(this.transform, DestinationType.Still);
             FaceTarget();
         }
+    }
+
+
+    public void Attack()
+    {
+        GameObject damageA = Instantiate(attackArea, attackPosition.position, transform.rotation) as GameObject;
+        Damage actualDamage = new Damage();
+        actualDamage.damageValue = 1;
+        actualDamage.damageElement = DamageElement.None;
+        damageA.GetComponent<DamagePlayer>().damageValue = actualDamage.damageValue;
+        //damageA.GetComponent<DamageArea>().damageElement = actualDamage.damageElement;
+        Destroy(damageA, 0.1f);
     }
 
     //Ataca a distancia
@@ -168,8 +183,14 @@ public class EntityTarget : Entity
                 {
                     FaceTarget();
                     GetAgentDestination().NewTargetPath(this.transform, DestinationType.Still);
-                    //Debug.Log("Distance Attack");
+                    Debug.Log("Distance Attack");
                     GetRecoil().Fire(1f);
+                    if(coroutineAIM != null)
+                    {
+                        StopCoroutine(coroutineAIM);
+                    }
+                    coroutineAIM = StartCoroutine(AIMtime(0.5f));
+                    entityState = EntityTargetState.CalculeLoop;
                     distanceNextCheck = Time.time + cadenceDistance;
                 }
             }else
@@ -189,9 +210,36 @@ public class EntityTarget : Entity
         }
     }
 
+    private IEnumerator AIMtime(float waitTime)
+    {
+        float elapsedTime = 0;
+        float start = aimIK.solver.GetIKPositionWeight();
+        while (elapsedTime < waitTime)
+        {
+
+            aimIK.solver.SetIKPositionWeight(Mathf.Lerp(start, 1f, (elapsedTime / waitTime)));
+            fullBody.solver.SetIKPositionWeight(Mathf.Lerp(start, 1f, (elapsedTime / waitTime)));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        yield return new WaitForSeconds(1);
+
+        elapsedTime = 0;
+        start = aimIK.solver.GetIKPositionWeight();
+        while (elapsedTime < waitTime)
+        {
+
+            aimIK.solver.SetIKPositionWeight(Mathf.Lerp(start, 0f, (elapsedTime / waitTime)));
+            fullBody.solver.SetIKPositionWeight(Mathf.Lerp(start, 0f, (elapsedTime / waitTime)));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+    }
+
     //Rotacion de la entidad hacia su objetivo
     private void FaceTarget()
     {
+        Debug.Log("FACETARGET");
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         if (coroutine != null)

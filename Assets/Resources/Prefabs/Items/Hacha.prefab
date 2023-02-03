@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7620323021777270029}
   - component: {fileID: 2826201516894038301}
   m_Layer: 0
-  m_Name: 3
+  m_Name: Hacha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,17 +60,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 3
-  itemName: Palo
+  itemName: Hacha
   itemValue: 0
   itemWeight: 2
   itemIcon: {fileID: 21300000, guid: 26242a97c1626eb4ab0df92d286816eb, type: 3}
   itemLevel: 0
   initPosition: {x: 0, y: 0, z: 0}
   lastPosition: {x: 0, y: 0, z: 0}
-  isTaked: 0
   weaponIndex: 0
   isEquiped: 0
   damage: 3
+  ammoType: 0
   RandomRange: 2
   cadence: 1
   criticalHitProbability: 10
@@ -78,9 +78,7 @@ MonoBehaviour:
   damageElement: 2
   elementHitProbability: 30
   RandomRangeElemental: 5
-  firePosition: {fileID: 0}
-  sounds: []
-  particles: []
+  impact: {fileID: 5423000645180137098, guid: 53566e231bbc38a45bf8316d7adfb506, type: 3}
 --- !u!1 &8678941564749753218
 GameObject:
   m_ObjectHideFlags: 0

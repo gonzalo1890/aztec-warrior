@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4137483895222981673
+--- !u!1 &3852873236621837219
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4137483895222981650}
-  - component: {fileID: 4137483895222981653}
-  - component: {fileID: 4137483895222981652}
+  - component: {fileID: 3852873236621837208}
+  - component: {fileID: 3852873236621837215}
+  - component: {fileID: 3852873236621837214}
   m_Layer: 0
-  m_Name: 4
+  m_Name: 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4137483895222981650
+--- !u!4 &3852873236621837208
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4137483895222981673}
+  m_GameObject: {fileID: 3852873236621837219}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
@@ -33,21 +33,21 @@ Transform:
   m_Father: {fileID: 7620323021777270024}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4137483895222981653
+--- !u!33 &3852873236621837215
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4137483895222981673}
+  m_GameObject: {fileID: 3852873236621837219}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &4137483895222981652
+--- !u!23 &3852873236621837214
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4137483895222981673}
+  m_GameObject: {fileID: 3852873236621837219}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -93,9 +93,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7620323021777270024}
   - component: {fileID: 7620323021777270029}
-  - component: {fileID: 6794909206194815956}
+  - component: {fileID: 816911576771749603}
   m_Layer: 0
-  m_Name: 4
+  m_Name: Escopeta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,7 +113,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4137483895222981650}
+  - {fileID: 3852873236621837208}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -130,7 +130,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6794909206194815956
+--- !u!114 &816911576771749603
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,28 +142,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51cb58b469862c4f9a017f428be43c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 3
-  itemName: Pistola
+  id: 5
+  itemName: Escopeta
   itemValue: 0
-  itemWeight: 3
-  itemIcon: {fileID: 21300000, guid: 5c6286a90bd7a09429c0c10c7404cb15, type: 3}
-  itemLevel: 3
+  itemWeight: 4
+  itemIcon: {fileID: 21300000, guid: 3c9cbf2e09fb5fb49bec9cf6acb21651, type: 3}
+  itemLevel: 0
   initPosition: {x: 0, y: 0, z: 0}
   lastPosition: {x: 0, y: 0, z: 0}
-  isTaked: 0
-  weaponIndex: 1
+  weaponIndex: 2
   isEquiped: 0
-  damage: 13
-  RandomRange: 2
-  cadence: 0.3
-  criticalHitProbability: 3
-  RandomRangeCritic: 20
-  damageElement: 1
-  elementHitProbability: 30
-  RandomRangeElemental: 5
-  firePosition: {fileID: 0}
-  sounds: []
-  particles: []
+  damage: 50
+  ammoType: 2
+  RandomRange: 10
+  cadence: 1.3
+  criticalHitProbability: 25
+  RandomRangeCritic: 50
+  damageElement: 0
+  elementHitProbability: 60
+  RandomRangeElemental: 30
+  impact: {fileID: 5423000645180137098, guid: 53566e231bbc38a45bf8316d7adfb506, type: 3}
   shootLayer:
     serializedVersion: 2
     m_Bits: 131072

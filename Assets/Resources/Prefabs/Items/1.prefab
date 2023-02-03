@@ -150,5 +150,4 @@ MonoBehaviour:
   itemLevel: 0
   initPosition: {x: 0, y: 0, z: 0}
   lastPosition: {x: 0, y: 0, z: 0}
-  isTaked: 0
-  consumableType: 1
+  consumableType: 3

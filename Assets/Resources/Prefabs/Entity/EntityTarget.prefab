@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3473300995274258052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5584055076198681925}
+  m_Layer: 0
+  m_Name: AttackPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5584055076198681925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3473300995274258052}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.323, z: 0.578}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3774562959405117043}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3774562959541545414
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,6 +74,7 @@ GameObject:
   - component: {fileID: 3774562959674997228}
   - component: {fileID: 3774562959674997229}
   - component: {fileID: 2192615311469678165}
+  - component: {fileID: 7487511275975292776}
   - component: {fileID: 3774562959674997226}
   - component: {fileID: 3774562959674997227}
   m_Layer: 0
@@ -98,6 +130,7 @@ MonoBehaviour:
   nav: {fileID: 3774562959674997227}
   target: {fileID: 0}
   anim: {fileID: 3774562959396078053}
+  navigation: 0
 --- !u!114 &2192615311469678165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +143,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ab484672531ce4f9a518021ff2cdba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7487511275975292776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3774562959674997224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf93bcbb0b79a644975e9485cf32adc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JumpVelocity: 0.5
+  JumpHeight: 0.5
+  method: 2
 --- !u!114 &3774562959674997226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +186,9 @@ MonoBehaviour:
   - {fileID: 3774562959763032168}
   - {fileID: 3774562958365108075}
   model: {fileID: 3774562959405609875}
+  anim: {fileID: 3774562959396078053}
+  aimIK: {fileID: 0}
+  fullBody: {fileID: 0}
   entityState: 0
   target: {fileID: 0}
   headTarget: {fileID: 0}
@@ -148,11 +199,14 @@ MonoBehaviour:
   turnSpeed: 5
   loopRate: 1
   useMeleeAttack: 1
-  distanceToMelee: 2
+  distanceToMelee: 3
   cadenceMelee: 1
-  useDistanceAttack: 0
-  distanceAttackRate: 80
-  cadenceDistance: 1
+  useDistanceAttack: 1
+  distanceAttackRate: 40
+  cadenceDistance: 0.1
+  attackArea: {fileID: 3469967865253984444, guid: c3058f459447d1649a0f632216c978f0,
+    type: 3}
+  attackPosition: {fileID: 5584055076198681925}
 --- !u!195 &3774562959674997227
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -163,11 +217,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 10
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 240
-  m_StoppingDistance: 1.5
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -1570,7 +1624,7 @@ MonoBehaviour:
   solver:
     executedInEditor: 0
     IKPosition: {x: 0, y: 0, z: 0}
-    IKPositionWeight: 1
+    IKPositionWeight: 0
     root: {fileID: 3774562959405117043}
     iterations: 0
     chain:
@@ -2008,8 +2062,8 @@ MonoBehaviour:
   fixTransforms: 1
   solver:
     executedInEditor: 0
-    IKPosition: {x: 24.504412, y: -1.5911732, z: 11.686203}
-    IKPositionWeight: 1
+    IKPosition: {x: 30.674412, y: -1.5911732, z: 31.856201}
+    IKPositionWeight: 0
     root: {fileID: 3774562959405117043}
     target: {fileID: 0}
     tolerance: 0
@@ -2067,11 +2121,24 @@ MonoBehaviour:
     transform: {fileID: 3774562959538474860}
     axis: {x: 0, y: -1, z: 0}
     poleAxis: {x: 0, y: 1, z: 0}
-    polePosition: {x: 23.90565, y: 3.4155445, z: 8.434393}
+    polePosition: {x: 30.07565, y: 3.4155445, z: 28.604393}
     poleWeight: 0
     poleTarget: {fileID: 0}
     clampWeight: 0
     clampSmoothing: 0
+--- !u!114 &4845162435518030604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3774562959405609875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acccac24ff7aa3344a58a19fe1712433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityTarget: {fileID: 3774562959674997226}
 --- !u!1001 &3774562959538607598
 PrefabInstance:
   m_ObjectHideFlags: 0

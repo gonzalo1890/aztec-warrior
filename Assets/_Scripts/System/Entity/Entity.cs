@@ -20,9 +20,9 @@ public abstract class Entity : MonoBehaviour
 
     //3dModel Elements
     public GameObject model;
-    private Animator anim;
-    private AimIK aimIK;
-    private FullBodyBipedIK fullBody;
+    public Animator anim;
+    public AimIK aimIK;
+    public FullBodyBipedIK fullBody;
     //Character Elements
     //private Rigidbody rb;
     private NavMeshAgent navMeshAgent;

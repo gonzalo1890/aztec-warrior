@@ -19,7 +19,7 @@ public class Interaction_Raycast : Interaction
             {
                 iActionBackup = iAction;
                 iAction.OnOver(hit.transform.gameObject);
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.F))
                 {
                     iAction.OnAction(hit.transform.gameObject);
                 }

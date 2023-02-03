@@ -128,7 +128,11 @@ public class Player_Stats : MonoBehaviour
 
         int ammo = 0;
 
-        if(actualWeapon.ammoType == AmmoType.Bullet)
+        if (actualWeapon.ammoType == AmmoType.None)
+        {
+            ammo = -1;
+        }
+        if (actualWeapon.ammoType == AmmoType.Bullet)
         {
             ammo = bullet;
         }
@@ -145,6 +149,62 @@ public class Player_Stats : MonoBehaviour
             ammo = granade;
         }
         GameManager.Instance.canvasManager.UpdateAmmo(ammo);
+    }
+
+    public int GetActualAmmo()
+    {
+        Weapon actualWeapon = GameManager.Instance.playerInventory.GetActualWeapon();
+
+        int ammo = 0;
+
+        if (actualWeapon.ammoType == AmmoType.None)
+        {
+            ammo = 99999;
+        }
+        if (actualWeapon.ammoType == AmmoType.Bullet)
+        {
+            ammo = bullet;
+        }
+        if (actualWeapon.ammoType == AmmoType.Shell)
+        {
+            ammo = shell;
+        }
+        if (actualWeapon.ammoType == AmmoType.Misil)
+        {
+            ammo = misil;
+        }
+        if (actualWeapon.ammoType == AmmoType.Granade)
+        {
+            ammo = granade;
+        }
+
+        return ammo;
+    }
+
+    public void SetActualAmmo(int value)
+    {
+        Weapon actualWeapon = GameManager.Instance.playerInventory.GetActualWeapon();
+
+        if (actualWeapon.ammoType == AmmoType.None)
+        {
+            
+        }
+        if (actualWeapon.ammoType == AmmoType.Bullet)
+        {
+            ChangeBullet(value);
+        }
+        if (actualWeapon.ammoType == AmmoType.Shell)
+        {
+            ChangeShell(value);
+        }
+        if (actualWeapon.ammoType == AmmoType.Misil)
+        {
+            ChangeMisil(value);
+        }
+        if (actualWeapon.ammoType == AmmoType.Granade)
+        {
+            ChangeGranade(value);
+        }
     }
 
     public void ResetAmmo()

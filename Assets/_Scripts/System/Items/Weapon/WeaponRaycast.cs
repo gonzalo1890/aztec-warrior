@@ -32,6 +32,10 @@ public class WeaponRaycast : Weapon
             if (hit.transform.GetComponent<Idamage>() != null)
             {
                 damageCalculated.pointDamage = hit.point;
+                GameObject particle = Instantiate(impact, hit.point, Quaternion.identity) as GameObject;
+                particle.GetComponent<Impact>().damageElement = damageElement;
+                particle.GetComponent<Impact>().CreateElementParticle(hit.point, hit.transform, true);
+                particle.GetComponent<Impact>().CreateBloodParticle(hit.point, hit.transform, true);
                 hit.transform.GetComponent<Idamage>().SetDamage(damageCalculated);
             }
         }

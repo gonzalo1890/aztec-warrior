@@ -11,6 +11,7 @@ public class Player_Weapon : MonoBehaviour
 
     public Damage actualDamage;
     private int actualWeapon;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,5 +55,11 @@ public class Player_Weapon : MonoBehaviour
     {
         GameObject damageA = Instantiate(damageArea, weapons[actualWeapon].transform.position, transform.rotation) as GameObject;
         damageA.GetComponent<DamageArea>().damageSave = actualDamage;
+        damageA.GetComponent<DamageArea>().damageElement = actualDamage.damageElement;
+    }
+
+    public Transform GetShootPoint()
+    {
+        return weapons[actualWeapon].transform.GetChild(0).transform;
     }
 }

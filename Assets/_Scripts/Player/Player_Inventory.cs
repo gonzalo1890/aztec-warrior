@@ -66,11 +66,7 @@ public class Player_Inventory : MonoBehaviour
             if(CheckInventoryWeaponSpace())
             {
                 Weapon weapon = item.GetComponent<Weapon>();
-                weapon.isEquiped = true;
-                GameManager.Instance.playerWeapon.ActiveWeapon(weapon.weaponIndex, true);
-                GameManager.Instance.canvasManager.AddItem(item, slotSelected);
-                SlotsWeapon[slotSelected] = weapon;
-                weaponItems[slotSelected].SetItem(weapon);
+                SaveWeapon(weapon, slotSelected);
             }
             else
             {
@@ -219,10 +215,14 @@ public class Player_Inventory : MonoBehaviour
     {
         for (int i = 0; i < SlotsWeapon.Count; i++)
         {
-            SlotsWeapon[i].isEquiped = false;
+            if (SlotsWeapon[i] != null)
+            {
+                SlotsWeapon[i].isEquiped = false;
+            }
         }
 
         SlotsWeapon[slot] = weapon;
+        indexActualWeapon = slot;
         EquipWeapon(SlotsWeapon[slot], slot);
         weaponItems[slot].SetItem(weapon);
 

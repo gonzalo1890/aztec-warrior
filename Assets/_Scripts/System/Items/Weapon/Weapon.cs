@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum DamageElement { None, Fire, Ice, Electricity, Poison }
-public enum AmmoType { Bullet, Shell, Misil, Granade }
+public enum AmmoType { None, Bullet, Shell, Misil, Granade }
 public abstract class Weapon : Item
 {
     //Con esto elegimos el modelo3d del arma alojado en la camara
@@ -14,7 +14,7 @@ public abstract class Weapon : Item
     //Daño base del arma
     public int damage = 10;
 
-    public AmmoType ammoType = AmmoType.Bullet;
+    public AmmoType ammoType = AmmoType.None;
     //Rango de aleatoreidad de daño que puede hacer un arma a partir de su daño base
     public int RandomRange = 5;
 
@@ -42,27 +42,13 @@ public abstract class Weapon : Item
     //Rango de aleatoreidad de daño elemental que puede hacer un arma a partir de su daño base
     public int RandomRangeElemental = 5;
 
-    //Posicion de disparo
-    public Transform firePosition;
-
-    public AudioClip[] sounds;
-    public ParticleSystem[] particles;
-
-    private Animator anim;
-    private AudioSource au;
-
     public Damage damageCalculated;
 
-    void Start()
-    {
-        anim = GetComponent<Animator>();
-        au = GetComponent<AudioSource>();
-    }
 
-
+    public GameObject impact;
     protected virtual void Update()
     {
-        if(Input.GetButton("Fire1") && isEquiped)
+        if(Input.GetButton("Fire1") && isEquiped && GameManager.Instance.playerStats.GetActualAmmo() > 0)
         {
             if (Time.time > nextCheck)
             {
@@ -75,7 +61,7 @@ public abstract class Weapon : Item
     public virtual void Shoot()
     {
         damageCalculated = CalculeDamage();
-
+        GameManager.Instance.playerStats.SetActualAmmo(-1);
         GameManager.Instance.playerWeapon.GetAnimatorWeapon().SetTrigger("Shoot");
 
 
