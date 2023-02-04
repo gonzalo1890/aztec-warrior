@@ -26,9 +26,13 @@ public class Battle : MonoBehaviour
     private float cadence = 1f;
     float nextCheck;
 
+    public int enemyActualSpawned = 0;
+    public int enemyMaxSpawned = 5;
 
     public float cadenceSpawnBattle = 10;
     public float cadenceRangeSpawnBattle = 5;
+
+    private bool rewardAdd = false;
 
     void Start()
     {
@@ -47,14 +51,21 @@ public class Battle : MonoBehaviour
         {
             if (enemyNumCount > 0)
             {
-                CreateEnemy();
-                enemyNumCount = enemyNumCount - 1;
-                nextCheck = Time.time + cadence;
+                if (enemyActualSpawned < enemyMaxSpawned)
+                {
+                    CreateEnemy();
+                    enemyActualSpawned = enemyActualSpawned + 1;
+                    enemyNumCount = enemyNumCount - 1;
+                    nextCheck = Time.time + cadence;
+                }
             }else
             {
                 if (combat)
                 {
-                    EndCombat();
+                    if (enemyActualSpawned < 1)
+                    {
+                        EndCombat();
+                    }
                 }
             }
         }
@@ -65,6 +76,8 @@ public class Battle : MonoBehaviour
     {
         combat = true;
         WallsEnabled(true);
+        StartArea.SetInArea(false);
+        StartArea.gameObject.SetActive(false);
         Debug.Log("Start Combat");
 
     }
@@ -73,6 +86,11 @@ public class Battle : MonoBehaviour
     {
         combat = false;
         WallsEnabled(false);
+        if (!rewardAdd)
+        {
+            GameManager.Instance.playerReward.GenerateReward();
+            rewardAdd = true;
+        }
         Debug.Log("End Combat");
     }
 
@@ -81,6 +99,11 @@ public class Battle : MonoBehaviour
         int randomPoint = Random.Range(0, SpawnerPoints.Count);
 
         GameObject enemy = Instantiate(EntitiesSpawn[actualEnemy], SpawnerPoints[randomPoint].position, SpawnerPoints[randomPoint].rotation);
+
+        if(enemy.GetComponent<EntityTarget>() != null)
+        {
+            enemy.GetComponent<EntityTarget>().battle = this;
+        }
 
         float randomTimeCadence = Random.Range(cadenceSpawnBattle - cadenceRangeSpawnBattle, cadenceSpawnBattle + cadenceRangeSpawnBattle);
 
@@ -95,5 +118,9 @@ public class Battle : MonoBehaviour
         }
     }
 
+    public void EnemyDeath()
+    {
+        enemyActualSpawned = enemyActualSpawned - 1;
+    }
 
 }

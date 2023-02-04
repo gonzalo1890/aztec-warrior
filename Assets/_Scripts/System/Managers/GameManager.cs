@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
 
         //LoadConfigGame();
 
-        SceneManager.LoadScene(3, LoadSceneMode.Additive);
+        SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }
 
     public void ResetGame()

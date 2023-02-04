@@ -20,8 +20,7 @@ public abstract class Weapon : Item
 
 
     //Cadencia del arma (en segundos)
-    [SerializeField]
-    private float cadence = 1f;
+    public float cadence = 1f;
     float nextCheck;
 
     //Probabilidad de daño critico
@@ -48,7 +47,7 @@ public abstract class Weapon : Item
     public GameObject impact;
     protected virtual void Update()
     {
-        if(Input.GetButton("Fire1") && isEquiped && GameManager.Instance.playerStats.GetActualAmmo() > 0)
+        if (Input.GetButton("Fire1") && isEquiped && GameManager.Instance.playerStats.GetActualAmmo() > 0)
         {
             if (Time.time > nextCheck)
             {
@@ -63,17 +62,34 @@ public abstract class Weapon : Item
         damageCalculated = CalculeDamage();
         GameManager.Instance.playerStats.SetActualAmmo(-1);
         GameManager.Instance.playerWeapon.GetAnimatorWeapon().SetTrigger("Shoot");
+        GameManager.Instance.playerWeapon.StartParticleShoot();
 
 
     }
 
+    public override void LevelApply()
+    {
+        base.LevelApply();
+        if (itemLevel != ItemLevel.Common)
+        {
+            damage = damage * (int)itemLevel;
+            for (int i = 0; i < (int)itemLevel; i++)
+            {
+                float aux = (10 * cadence) / 100;
+                cadence = cadence - aux;
+            }
+            cadence = Mathf.Round(cadence * 100.0f) * 0.01f;
+            criticalHitProbability = criticalHitProbability * (int)itemLevel;
+        }
+
+    }
     public Damage CalculeDamage()
     {
         int value = Random.Range(damage - RandomRange, damage + RandomRange);
         DamageElement sendElement = DamageElement.None;
         bool sendIsCritic = false;
 
-        if(CalculateElementDamage())
+        if (CalculateElementDamage())
         {
             sendElement = damageElement;
             int valueElementDamage = Random.Range(RandomRangeElemental, RandomRangeElemental * 2);

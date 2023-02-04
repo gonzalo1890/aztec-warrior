@@ -11,6 +11,7 @@ public class DamagePlayer : MonoBehaviour
         {
             //damageSave.pointDamage = other.ClosestPoint(transform.position);
             other.transform.GetComponent<Player_Stats>().ChangeHealth(-damageValue);
+            Destroy(gameObject);
         }
     }
 }

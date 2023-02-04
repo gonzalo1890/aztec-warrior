@@ -48,7 +48,7 @@ public class CanvasManager : MonoBehaviour
 
     private RectTransform itemSelectCanvas;
     public List<Color> itemlevelColor;
-
+    public List<Color> itemElementColor;
     //WorldObjects
     public GameObject damageInfoObject;
 
@@ -164,18 +164,71 @@ public class CanvasManager : MonoBehaviour
     public void ItemInfoCanvasProcess(Item item)
     {
         itemInfo.SetActive(true);
-        itemInfo.transform.GetChild(1).GetComponent<Text>().text = item.itemName + "\nValue: " + item.itemValue + "\nWeight: " + item.itemWeight;
+
+        string newItemInfo = item.itemName;
+
+        if (item.GetComponent<Weapon>() != null)
+        {
+            Weapon weapon = item.GetComponent<Weapon>();
+
+            float cadence = weapon.cadence;
+            string cadenceString = cadence.ToString("F3");
+            newItemInfo += "\nDamage: " + weapon.damage + "\nCadence: " + cadenceString + "\nCritic Prob: " + weapon.criticalHitProbability + "%";
+            itemInfo.transform.GetChild(2).transform.gameObject.SetActive(true);
+            itemInfo.transform.GetChild(2).GetComponent<Image>().color = itemElementColor[(int)weapon.damageElement];
+        }
+        else if (item.GetComponent<Skill>() != null)
+        {
+            Skill skill = item.GetComponent<Skill>();
+            newItemInfo += "\nCadence: " + skill.cadence + " seg." + "\nDescription: " + skill.description;
+            itemInfo.transform.GetChild(2).transform.gameObject.SetActive(false);
+        }
+        else
+        {
+            newItemInfo += "\nValue: " + item.itemValue + "\nWeight: " + item.itemWeight;
+            itemInfo.transform.GetChild(2).transform.gameObject.SetActive(false);
+        }
+
+        itemInfo.transform.GetChild(1).GetComponent<Text>().text = newItemInfo;
         itemInfo.transform.GetChild(0).GetComponent<Image>().color = itemlevelColor[(int)item.itemLevel];
         itemInfo.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = item.itemIcon;
+
+
 
     }
 
     public void ItemInfoWorldProcess(Item item)
     {
-        if(item != null)
+        if (item != null)
         {
             itemInfoWorld.SetActive(true);
-            itemInfoWorld.transform.GetChild(1).GetComponent<Text>().text = item.itemName + "\nValue: " + item.itemValue + "\nWeight: " + item.itemWeight;
+
+            string newItemInfo = item.itemName;
+
+            if (item.GetComponent<Weapon>() != null)
+            {
+                Weapon weapon = item.GetComponent<Weapon>();
+                float cadence = weapon.cadence;
+                string cadenceString = cadence.ToString("F3");
+                newItemInfo += "\nDamage: " + weapon.damage + "\nCadence: " + cadenceString + "\nCritic Prob: " + weapon.criticalHitProbability + "%";
+                itemInfo.transform.GetChild(2).transform.gameObject.SetActive(true);
+                itemInfo.transform.GetChild(2).GetComponent<Image>().color = itemElementColor[(int)weapon.damageElement];
+            }
+            else if (item.GetComponent<Skill>() != null)
+            {
+                Skill skill = item.GetComponent<Skill>();
+                float cadence = skill.cadence;
+                string cadenceString =  cadence.ToString("F3");
+                newItemInfo += "\nCadence: " + cadenceString + "\nDescription: " + skill.description;
+                itemInfo.transform.GetChild(2).transform.gameObject.SetActive(false);
+            }
+            else
+            {
+                newItemInfo += "\nValue: " + item.itemValue + "\nWeight: " + item.itemWeight;
+                itemInfo.transform.GetChild(2).transform.gameObject.SetActive(false);
+            }
+
+            itemInfoWorld.transform.GetChild(1).GetComponent<Text>().text = newItemInfo;
             itemInfoWorld.transform.GetChild(0).GetComponent<Image>().color = itemlevelColor[(int)item.itemLevel];
             itemInfoWorld.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = item.itemIcon;
         }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Player_Stats : MonoBehaviour
 {
-    public int health = 100;
-    private int maxHealth = 100;
+    public int health = 1000;
+    private int maxHealth = 1000;
 
     //Lineage
     public int spirit = 0;

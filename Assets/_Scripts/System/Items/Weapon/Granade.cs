@@ -13,7 +13,7 @@ public class Granade : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * 5000 * Time.deltaTime, ForceMode.Impulse);
+        rb.AddForce(transform.forward * 1000 * Time.fixedDeltaTime, ForceMode.Impulse);
         Invoke(nameof(Explode), ExplodeTime);
     }
 

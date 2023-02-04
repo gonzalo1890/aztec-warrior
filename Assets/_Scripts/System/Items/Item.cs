@@ -26,14 +26,19 @@ public abstract class Item : MonoBehaviour, Iaction
 
     public void OnOver(GameObject actionObject)
     {
-        if(actionObject != null)
+        if (actionObject != null)
         {
             GameManager.Instance.canvasManager.ItemInfoWorldProcess(this);
-        }else
+        }
+        else
         {
             GameManager.Instance.canvasManager.ItemInfoWorldProcess(null);
         }
     }
 
+    public virtual void LevelApply()
+    {
+        
+    }
 
 }

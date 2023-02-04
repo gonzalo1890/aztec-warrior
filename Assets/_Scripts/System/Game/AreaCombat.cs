@@ -21,7 +21,10 @@ public class AreaCombat : MonoBehaviour
             inArea = false;
         }
     }
-
+    public void SetInArea(bool value)
+    {
+        inArea = value;
+    }
     public bool getInArea()
     {
         return inArea;

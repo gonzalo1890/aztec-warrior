@@ -15,7 +15,7 @@ public class Player_Reward : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenerateReward();
+        //GenerateReward();
     }
 
     // Update is called once per frame
@@ -29,6 +29,8 @@ public class Player_Reward : MonoBehaviour
         RewardItems[0].SetItem(GetWeapon().GetComponent<Item>());
         RewardItems[1].SetItem(GetWeapon().GetComponent<Item>());
         RewardItems[2].SetItem(GetSkill().GetComponent<Item>());
+
+        GameManager.Instance.canvasManager.OpenReward(true);
     }
 
 
@@ -55,6 +57,8 @@ public class Player_Reward : MonoBehaviour
         int damageElement = Random.Range(0, 5);
         item.GetComponent<Weapon>().damageElement = (DamageElement)damageElement;
 
+        item.LevelApply();
+
         return newItem;
     }
 
@@ -77,6 +81,8 @@ public class Player_Reward : MonoBehaviour
         Item item = newItem.GetComponent<Item>();
         int level = Random.Range(0, 5);
         item.itemLevel = (ItemLevel)level;
+
+        item.LevelApply();
 
         return newItem;
     }

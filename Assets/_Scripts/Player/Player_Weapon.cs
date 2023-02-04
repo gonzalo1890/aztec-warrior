@@ -12,6 +12,7 @@ public class Player_Weapon : MonoBehaviour
     public Damage actualDamage;
     private int actualWeapon;
 
+    private ParticleSystem ShootParticle;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +34,15 @@ public class Player_Weapon : MonoBehaviour
 
         weapons[weapon].SetActive(isActive);
 
-        if(isActive)
+        if (weapons[weapon].transform.childCount > 0)
+        {
+            if (weapons[weapon].transform.GetChild(0).transform.GetChild(0) != null)
+            {
+                ShootParticle = weapons[weapon].transform.GetChild(0).transform.GetChild(0).GetComponent<ParticleSystem>();
+            }
+        }
+
+        if (isActive)
         {
             actualWeapon = weapon;
         }
@@ -41,9 +50,9 @@ public class Player_Weapon : MonoBehaviour
 
     public Animator GetAnimatorWeapon()
     {
-        if (weapons[actualWeapon].GetComponent<Animator>() != null)
+        if (weapons[actualWeapon].transform.GetChild(0).GetComponent<Animator>() != null)
         {
-            return weapons[actualWeapon].GetComponent<Animator>();
+            return weapons[actualWeapon].transform.GetChild(0).GetComponent<Animator>();
         }else
         {
             return null;
@@ -58,8 +67,15 @@ public class Player_Weapon : MonoBehaviour
         damageA.GetComponent<DamageArea>().damageElement = actualDamage.damageElement;
     }
 
+    public void StartParticleShoot()
+    {
+        if (ShootParticle != null)
+        {
+            ShootParticle.Play();
+        }
+    }
     public Transform GetShootPoint()
     {
-        return weapons[actualWeapon].transform.GetChild(0).transform;
+        return weapons[actualWeapon].transform.GetChild(0).transform.GetChild(1).transform;
     }
 }

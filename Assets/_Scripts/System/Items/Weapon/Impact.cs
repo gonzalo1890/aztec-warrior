@@ -9,10 +9,11 @@ public class Impact : MonoBehaviour
     public DamageElement damageElement;
     public List<GameObject> damageElementObjects;
 
+    public LineRenderer line;
     // Start is called before the first frame update
     void Start()
     {
-
+        Destroy(gameObject, 1);
     }
 
     // Update is called once per frame
@@ -30,7 +31,7 @@ public class Impact : MonoBehaviour
         {
             particle.transform.SetParent(parentSelect);
         }
-        Destroy(particle, 3f);
+        Destroy(particle, 1f);
     }
     public void CreateElementParticle(Vector3 positionParticle, Transform parentSelect = null, bool isParent = false)
     {
@@ -65,5 +66,15 @@ public class Impact : MonoBehaviour
         }
 
         Destroy(particle, 1f);
+    }
+
+
+    public void SetLine(Vector3 start, Vector3 end, Transform parent)
+    {
+        line.transform.SetParent(null);
+        line.transform.position = Vector3.zero;
+        line.SetPosition(0, start);
+        line.SetPosition(1, end);
+        Destroy(line.gameObject, 0.1f);
     }
 }

@@ -34,7 +34,12 @@ public class EntityTarget : Entity
 
     public GameObject attackArea;
     public Transform attackPosition;
+
+    public GameObject proyectileShoot;
+    public Transform shootPosition;
     Coroutine coroutineAIM;
+
+    public Battle battle;
     // Start is called before the first frame update
     public override void Start()
     {
@@ -75,6 +80,11 @@ public class EntityTarget : Entity
         }
     }
 
+    public override void Death()
+    {
+        base.Death();
+        battle.EnemyDeath();
+    }
 
     void GetTarget()
     {
@@ -184,8 +194,7 @@ public class EntityTarget : Entity
                     FaceTarget();
                     GetAgentDestination().NewTargetPath(this.transform, DestinationType.Still);
                     Debug.Log("Distance Attack");
-                    GetRecoil().Fire(1f);
-                    if(coroutineAIM != null)
+                    if (coroutineAIM != null)
                     {
                         StopCoroutine(coroutineAIM);
                     }
@@ -222,8 +231,10 @@ public class EntityTarget : Entity
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        yield return new WaitForSeconds(1);
-
+        yield return new WaitForSeconds(0.3f);
+        GetRecoil().Fire(1f);
+        GameObject shoot = Instantiate(proyectileShoot, shootPosition.position, transform.rotation) as GameObject;
+        yield return new WaitForSeconds(0.3f);
         elapsedTime = 0;
         start = aimIK.solver.GetIKPositionWeight();
         while (elapsedTime < waitTime)
@@ -234,6 +245,7 @@ public class EntityTarget : Entity
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+        coroutineAIM = null;
     }
 
     //Rotacion de la entidad hacia su objetivo

@@ -57,6 +57,7 @@ public class Roguelite : MonoBehaviour
         }
         else
         {
+            GameManager.Instance.playerReward.GenerateReward();
             GameManager.Instance.canvasManager.OpenGamePanel(true);
             cameraStart.gameObject.SetActive(false);
         }        
@@ -67,6 +68,7 @@ public class Roguelite : MonoBehaviour
         GameManager.Instance.canvasManager.OpenMenu(false);
         GameManager.Instance.canvasManager.OpenRedemption(false);
         GameManager.Instance.canvasManager.OpenGamePanel(true);
+        GameManager.Instance.playerReward.GenerateReward();
         cameraStart.gameObject.SetActive(false);
     }
 

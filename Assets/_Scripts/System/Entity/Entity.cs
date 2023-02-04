@@ -119,8 +119,7 @@ public abstract class Entity : MonoBehaviour
                 //recoil.Fire(0.01f);
             }
             health = 0;
-            ActiveRagdolls();
-            Destroy(gameObject, 5);
+            Death();
         }else
         {
             if (recoil != null)
@@ -130,6 +129,12 @@ public abstract class Entity : MonoBehaviour
         }
 
         GameManager.Instance.canvasManager.SetDamageInfo(damageCalculated.damageValue, damageCalculated.damageElement, damageCalculated.isCritic, damageCalculated.pointDamage);
+    }
+
+    public virtual void Death()
+    {
+        ActiveRagdolls();
+        Destroy(gameObject, 5);
     }
 
     public Agent_Destination GetAgentDestination()
