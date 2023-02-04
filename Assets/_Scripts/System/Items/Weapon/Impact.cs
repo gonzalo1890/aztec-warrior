@@ -75,6 +75,6 @@ public class Impact : MonoBehaviour
         line.transform.position = Vector3.zero;
         line.SetPosition(0, start);
         line.SetPosition(1, end);
-        Destroy(line.gameObject, 0.1f);
+        Destroy(line.gameObject, 0.01f);
     }
 }

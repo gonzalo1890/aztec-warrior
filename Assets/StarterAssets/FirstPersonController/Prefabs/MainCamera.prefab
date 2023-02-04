@@ -1264,6 +1264,17 @@ MonoBehaviour:
   - {fileID: 5356307925899898039}
   damageArea: {fileID: 2040219433121624003, guid: 204bcdefc8221f14ca859478ddfb8189,
     type: 3}
+  Sounds:
+  - {fileID: 900577359318630474, guid: 52f77dc53723ff041913ca6adcd44651, type: 3}
+  - {fileID: 900577359318630474, guid: 52f77dc53723ff041913ca6adcd44651, type: 3}
+  - {fileID: 900577359318630474, guid: 52f77dc53723ff041913ca6adcd44651, type: 3}
+  - {fileID: 1330604749560137938, guid: cfefe9a9d371d8843a05d1ec3af2b44d, type: 3}
+  - {fileID: 1330604749560137938, guid: cfefe9a9d371d8843a05d1ec3af2b44d, type: 3}
+  - {fileID: 1330604749560137938, guid: cfefe9a9d371d8843a05d1ec3af2b44d, type: 3}
+  - {fileID: 7146278027317772121, guid: 6ca6a5b7185593d4aac6cf5e52a28e61, type: 3}
+  - {fileID: 5107590452938897874, guid: 66f891ec612c4c549a9f586416c4da82, type: 3}
+  noAmmoSound: {fileID: 8242642167643487456, guid: cf9301a108561a4438d106aaedb1bb32,
+    type: 3}
 --- !u!114 &-7083098024813986090
 MonoBehaviour:
   m_ObjectHideFlags: 0

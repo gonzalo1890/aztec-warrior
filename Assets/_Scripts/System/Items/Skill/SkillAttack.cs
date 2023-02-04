@@ -18,6 +18,7 @@ public class SkillAttack : Skill
         {
             if (isPrepared)
             {
+                GameManager.Instance.canvasManager.ColdDownSkill(cadence, true);
                 ActiveSkill();
             }
         }

@@ -21,7 +21,10 @@ public class Player_Reward : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            GenerateReward();
+        }
     }
 
     public void GenerateReward()

@@ -75,6 +75,8 @@ public class Battle : MonoBehaviour
     public void StartCombat()
     {
         combat = true;
+        GameManager.Instance.roguelite.Sounds[1].Stop();
+        GameManager.Instance.roguelite.Sounds[1].Play(2, "Musica");
         WallsEnabled(true);
         StartArea.SetInArea(false);
         StartArea.gameObject.SetActive(false);
@@ -85,6 +87,8 @@ public class Battle : MonoBehaviour
     public void EndCombat()
     {
         combat = false;
+        GameManager.Instance.roguelite.Sounds[1].Stop();
+        GameManager.Instance.roguelite.Sounds[1].Play(0, "Musica");
         WallsEnabled(false);
         if (!rewardAdd)
         {

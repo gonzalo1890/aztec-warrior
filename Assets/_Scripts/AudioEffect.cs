@@ -8,9 +8,28 @@ public class AudioEffect : MonoBehaviour
 
     public FMODUnity.EventReference fmodEvent;
 
-    public void Play()
+    public bool onStart = false;
+    private void Start()
+    {
+        if(onStart)
+        {
+            Play();
+            Destroy(gameObject, 2);
+        }
+    }
+
+    public void Play(int value = -1, string name = "")
     {
         instance = FMODUnity.RuntimeManager.CreateInstance(fmodEvent);
+        if (value != -1)
+        {
+            instance.setParameterByName(name, value);
+        }
         instance.start();
+    }
+
+    public void Stop()
+    {
+        instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 }

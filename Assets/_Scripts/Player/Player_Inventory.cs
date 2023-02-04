@@ -205,6 +205,7 @@ public class Player_Inventory : MonoBehaviour
     {
         SlotsWeapon[slotWeapon].isEquiped = false;
         SlotsWeapon[slot].isEquiped = true;
+        slotWeapon = slot;
         GameManager.Instance.playerWeapon.ActiveWeapon(weapon.weaponIndex, true);
         GameManager.Instance.canvasManager.WeaponEquiped(weapon);
         GameManager.Instance.playerStats.UpdateAmmo();
@@ -221,16 +222,29 @@ public class Player_Inventory : MonoBehaviour
             }
         }
 
+        //Se carga el slot con el arma nueva
         SlotsWeapon[slot] = weapon;
+
+        //Se setea el indice actual del arma
         indexActualWeapon = slot;
+
+        //Se equipa el arma
         EquipWeapon(SlotsWeapon[slot], slot);
+
+        //Lo guarda en el inventario de armas en el canvas
         weaponItems[slot].SetItem(weapon);
 
+        //Ahora el player lo contiene
         weapon.transform.SetParent(itemsContainer);
+        //Se resetea la posicion
         weapon.transform.localPosition = Vector3.zero;
+        //Se apaga el collider
         weapon.GetComponent<Collider>().enabled = false;
-        weapon.transform.GetChild(0).gameObject.SetActive(false);        
-        GameManager.Instance.canvasManager.AddItem(weapon, slot);
+        //Se apaga el modelo 3d
+        weapon.transform.GetChild(0).gameObject.SetActive(false);       
+        
+
+        //GameManager.Instance.canvasManager.AddItem(weapon, slot);
 
     }
 

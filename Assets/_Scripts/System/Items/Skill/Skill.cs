@@ -41,6 +41,7 @@ public class Skill : Item
     }
     public virtual void ActiveSkill()
     {
+        
         isPrepared = false;
         //damageCalculated = CalculeDamage();
 

@@ -86,6 +86,10 @@ namespace StarterAssets
 			}
 		}
 
+		public GameObject WalkSound;
+		public float soundCadence;
+		float nextCheck;
+
 		private void Awake()
 		{
 			// get a reference to our main camera
@@ -192,6 +196,12 @@ namespace StarterAssets
 			{
 				// move
 				inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y;
+
+				if (Time.time > nextCheck && Grounded)
+				{
+					GameObject walk = Instantiate(WalkSound, transform.position, transform.rotation) as GameObject;
+					nextCheck = Time.time + soundCadence;
+				}
 			}
 
 			// move the player

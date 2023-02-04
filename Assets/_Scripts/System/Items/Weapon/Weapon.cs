@@ -47,13 +47,22 @@ public abstract class Weapon : Item
     public GameObject impact;
     protected virtual void Update()
     {
-        if (Input.GetButton("Fire1") && isEquiped && GameManager.Instance.playerStats.GetActualAmmo() > 0)
+        if (Input.GetButton("Fire1") && isEquiped)
         {
+
             if (Time.time > nextCheck)
             {
-                Shoot();
+                if (GameManager.Instance.playerStats.GetActualAmmo() > 0)
+                {
+                    Shoot();
+                }
+                else
+                {
+                    GameManager.Instance.playerWeapon.WeaponNoAmmo();
+                }
                 nextCheck = Time.time + cadence;
             }
+
         }
     }
 
@@ -62,6 +71,7 @@ public abstract class Weapon : Item
         damageCalculated = CalculeDamage();
         GameManager.Instance.playerStats.SetActualAmmo(-1);
         GameManager.Instance.playerWeapon.GetAnimatorWeapon().SetTrigger("Shoot");
+        GameManager.Instance.playerWeapon.WeaponSound();
         GameManager.Instance.playerWeapon.StartParticleShoot();
 
 

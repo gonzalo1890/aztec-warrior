@@ -15,6 +15,7 @@ public abstract class Entity : MonoBehaviour
 
     public int health = 100;
     public int healthMax = 100;
+    public bool isDeath = false;
 
     public TakeDamage[] takeDamages;
 
@@ -133,8 +134,9 @@ public abstract class Entity : MonoBehaviour
 
     public virtual void Death()
     {
+        isDeath = true;
         ActiveRagdolls();
-        Destroy(gameObject, 5);
+        Destroy(gameObject, 10);
     }
 
     public Agent_Destination GetAgentDestination()

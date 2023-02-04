@@ -13,6 +13,9 @@ public class Player_Weapon : MonoBehaviour
     private int actualWeapon;
 
     private ParticleSystem ShootParticle;
+
+    public List<GameObject> Sounds = new List<GameObject>();
+    public GameObject noAmmoSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,8 +61,16 @@ public class Player_Weapon : MonoBehaviour
             return null;
         }
     }
+    
+    public void WeaponSound()
+    {
+        GameObject sound = Instantiate(Sounds[actualWeapon], transform.position, transform.rotation) as GameObject;
+    }
 
-
+    public void WeaponNoAmmo()
+    {
+        GameObject sound = Instantiate(noAmmoSound, transform.position, transform.rotation) as GameObject;
+    }
     public void CreateDamageArea()
     {
         GameObject damageA = Instantiate(damageArea, weapons[actualWeapon].transform.position, transform.rotation) as GameObject;

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 public class CanvasManager : MonoBehaviour
 {
     //Menu REAL
@@ -23,7 +22,8 @@ public class CanvasManager : MonoBehaviour
     //Stats
     public Slider[] statsBars;
     public Text spiritText;
-
+    public List<Sprite> skulls = new List<Sprite>();
+    public Image skullImage;
 
     //InventoryGeneral
     public GameObject prefabItem;
@@ -38,17 +38,25 @@ public class CanvasManager : MonoBehaviour
     //InventoryWeapon
     public GameObject inventoryWeaponObject;
     public List <Image> itemsInventoryWeapon = new List<Image>();
+    public Image itemsInventoryWeaponEquipedFrame;
     public Image itemsInventoryWeaponEquiped;
-    public TMP_Text AmmoText;
+    public Image itemsInventoryWeaponEquipedAmmo;
+    public Image itemsInventoryWeaponEquipedElement;
+    public Text AmmoText;
 
     //InventorySkill
     public Image itemSkillAttackImage;
+    public Image itemSkillAttackFrameImage;
     public Image itemSkillExtraImage;
-
+    public Image itemSkillExtraFrameImage;
+    public Image itemColdDownSkill;
+    public List<Color> SkillColdDownColors;
+    Coroutine coldDown;
 
     private RectTransform itemSelectCanvas;
     public List<Color> itemlevelColor;
-    public List<Color> itemElementColor;
+    public List<Sprite> itemElementSprite;
+    public List<Sprite> itemAmmoSprite;
     //WorldObjects
     public GameObject damageInfoObject;
 
@@ -106,12 +114,66 @@ public class CanvasManager : MonoBehaviour
         while (elapsedTime < waitTime)
         {
             statsBars[stat].value = Mathf.Lerp(startValue, endValue, (elapsedTime / waitTime));
+            skullImage.sprite = SkullSelected(statsBars[stat].value);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
         statsBars[stat].value = endValue;
         yield return null;
     }
+
+    public Sprite SkullSelected(float value)
+    {
+        Sprite result = null;
+
+        if (value >= 1000f)
+        {
+            result = skulls[10];
+        }
+        if (value > 900f)
+        {
+            result = skulls[9];
+        }
+        else if (value > 800f)
+        {
+            result = skulls[8];
+        }
+        else if (value > 700f)
+        {
+            result = skulls[7];
+        }
+        else if (value > 600f)
+        {
+            result = skulls[6];
+        }
+        else if (value > 500f)
+        {
+            result = skulls[5];
+        }
+        else if (value > 400f)
+        {
+            result = skulls[4];
+        }
+        else if (value > 300f)
+        {
+            result = skulls[3];
+        }
+        else if (value > 200f)
+        {
+            result = skulls[2];
+        }
+        else if (value > 100f)
+        {
+            result = skulls[1];
+        }
+        else
+        {
+            result = skulls[0];
+        }
+
+        return result;
+    }
+
 
     #endregion
 
@@ -130,7 +192,9 @@ public class CanvasManager : MonoBehaviour
     public void WeaponEquiped(Weapon weapon)
     {
         itemsInventoryWeaponEquiped.sprite = weapon.itemIcon;
-
+        itemsInventoryWeaponEquipedFrame.color = itemlevelColor[(int)weapon.itemLevel];
+        itemsInventoryWeaponEquipedElement.sprite = itemElementSprite[(int)weapon.damageElement];
+        itemsInventoryWeaponEquipedAmmo.sprite = itemAmmoSprite[(int)weapon.ammoType];
     }
 
     public void UpdateAmmo(int value)
@@ -138,6 +202,7 @@ public class CanvasManager : MonoBehaviour
         if(value == -1)
         {
             AmmoText.gameObject.SetActive(false);
+            return;
         }
         else
         {
@@ -146,6 +211,43 @@ public class CanvasManager : MonoBehaviour
 
         AmmoText.text = value.ToString();
     }
+
+    public void ColdDownSkill(float cadence, bool isOn)
+    {
+        if(isOn)
+        {
+            itemColdDownSkill.color = SkillColdDownColors[0];
+            if(coldDown != null)
+            {
+                StopCoroutine(coldDown);
+                coldDown = StartCoroutine(animColdDown(cadence));
+            }else
+            {
+                coldDown = StartCoroutine(animColdDown(cadence));
+            }
+
+        }
+        else
+        {
+            itemColdDownSkill.color = SkillColdDownColors[0];
+        }
+    }
+
+    public IEnumerator animColdDown(float waitTime)
+    {
+        float elapsedTime = 0;
+        while (elapsedTime < waitTime)
+        {
+            itemColdDownSkill.fillAmount = Mathf.Lerp(0, 1, (elapsedTime / waitTime));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        itemColdDownSkill.color = SkillColdDownColors[1];
+        itemColdDownSkill.fillAmount = 1;
+        coldDown = null;
+        yield return null;
+    }
+
     public void ItemSelected(RectTransform item)
     {
         //itemSelector.SetActive(true);
@@ -175,7 +277,7 @@ public class CanvasManager : MonoBehaviour
             string cadenceString = cadence.ToString("F3");
             newItemInfo += "\nDamage: " + weapon.damage + "\nCadence: " + cadenceString + "\nCritic Prob: " + weapon.criticalHitProbability + "%";
             itemInfo.transform.GetChild(2).transform.gameObject.SetActive(true);
-            itemInfo.transform.GetChild(2).GetComponent<Image>().color = itemElementColor[(int)weapon.damageElement];
+            itemInfo.transform.GetChild(2).GetComponent<Image>().sprite = itemElementSprite[(int)weapon.damageElement];
         }
         else if (item.GetComponent<Skill>() != null)
         {
@@ -212,7 +314,7 @@ public class CanvasManager : MonoBehaviour
                 string cadenceString = cadence.ToString("F3");
                 newItemInfo += "\nDamage: " + weapon.damage + "\nCadence: " + cadenceString + "\nCritic Prob: " + weapon.criticalHitProbability + "%";
                 itemInfo.transform.GetChild(2).transform.gameObject.SetActive(true);
-                itemInfo.transform.GetChild(2).GetComponent<Image>().color = itemElementColor[(int)weapon.damageElement];
+                itemInfo.transform.GetChild(2).GetComponent<Image>().sprite = itemElementSprite[(int)weapon.damageElement];
             }
             else if (item.GetComponent<Skill>() != null)
             {
@@ -247,11 +349,13 @@ public class CanvasManager : MonoBehaviour
         if (item.GetComponent<SkillAttack>() != null)
         {
             itemSkillAttackImage.sprite = item.itemIcon;
+            itemSkillAttackFrameImage.color = itemlevelColor[(int)item.itemLevel];
         }
 
         if (item.GetComponent<SkillExtra>() != null)
         {
             itemSkillExtraImage.sprite = item.itemIcon;
+            itemSkillExtraFrameImage.color = itemlevelColor[(int)item.itemLevel];
         }
 
         if (item.GetComponent<Weapon>() != null)

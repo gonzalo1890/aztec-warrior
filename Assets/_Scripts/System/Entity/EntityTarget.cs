@@ -212,6 +212,11 @@ public class EntityTarget : Entity
     //Calcula el siguiente movimiento
     void CalculeLoopState()
     {
+        if(isDeath)
+        {
+            return;
+        }
+
         if (Time.time > nextCheck)
         {
             entityState = Priority();

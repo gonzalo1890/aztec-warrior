@@ -143,10 +143,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 5
-  itemName: Escopeta
+  itemName: Shotgun
   itemValue: 0
   itemWeight: 4
-  itemIcon: {fileID: 21300000, guid: 3c9cbf2e09fb5fb49bec9cf6acb21651, type: 3}
+  itemIcon: {fileID: 21300000, guid: c8ef6cfd1dd081c498c2117d116b6730, type: 3}
   itemLevel: 0
   initPosition: {x: 0, y: 0, z: 0}
   lastPosition: {x: 0, y: 0, z: 0}

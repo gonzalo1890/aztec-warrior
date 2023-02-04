@@ -63,7 +63,7 @@ MonoBehaviour:
   itemName: Double Jump
   itemValue: 0
   itemWeight: 0
-  itemIcon: {fileID: 21300000, guid: 5c6286a90bd7a09429c0c10c7404cb15, type: 3}
+  itemIcon: {fileID: 21300000, guid: a161eaac5e7ace44dbfb5672464fa472, type: 3}
   itemLevel: 0
   initPosition: {x: 0, y: 0, z: 0}
   lastPosition: {x: 0, y: 0, z: 0}

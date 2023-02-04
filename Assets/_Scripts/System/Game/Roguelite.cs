@@ -7,6 +7,7 @@ public class Roguelite : MonoBehaviour
     public Camera cameraStart;
     public List<CombatInstance> combatInstances = new List<CombatInstance>();
 
+    public List<AudioEffect> Sounds = new List<AudioEffect>();
 
     public bool DebugOn = false;
 
@@ -36,6 +37,7 @@ public class Roguelite : MonoBehaviour
     public void StartGame()
     {
         StartCoroutine(StartCinematic());
+        Sounds[1].Play(1, "Musica");
     }
 
     public IEnumerator StartCinematic()
@@ -57,9 +59,7 @@ public class Roguelite : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.playerReward.GenerateReward();
-            GameManager.Instance.canvasManager.OpenGamePanel(true);
-            cameraStart.gameObject.SetActive(false);
+            GoRedemption();
         }        
     }
 
@@ -70,6 +70,9 @@ public class Roguelite : MonoBehaviour
         GameManager.Instance.canvasManager.OpenGamePanel(true);
         GameManager.Instance.playerReward.GenerateReward();
         cameraStart.gameObject.SetActive(false);
+        Sounds[1].Stop();
+        Sounds[1].Play(0, "Musica");
+        Sounds[0].Play(1, "ambiente");
     }
 
 
