@@ -5,7 +5,6 @@ public enum Difficulty {  Roockie, Elite, legendary }
 public class Roguelite : MonoBehaviour
 {
     public Camera cameraStart;
-    public List<CombatInstance> combatInstances = new List<CombatInstance>();
 
     public List<AudioEffect> Sounds = new List<AudioEffect>();
 
@@ -22,7 +21,7 @@ public class Roguelite : MonoBehaviour
         }
         else
         {
-            StartGame();
+            StartCredits();            
         }
 
     }
@@ -33,6 +32,18 @@ public class Roguelite : MonoBehaviour
         
     }
 
+
+    public void StartCredits()
+    {
+        GameManager.Instance.canvasManager.Open32kPanel(true);
+        Invoke(nameof(End32KPresent), 3);
+    }
+
+    public void End32KPresent()
+    {
+        GameManager.Instance.canvasManager.Open32kPanel(false);
+        StartGame();
+    }
 
     public void StartGame()
     {
@@ -55,6 +66,12 @@ public class Roguelite : MonoBehaviour
 
         if(GameManager.Instance.playerLineage.descendantNumber > 0)
         {
+            GameManager.Instance.canvasManager.UpdateStats(1, GameManager.Instance.playerStats.spirit);
+            GameManager.Instance.canvasManager.UpdatePoint(0);
+            GameManager.Instance.canvasManager.UpdatePoint(1);
+            GameManager.Instance.canvasManager.UpdatePoint(2);
+            GameManager.Instance.canvasManager.UpdatePoint(3);
+            GameManager.Instance.canvasManager.UpdatePoint(4);
             GameManager.Instance.canvasManager.OpenRedemption(true);
         }
         else
@@ -65,6 +82,8 @@ public class Roguelite : MonoBehaviour
 
     public void GoRedemption()
     {
+        GameManager.Instance.playerStats.InitStats();
+        GameManager.Instance.playerData.SaveGame();
         GameManager.Instance.canvasManager.OpenMenu(false);
         GameManager.Instance.canvasManager.OpenRedemption(false);
         GameManager.Instance.canvasManager.OpenGamePanel(true);
@@ -75,9 +94,32 @@ public class Roguelite : MonoBehaviour
         Sounds[0].Play(1, "ambiente");
     }
 
+    public void GoCredits()
+    {
+        GameManager.Instance.canvasManager.OpenMenu(false);
+        GameManager.Instance.canvasManager.OpenCredits(true);
+        Invoke(nameof(EndCredits), 10);
+    }
+
+    void EndCredits()
+    {
+        GameManager.Instance.canvasManager.OpenMenu(true);
+        GameManager.Instance.canvasManager.OpenCredits(false);
+    }
+    
+    public void GoQuit()
+    {
+        Application.Quit();
+    }
 
     public void Death()
     {
+        Sounds[1].Stop();
+        Sounds[1].Play(0, "Musica");
+
+        Sounds[0].Stop();
+        Sounds[0].Play(0, "ambiente");
+
         GameManager.Instance.canvasManager.OpenGamePanel(false);
         GameManager.Instance.canvasManager.OpenDeathPanel(true);
         GameManager.Instance.playerLineage.RestartLineage();
@@ -92,11 +134,20 @@ public class Roguelite : MonoBehaviour
     }
 
 
+    public void StartCombat()
+    {
+        Sounds[1].Stop();
+        Sounds[1].Play(2, "Musica");
+        Sounds[3].Stop();
+        Sounds[2].Play();
+    }
 
-}
+    public void EndCombat()
+    {
+        Sounds[1].Stop();
+        Sounds[1].Play(0, "Musica");
+        Sounds[2].Stop();
+        Sounds[3].Play();
+    }
 
-public class CombatInstance
-{
-    public Difficulty difficulty;
-    public int enemyDeath;
 }

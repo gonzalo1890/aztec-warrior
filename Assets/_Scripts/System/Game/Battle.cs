@@ -75,8 +75,7 @@ public class Battle : MonoBehaviour
     public void StartCombat()
     {
         combat = true;
-        GameManager.Instance.roguelite.Sounds[1].Stop();
-        GameManager.Instance.roguelite.Sounds[1].Play(2, "Musica");
+        GameManager.Instance.roguelite.StartCombat();
         WallsEnabled(true);
         StartArea.SetInArea(false);
         StartArea.gameObject.SetActive(false);
@@ -87,8 +86,7 @@ public class Battle : MonoBehaviour
     public void EndCombat()
     {
         combat = false;
-        GameManager.Instance.roguelite.Sounds[1].Stop();
-        GameManager.Instance.roguelite.Sounds[1].Play(0, "Musica");
+        GameManager.Instance.roguelite.EndCombat();
         WallsEnabled(false);
         if (!rewardAdd)
         {
@@ -122,8 +120,9 @@ public class Battle : MonoBehaviour
         }
     }
 
-    public void EnemyDeath()
+    public void EnemyDeath(int spirit = 1)
     {
+        GameManager.Instance.playerStats.ChangeSpirit(spirit);
         enemyActualSpawned = enemyActualSpawned - 1;
     }
 

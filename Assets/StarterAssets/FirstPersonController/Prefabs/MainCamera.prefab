@@ -898,6 +898,37 @@ Transform:
   m_Father: {fileID: 6051363192821334772}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7232465705802700121
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7818016906021757981}
+  m_Layer: 0
+  m_Name: DamagePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7818016906021757981
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7232465705802700121}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 1.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9005220659476430818}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7299543757064339797
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,6 +1158,7 @@ Transform:
   - {fileID: 1264153778985242746}
   - {fileID: 3083589227789034399}
   - {fileID: 7432935721246203170}
+  - {fileID: 7818016906021757981}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1275,6 +1307,7 @@ MonoBehaviour:
   - {fileID: 5107590452938897874, guid: 66f891ec612c4c549a9f586416c4da82, type: 3}
   noAmmoSound: {fileID: 8242642167643487456, guid: cf9301a108561a4438d106aaedb1bb32,
     type: 3}
+  damagePoint: {fileID: 7818016906021757981}
 --- !u!114 &-7083098024813986090
 MonoBehaviour:
   m_ObjectHideFlags: 0

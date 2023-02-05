@@ -37,6 +37,7 @@ public class ItemSaved : MonoBehaviour
 
         if(isReward)
         {
+            GameManager.Instance.playerReward.SelectReward(itemSaved);
             GameManager.Instance.canvasManager.OpenReward(false);
         }
     }

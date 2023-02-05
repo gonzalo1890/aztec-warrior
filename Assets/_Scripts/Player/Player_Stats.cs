@@ -5,10 +5,16 @@ using UnityEngine;
 public class Player_Stats : MonoBehaviour
 {
     public int health = 1000;
-    private int maxHealth = 1000;
+    public int maxHealth = 1000;
 
+    private bool isDead = false;
     //Lineage
     public int spirit = 0;
+
+    public int bloodlust = 0;
+    public int rage = 0;
+    public int agony = 0;
+    public int brutality = 0;
 
     //Weapons
     public int bullet = 0;
@@ -16,10 +22,13 @@ public class Player_Stats : MonoBehaviour
     public int misil = 0;
     public int granade = 0;
 
-    private void Start()
+
+    public void InitStats()
     {
+        ChangeMaxHealth(agony);
         Invoke(nameof(UpdateStats), 1);
     }
+
 
     public void UpdateStats()
     {
@@ -59,7 +68,18 @@ public class Player_Stats : MonoBehaviour
 
     public void ChangeHealth(int value)
     {
-        health += value;
+        if(isDead)
+        {
+            return;
+        }
+        if (value < 0)
+        {
+            health += (value + rage);
+        }else
+        {
+            health += value;
+        }
+
         if(health > maxHealth)
         {
             health = maxHealth;
@@ -67,12 +87,21 @@ public class Player_Stats : MonoBehaviour
         if(health <= 0)
         {
             GameManager.Instance.roguelite.Death();
+            isDead = true;
             health = 0;
         }
         GameManager.Instance.canvasManager.UpdateStats(0, health);
     }
 
-    void ChangeSpirit(int value)
+    public void ChangeMaxHealth(int value)
+    {
+        maxHealth += value;
+        health = maxHealth;
+        GameManager.Instance.canvasManager.UpdateHealthMaxBar(health);
+        GameManager.Instance.canvasManager.UpdateStats(0, health);
+    }
+
+    public void ChangeSpirit(int value)
     {
         spirit += value;
         if (spirit < 0)
@@ -82,7 +111,7 @@ public class Player_Stats : MonoBehaviour
         GameManager.Instance.canvasManager.UpdateStats(1, spirit);
     }
 
-    void ChangeBullet(int value)
+    public void ChangeBullet(int value)
     {
         bullet += value;
         if (bullet < 0)
@@ -92,7 +121,7 @@ public class Player_Stats : MonoBehaviour
         UpdateAmmo();
     }
 
-    void ChangeShell(int value)
+    public void ChangeShell(int value)
     {
         shell += value;
         if (shell < 0)
@@ -102,7 +131,7 @@ public class Player_Stats : MonoBehaviour
         UpdateAmmo();
     }
 
-    void ChangeMisil(int value)
+    public void ChangeMisil(int value)
     {
         misil += value;
         if (misil < 0)
@@ -112,7 +141,7 @@ public class Player_Stats : MonoBehaviour
         UpdateAmmo();
     }
 
-    void ChangeGranade(int value)
+    public void ChangeGranade(int value)
     {
         granade += value;
         if (granade < 0)
@@ -226,6 +255,10 @@ public class Player_Stats : MonoBehaviour
         List<int> stats = new List<int>();
         stats.Add(health);
         stats.Add(spirit);
+        stats.Add(bloodlust);
+        stats.Add(rage);
+        stats.Add(agony);
+        stats.Add(brutality);
         return stats;
     }
 
@@ -233,6 +266,16 @@ public class Player_Stats : MonoBehaviour
     {
         health = stats[0];
         spirit = stats[1];
+        bloodlust = stats[2];
+        rage = stats[3];
+        agony = stats[4];
+        brutality = stats[5];
         UpdateStats();
+    }
+
+    public void BloodlustApply(int value)
+    {
+        int result = ((value + bloodlust) * 3) / 100;
+        ChangeHealth(result);
     }
 }

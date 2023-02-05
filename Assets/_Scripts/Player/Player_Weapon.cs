@@ -16,6 +16,8 @@ public class Player_Weapon : MonoBehaviour
 
     public List<GameObject> Sounds = new List<GameObject>();
     public GameObject noAmmoSound;
+
+    public Transform damagePoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,7 +75,7 @@ public class Player_Weapon : MonoBehaviour
     }
     public void CreateDamageArea()
     {
-        GameObject damageA = Instantiate(damageArea, weapons[actualWeapon].transform.position, transform.rotation) as GameObject;
+        GameObject damageA = Instantiate(damageArea, damagePoint.position, transform.rotation) as GameObject;
         damageA.GetComponent<DamageArea>().damageSave = actualDamage;
         damageA.GetComponent<DamageArea>().damageElement = actualDamage.damageElement;
     }

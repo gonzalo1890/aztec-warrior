@@ -12,6 +12,7 @@ public class Player_Reward : MonoBehaviour
 
     public List<ItemSaved> RewardItems = new List<ItemSaved>();
 
+    public List<Item> RewardItemsStock = new List<Item>();
     // Start is called before the first frame update
     void Start()
     {
@@ -29,13 +30,37 @@ public class Player_Reward : MonoBehaviour
 
     public void GenerateReward()
     {
-        RewardItems[0].SetItem(GetWeapon().GetComponent<Item>());
-        RewardItems[1].SetItem(GetWeapon().GetComponent<Item>());
-        RewardItems[2].SetItem(GetSkill().GetComponent<Item>());
+        RewardItemsStock[0] = GetWeapon().GetComponent<Item>();
+        RewardItemsStock[1] = GetWeapon().GetComponent<Item>();
+        RewardItemsStock[2] = GetSkill().GetComponent<Item>();
+
+        RewardItems[0].SetItem(RewardItemsStock[0]);
+        RewardItems[1].SetItem(RewardItemsStock[1]);
+        RewardItems[2].SetItem(RewardItemsStock[2]);
 
         GameManager.Instance.canvasManager.OpenReward(true);
     }
 
+    public void SelectReward(Item reward)
+    {
+        if (reward != null)
+        {
+            for (int i = 0; i < RewardItemsStock.Count; i++)
+            {
+                if (RewardItemsStock[i] != reward)
+                {
+                    Destroy(RewardItemsStock[i].gameObject);
+                }
+            }
+        }else
+        {
+            for (int i = 0; i < RewardItemsStock.Count; i++)
+            {
+                Destroy(RewardItemsStock[i].gameObject);
+            }
+            GameManager.Instance.canvasManager.OpenReward(false);
+        }
+    }
 
     public GameObject GetWeapon()
     {

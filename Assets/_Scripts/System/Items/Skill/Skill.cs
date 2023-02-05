@@ -21,6 +21,11 @@ public class Skill : Item
 
     protected virtual void Update()
     {
+        if (GameManager.Instance.menuView)
+        {
+            return;
+        }
+
         if (Time.time > nextCheck)
         {
             isPrepared = true;

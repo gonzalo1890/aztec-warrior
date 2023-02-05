@@ -173,6 +173,7 @@ MonoBehaviour:
   nameID: Entity
   health: 100
   healthMax: 100
+  isDeath: 0
   takeDamages:
   - {fileID: 3774562959505858108}
   - {fileID: 3774562959683621221}
@@ -395,6 +396,10 @@ PrefabInstance:
       propertyPath: m_UpdateWhenOffscreen
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 959d14bf134f54a6e993fe6ca6e063c0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b4236d943071e4744818cfb4bc1a38ce, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 959d14bf134f54a6e993fe6ca6e063c0, type: 3}
 --- !u!95 &3774562959396078053 stripped

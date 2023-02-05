@@ -3,6 +3,7 @@
 using UnityEngine.InputSystem;
 #endif
 
+
 namespace StarterAssets
 {
 	[RequireComponent(typeof(CharacterController))]
@@ -116,14 +117,20 @@ namespace StarterAssets
 
 		private void Update()
 		{
-			JumpAndGravity();
-			GroundedCheck();
-			Move();
+			if (!GameManager.Instance.menuView)
+			{
+				JumpAndGravity();
+				GroundedCheck();
+				Move();
+			}
 		}
 
 		private void LateUpdate()
 		{
-			CameraRotation();
+			if (!GameManager.Instance.menuView)
+			{
+				CameraRotation();
+			}
 		}
 
 		private void GroundedCheck()
@@ -200,6 +207,7 @@ namespace StarterAssets
 				if (Time.time > nextCheck && Grounded)
 				{
 					GameObject walk = Instantiate(WalkSound, transform.position, transform.rotation) as GameObject;
+					Destroy(walk, 1);
 					nextCheck = Time.time + soundCadence;
 				}
 			}

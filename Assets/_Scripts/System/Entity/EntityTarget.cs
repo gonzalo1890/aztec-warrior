@@ -172,7 +172,7 @@ public class EntityTarget : Entity
     {
         GameObject damageA = Instantiate(attackArea, attackPosition.position, transform.rotation) as GameObject;
         Damage actualDamage = new Damage();
-        actualDamage.damageValue = 1;
+        actualDamage.damageValue = 5;
         actualDamage.damageElement = DamageElement.None;
         damageA.GetComponent<DamagePlayer>().damageValue = actualDamage.damageValue;
         //damageA.GetComponent<DamageArea>().damageElement = actualDamage.damageElement;
@@ -256,7 +256,7 @@ public class EntityTarget : Entity
     //Rotacion de la entidad hacia su objetivo
     private void FaceTarget()
     {
-        Debug.Log("FACETARGET");
+        //Debug.Log("FACETARGET");
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         if (coroutine != null)

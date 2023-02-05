@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public CanvasManager canvasManager;
-    public WorldManager worldManager;
 
     public GameObject player;
 
@@ -33,6 +32,8 @@ public class GameManager : MonoBehaviour
 
     public int saveId = 0;
 
+    public bool menuView = false;
+
     private void Awake()
     {
         if (!Instance)
@@ -47,8 +48,6 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        worldManager = GetComponent<WorldManager>();
-
         playerInventory = player.GetComponent<Player_Inventory>();
         playerStats = player.GetComponent<Player_Stats>();
         playerData = player.GetComponent<Player_Data>();
@@ -65,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        SceneManager.UnloadSceneAsync(2);
+        SceneManager.UnloadSceneAsync(1);
         SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 

@@ -71,6 +71,7 @@ public class Impact : MonoBehaviour
 
     public void SetLine(Vector3 start, Vector3 end, Transform parent)
     {
+        line.gameObject.SetActive(true);
         line.transform.SetParent(null);
         line.transform.position = Vector3.zero;
         line.SetPosition(0, start);

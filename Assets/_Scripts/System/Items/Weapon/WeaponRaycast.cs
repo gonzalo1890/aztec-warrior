@@ -44,6 +44,7 @@ public class WeaponRaycast : Weapon
                     particle.GetComponent<Impact>().CreateBloodParticle(hit.point, hit.transform, true);
                     particle.GetComponent<Impact>().SetLine(GameManager.Instance.playerWeapon.GetShootPoint().position, hit.point, ShootPoint);
                     hit.transform.GetComponent<Idamage>().SetDamage(damageCalculated);
+                    GameManager.Instance.playerStats.BloodlustApply(damageCalculated.damageValue);
                     return;
                 }
 

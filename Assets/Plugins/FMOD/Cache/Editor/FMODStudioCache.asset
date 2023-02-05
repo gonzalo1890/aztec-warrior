@@ -20,13 +20,13 @@ MonoBehaviour:
     Data4: -141974865
   Banks:
   - {fileID: 4636222914762844312}
-  IsStream: 0
+  IsStream: 1
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 0.1
   MaxDistance: 2800
-  Length: 5975
+  Length: 10088
 --- !u!114 &-8960747739269320546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,11 +69,38 @@ MonoBehaviour:
   Path: ../AztecWarriorAssets/aztec warrior/Build/Desktop/musica.bank
   Name: musica
   StudioPath: bank:/musica
-  lastModified: 638110481780000000
+  lastModified: 638111155540000000
   FileSizes:
   - Name: Desktop
-    Value: 2672576
+    Value: 4355232
   Exists: 1
+--- !u!114 &-7998319231461824158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ametralladora
+  m_EditorClassIdentifier: 
+  Path: event:/Ametralladora
+  Guid:
+    Data1: 843849400
+    Data2: 1216992580
+    Data3: -1366529651
+    Data4: -504816521
+  Banks:
+  - {fileID: 4636222914762844312}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 45
+  Length: 0
 --- !u!114 &-6042200454414140818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +152,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-4925890479329103864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Boton
+  m_EditorClassIdentifier: 
+  Path: event:/Boton
+  Guid:
+    Data1: 1879129959
+    Data2: 1097936613
+    Data3: 1867769529
+    Data4: 505924323
+  Banks:
+  - {fileID: 4636222914762844312}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-4888831852797828881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Oleada terminada
+  m_EditorClassIdentifier: 
+  Path: event:/Oleada terminada
+  Guid:
+    Data1: 611913201
+    Data2: 1235387501
+    Data3: -466334795
+    Data4: -898054241
+  Banks:
+  - {fileID: 4636222914762844312}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-4703824873277289043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +227,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 5773050081770318860}
   IsStream: 1
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 0
   Parameters:
   - {fileID: -6042200454414140818}
@@ -168,7 +249,7 @@ MonoBehaviour:
   Path: ../AztecWarriorAssets/aztec warrior/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638110481600000000
+  lastModified: 638111155360000000
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -230,12 +311,18 @@ MonoBehaviour:
   - {fileID: 5833122260128952041}
   - {fileID: -4703824873277289043}
   - {fileID: -1013358054707090243}
+  - {fileID: 8723488871925429698}
+  - {fileID: 2174529002245700170}
+  - {fileID: -4925890479329103864}
+  - {fileID: -7998319231461824158}
+  - {fileID: 599856372892797141}
+  - {fileID: -4888831852797828881}
   EditorParameters: []
   MasterBanks:
   - {fileID: -4212784506883092037}
   StringsBanks:
   - {fileID: 199930296624449074}
-  cacheTime: 638110481800000000
+  cacheTime: 638111155640000000
   cacheVersion: 131601
 --- !u!114 &199930296624449074
 MonoBehaviour:
@@ -252,11 +339,38 @@ MonoBehaviour:
   Path: ../AztecWarriorAssets/aztec warrior/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638110481600000000
+  lastModified: 638111155360000000
   FileSizes:
   - Name: Desktop
-    Value: 1510
+    Value: 1794
   Exists: 1
+--- !u!114 &599856372892797141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/star battle
+  m_EditorClassIdentifier: 
+  Path: event:/star battle
+  Guid:
+    Data1: -614714154
+    Data2: 1224166627
+    Data3: -363034463
+    Data4: 1316196627
+  Banks:
+  - {fileID: 4636222914762844312}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &1038400871795961659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,6 +426,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &2174529002245700170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Disparo enemigo
+  m_EditorClassIdentifier: 
+  Path: event:/Disparo enemigo
+  Guid:
+    Data1: 635322690
+    Data2: 1247895291
+    Data3: 1083229615
+    Data4: -2053803962
+  Banks:
+  - {fileID: 4636222914762844312}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 90
+  Length: 2000
 --- !u!114 &4636222914762844312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,10 +468,10 @@ MonoBehaviour:
   Path: ../AztecWarriorAssets/aztec warrior/Build/Desktop/FX.bank
   Name: FX
   StudioPath: bank:/FX
-  lastModified: 638110481600000000
+  lastModified: 638111155360000000
   FileSizes:
   - Name: Desktop
-    Value: 441600
+    Value: 936832
   Exists: 1
 --- !u!114 &5555496317167844183
 MonoBehaviour:
@@ -374,7 +515,7 @@ MonoBehaviour:
   Name: Musica
   StudioPath: 
   Min: 0
-  Max: 2
+  Max: 5
   Default: 0
   ID:
     data1: 1136525808
@@ -398,10 +539,10 @@ MonoBehaviour:
   Path: ../AztecWarriorAssets/aztec warrior/Build/Desktop/pantano.bank
   Name: pantano
   StudioPath: bank:/pantano
-  lastModified: 638110481800000000
+  lastModified: 638111155640000000
   FileSizes:
   - Name: Desktop
-    Value: 16437408
+    Value: 16809568
   Exists: 1
 --- !u!114 &5833122260128952041
 MonoBehaviour:
@@ -448,6 +589,33 @@ MonoBehaviour:
     Data2: 1337662841
     Data3: 1020459706
     Data4: 1561146795
+  Banks:
+  - {fileID: 4636222914762844312}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &8723488871925429698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/select
+  m_EditorClassIdentifier: 
+  Path: event:/select
+  Guid:
+    Data1: 1421798938
+    Data2: 1243876228
+    Data3: 1144070319
+    Data4: 841041941
   Banks:
   - {fileID: 4636222914762844312}
   IsStream: 0

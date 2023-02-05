@@ -47,7 +47,12 @@ public abstract class Weapon : Item
     public GameObject impact;
     protected virtual void Update()
     {
-        if (Input.GetButton("Fire1") && isEquiped)
+        if (GameManager.Instance.menuView)
+        {
+            return;
+        }
+
+            if (Input.GetButton("Fire1") && isEquiped)
         {
 
             if (Time.time > nextCheck)
@@ -91,6 +96,8 @@ public abstract class Weapon : Item
             cadence = Mathf.Round(cadence * 100.0f) * 0.01f;
             criticalHitProbability = criticalHitProbability * (int)itemLevel;
         }
+
+        damage = damage + GameManager.Instance.playerStats.brutality;
 
     }
     public Damage CalculeDamage()

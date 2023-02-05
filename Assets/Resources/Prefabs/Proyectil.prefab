@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 3878507075378357164}
   - component: {fileID: 2740041993547100081}
   - component: {fileID: 3249355893851582798}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Proyectil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
