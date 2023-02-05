@@ -10,6 +10,8 @@ public class Roguelite : MonoBehaviour
 
     public bool DebugOn = false;
 
+    public int progressWorld = 0; //1 PasoPantano / 2 PasoSelva / 3 PasoCiudad / 4 PasoPiramide
+
     // Start is called before the first frame update
     void Start()
     {
@@ -122,24 +124,47 @@ public class Roguelite : MonoBehaviour
 
         GameManager.Instance.canvasManager.OpenGamePanel(false);
         GameManager.Instance.canvasManager.OpenDeathPanel(true);
+        GameManager.Instance.playerData.SaveGame();
         GameManager.Instance.playerLineage.RestartLineage();
         Invoke(nameof(FinishDeath), 10);
     }
 
     public void FinishDeath()
-    {
-        GameManager.Instance.playerData.SaveGame();
+    {        
         GameManager.Instance.canvasManager.OpenDeathPanel(false);
         GameManager.Instance.ResetGame();
     }
 
-
-    public void StartCombat()
+    public void WinGame()
     {
-        Sounds[1].Stop();
-        Sounds[1].Play(2, "Musica");
-        Sounds[3].Stop();
-        Sounds[2].Play();
+        GameManager.Instance.canvasManager.OpenWinPanel(true);
+        GameManager.Instance.playerStats.ChangeSpirit((int)(GameManager.Instance.playerStats.spirit * 0.1f));
+        GameManager.Instance.playerData.SaveGame();
+        GameManager.Instance.playerLineage.RestartLineage();
+        Invoke(nameof(FinishWin), 10);
+    }
+    public void FinishWin()
+    {
+        
+        GameManager.Instance.canvasManager.OpenDeathPanel(false);
+        GameManager.Instance.ResetGame();
+    }
+    public void StartCombat(bool isBoss = false)
+    {
+        if (isBoss)
+        {
+            Sounds[1].Stop();
+            Sounds[1].Play(3, "Musica");
+            Sounds[3].Stop();
+            Sounds[2].Play();
+        }
+        else
+        {
+            Sounds[1].Stop();
+            Sounds[1].Play(2, "Musica");
+            Sounds[3].Stop();
+            Sounds[2].Play();
+        }
     }
 
     public void EndCombat()
@@ -150,4 +175,13 @@ public class Roguelite : MonoBehaviour
         Sounds[3].Play();
     }
 
+    public void ProgressWorld()
+    {
+        progressWorld += 1;
+
+        if(progressWorld > 3)
+        {
+            WinGame();
+        }
+    }
 }

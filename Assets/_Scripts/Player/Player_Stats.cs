@@ -33,6 +33,7 @@ public class Player_Stats : MonoBehaviour
     public void UpdateStats()
     {
         GameManager.Instance.canvasManager.UpdateStats(0, health);
+        GameManager.Instance.canvasManager.UpdateStats(3, spirit);
     }
 
     public void ConsumableProcess(consumableType consumableType, int value)
@@ -109,6 +110,7 @@ public class Player_Stats : MonoBehaviour
             spirit = 0;
         }
         GameManager.Instance.canvasManager.UpdateStats(1, spirit);
+        GameManager.Instance.canvasManager.UpdateStats(3, spirit);
     }
 
     public void ChangeBullet(int value)

@@ -9,6 +9,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject redemptionObject;
     public GameObject GamePanelObject;
     public GameObject panelDeath;
+    public GameObject panelWin;
     public GameObject creditsPanel;
     public GameObject Panel32k;
 
@@ -32,6 +33,7 @@ public class CanvasManager : MonoBehaviour
     public Slider[] statsBars;
     public Text HealthText;
     public Text spiritText;
+    public Text spiritGameText;
     public List<Sprite> skulls = new List<Sprite>();
     public Image skullImage;
 
@@ -98,6 +100,12 @@ public class CanvasManager : MonoBehaviour
         panelDeath.SetActive(value);
         OpenMenuAction(value);
     }
+
+    public void OpenWinPanel(bool value)
+    {
+        panelWin.SetActive(value);
+        OpenMenuAction(value);
+    }
     public void SetLoading(bool isActive)
     {
         loading.SetActive(isActive);
@@ -144,6 +152,10 @@ public class CanvasManager : MonoBehaviour
             spiritText.text = GameManager.Instance.playerStats.spirit.ToString();
         }
 
+        if (stat == 3) //Spirit in Game
+        {
+            spiritGameText.text = GameManager.Instance.playerStats.spirit.ToString();
+        }
     }
 
     public void UpdateHealthMaxBar(int value)
@@ -219,6 +231,10 @@ public class CanvasManager : MonoBehaviour
         return result;
     }
 
+    public void buttonNextGeneration()
+    {
+        GameManager.Instance.roguelite.FinishDeath();
+    }
 
     #endregion
 
@@ -333,7 +349,8 @@ public class CanvasManager : MonoBehaviour
     {
         itemInfo.SetActive(true);
 
-        string newItemInfo = item.itemName;
+        string newItemNameInfo = item.itemName;
+        string newItemInfo = "";
 
         if (item.GetComponent<Weapon>() != null)
         {
@@ -357,7 +374,9 @@ public class CanvasManager : MonoBehaviour
             itemInfo.transform.GetChild(2).transform.gameObject.SetActive(false);
         }
 
-        itemInfo.transform.GetChild(1).GetComponent<Text>().text = newItemInfo;
+        itemInfo.transform.GetChild(1).GetComponent<Text>().text = newItemNameInfo;
+        itemInfo.transform.GetChild(1).GetComponent<Text>().color = itemlevelColor[(int)item.itemLevel];
+        itemInfo.transform.GetChild(1).transform.GetChild(0).GetComponent<Text>().text = newItemInfo;
         itemInfo.transform.GetChild(0).GetComponent<Image>().color = itemlevelColor[(int)item.itemLevel];
         itemInfo.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = item.itemIcon;
 
@@ -543,7 +562,7 @@ public class CanvasManager : MonoBehaviour
         }
         if (point == 4)
         {
-            GameManager.Instance.playerInventory.SlotsWeapon.Add(null);
+            //GameManager.Instance.playerInventory.SlotsWeapon.Add(null);
         }
     }
 

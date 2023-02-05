@@ -11,6 +11,7 @@ public class ItemSaved : MonoBehaviour
     public Image weaponFrame;
     public Image weaponIcon;
     public Image weaponElemental;
+    public Text weaponName;
 
     public void SetItem(Item item)
     {
@@ -22,11 +23,33 @@ public class ItemSaved : MonoBehaviour
             elementalSprite = GameManager.Instance.canvasManager.itemElementSprite[(int)weapon.damageElement];
             weaponFrame.color = levelColor;
             weaponIcon.sprite = item.itemIcon;
+            if (weaponName != null)
+            {
+                weaponName.text = item.itemName + " [" + item.itemLevel.ToString() + "]";
+                weaponName.color = levelColor;
+            }
             if (weaponElemental != null)
             {
                 weaponElemental.sprite = elementalSprite;
             }
         }
+
+        Skill skill = null;
+        if (item.GetComponent<Skill>() != null)
+        {
+            skill = item.GetComponent<Skill>();
+            levelColor = GameManager.Instance.canvasManager.itemlevelColor[(int)skill.itemLevel];
+            weaponFrame.color = levelColor;
+            weaponIcon.sprite = item.itemIcon;
+            if (weaponName != null)
+            {
+                weaponName.text = item.itemName + " [" + item.itemLevel.ToString() + "]";
+                weaponName.color = levelColor;
+            }
+        }
+
+
+
         itemSaved = item;
 
     }

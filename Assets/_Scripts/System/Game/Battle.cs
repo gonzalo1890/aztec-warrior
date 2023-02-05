@@ -34,6 +34,7 @@ public class Battle : MonoBehaviour
 
     private bool rewardAdd = false;
 
+    public bool isEndLevel = false;
     void Start()
     {
         
@@ -75,7 +76,7 @@ public class Battle : MonoBehaviour
     public void StartCombat()
     {
         combat = true;
-        GameManager.Instance.roguelite.StartCombat();
+        GameManager.Instance.roguelite.StartCombat(isEndLevel);
         WallsEnabled(true);
         StartArea.SetInArea(false);
         StartArea.gameObject.SetActive(false);
@@ -93,8 +94,19 @@ public class Battle : MonoBehaviour
             GameManager.Instance.playerReward.GenerateReward();
             rewardAdd = true;
         }
+
+        if(isEndLevel)
+        {
+            BossDefeat();
+        }
         Debug.Log("End Combat");
     }
+
+    public void BossDefeat()
+    {
+        GameManager.Instance.roguelite.ProgressWorld();
+    }
+
 
     public void CreateEnemy()
     {
