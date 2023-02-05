@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     public bool menuView = false;
 
+    bool pauseOn = false;
     private void Awake()
     {
         if (!Instance)
@@ -48,6 +49,8 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        Time.timeScale = 1f;
+
         playerInventory = player.GetComponent<Player_Inventory>();
         playerStats = player.GetComponent<Player_Stats>();
         playerData = player.GetComponent<Player_Data>();
@@ -62,6 +65,35 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseOn = !pauseOn;
+            canvasManager.OpenPause(pauseOn);
+            if (pauseOn)
+            {
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                Time.timeScale = 1f;
+            }
+        }
+
+        if (pauseOn)
+        {
+            if (Input.GetKeyDown(KeyCode.F1))
+            {
+                roguelite.ResetGame();
+            }
+            if (Input.GetKeyDown(KeyCode.F2))
+            {
+                Application.Quit();
+            }
+        }
+
+    }
     public void ResetGame()
     {
         SceneManager.UnloadSceneAsync(1);

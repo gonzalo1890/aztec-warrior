@@ -10,6 +10,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject GamePanelObject;
     public GameObject panelDeath;
     public GameObject panelWin;
+    public GameObject panelPause;
     public GameObject creditsPanel;
     public GameObject Panel32k;
 
@@ -86,6 +87,11 @@ public class CanvasManager : MonoBehaviour
     public void OpenMenu(bool value)
     {
         menuObject.SetActive(value);
+    }
+    public void OpenPause(bool value)
+    {
+        panelPause.SetActive(value);
+        OpenMenuAction(value);
     }
     public void OpenRedemption(bool value)
     {

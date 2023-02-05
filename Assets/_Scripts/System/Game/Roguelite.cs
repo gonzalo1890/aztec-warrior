@@ -124,8 +124,8 @@ public class Roguelite : MonoBehaviour
 
         GameManager.Instance.canvasManager.OpenGamePanel(false);
         GameManager.Instance.canvasManager.OpenDeathPanel(true);
-        GameManager.Instance.playerData.SaveGame();
         GameManager.Instance.playerLineage.RestartLineage();
+        GameManager.Instance.playerData.SaveGame();
         Invoke(nameof(FinishDeath), 10);
     }
 
@@ -139,14 +139,28 @@ public class Roguelite : MonoBehaviour
     {
         GameManager.Instance.canvasManager.OpenWinPanel(true);
         GameManager.Instance.playerStats.ChangeSpirit((int)(GameManager.Instance.playerStats.spirit * 0.1f));
-        GameManager.Instance.playerData.SaveGame();
         GameManager.Instance.playerLineage.RestartLineage();
+        GameManager.Instance.playerData.SaveGame();
         Invoke(nameof(FinishWin), 10);
     }
     public void FinishWin()
     {
         
         GameManager.Instance.canvasManager.OpenDeathPanel(false);
+        GameManager.Instance.ResetGame();
+    }
+
+    public void ResetGame()
+    {
+        Sounds[1].Stop();
+        Sounds[1].Play(0, "Musica");
+
+        Sounds[0].Stop();
+        Sounds[0].Play(0, "ambiente");
+
+        GameManager.Instance.playerLineage.RestartLineage();
+        GameManager.Instance.playerData.SaveGame();
+        GameManager.Instance.canvasManager.OpenPause(false);
         GameManager.Instance.ResetGame();
     }
     public void StartCombat(bool isBoss = false)

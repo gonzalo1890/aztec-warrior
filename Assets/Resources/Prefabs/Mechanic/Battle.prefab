@@ -462,8 +462,12 @@ MonoBehaviour:
   nextBattle: {fileID: 0}
   StartArea: {fileID: 4558844359947518301}
   combat: 0
+  itemHealth: {fileID: 5351012702365328726, guid: 52be1152035f30b43adaa5df0537c728,
+    type: 3}
   SpawnHealthPoints:
   - {fileID: 7964480218482167703}
+  itemAmmo: {fileID: 3915064848820303988, guid: 418b4e86914ebc34796f2ca656a22c28,
+    type: 3}
   SpawnAmmoPoints:
   - {fileID: 2431662588184235310}
   SpawnerPoints:
@@ -481,6 +485,7 @@ MonoBehaviour:
   enemyMaxSpawned: 5
   cadenceSpawnBattle: 5
   cadenceRangeSpawnBattle: 3
+  isEndLevel: 0
 --- !u!1 &4558844361024780522
 GameObject:
   m_ObjectHideFlags: 0

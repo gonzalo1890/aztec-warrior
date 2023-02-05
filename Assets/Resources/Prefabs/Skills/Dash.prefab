@@ -155,4 +155,4 @@ MonoBehaviour:
   isPrepared: 0
   cadence: 8
   nextCheck: 0
-  description: Impulsa al jugador en la direccion que se mueve.
+  description: Push the player in the direction they're moving.

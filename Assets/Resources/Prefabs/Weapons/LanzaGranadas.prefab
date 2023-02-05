@@ -152,7 +152,7 @@ MonoBehaviour:
   lastPosition: {x: 0, y: 0, z: 0}
   weaponIndex: 7
   isEquiped: 0
-  damage: 350
+  damage: 100
   ammoType: 4
   RandomRange: 5
   cadence: 1

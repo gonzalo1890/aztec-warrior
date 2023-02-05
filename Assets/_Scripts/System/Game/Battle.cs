@@ -9,7 +9,10 @@ public class Battle : MonoBehaviour
     public AreaCombat StartArea;
     public bool combat = false;
 
+    public GameObject itemHealth;
     public List<GameObject> SpawnHealthPoints;
+
+    public GameObject itemAmmo;
     public List<GameObject> SpawnAmmoPoints;
 
 
@@ -76,6 +79,7 @@ public class Battle : MonoBehaviour
     public void StartCombat()
     {
         combat = true;
+        GenerateItems();
         GameManager.Instance.roguelite.StartCombat(isEndLevel);
         WallsEnabled(true);
         StartArea.SetInArea(false);
@@ -100,6 +104,19 @@ public class Battle : MonoBehaviour
             BossDefeat();
         }
         Debug.Log("End Combat");
+    }
+
+    public void GenerateItems()
+    {
+        for (int i = 0; i < SpawnHealthPoints.Count; i++)
+        {
+            GameObject health = Instantiate(itemHealth, SpawnHealthPoints[i].transform.position, transform.rotation);
+        }
+
+        for (int i = 0; i < SpawnAmmoPoints.Count; i++)
+        {
+            GameObject ammo = Instantiate(itemAmmo, SpawnAmmoPoints[i].transform.position, transform.rotation);
+        }
     }
 
     public void BossDefeat()

@@ -72,7 +72,7 @@ MonoBehaviour:
   isPrepared: 0
   cadence: 5
   nextCheck: 0
-  description: Permite saltar una segunda vez.
+  description: Allows a second jump.
 --- !u!1 &7515935401433857350
 GameObject:
   m_ObjectHideFlags: 0
