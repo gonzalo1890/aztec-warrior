@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7090998987702773318}
   - component: {fileID: 5019155756976753554}
-  - component: {fileID: 8346887404487414594}
+  - component: {fileID: 639440870278464784}
   m_Layer: 0
   m_Name: DoubleJump
   m_TagString: Untagged
@@ -47,7 +47,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8346887404487414594
+--- !u!114 &639440870278464784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7090998987702773373}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2f9c7c92cc72647baa81970182b7d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 154a8cc29f2cf2142860617a77d15877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
@@ -73,6 +73,7 @@ MonoBehaviour:
   cadence: 5
   nextCheck: 0
   description: Allows a second jump.
+  isJump: 0
 --- !u!1 &7515935401433857350
 GameObject:
   m_ObjectHideFlags: 0

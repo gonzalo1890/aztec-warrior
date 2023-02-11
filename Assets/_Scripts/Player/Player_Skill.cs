@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using StarterAssets;
 public class Player_Skill : MonoBehaviour
 {
-
+    public FirstPersonController fps;
     public GameObject cameraMain;
     public CharacterController character;
     // Start is called before the first frame update
     void Start()
     {
-
+        fps = GameManager.Instance.player.GetComponent<FirstPersonController>();
     }
 
     // Update is called once per frame
@@ -25,9 +25,12 @@ public class Player_Skill : MonoBehaviour
         //character.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
     }
 
-
-    public void PlayerMove(Vector3 direction, float speed)
+    public void PlayerJump(float forceJump)
     {
-        character.Move(direction.normalized * (speed * Time.deltaTime));// + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+        fps.Jump(forceJump);
+    }
+    public void PlayerMove(float speed, float time)
+    {
+        fps.MoveDirection(speed, time);
     }
 }

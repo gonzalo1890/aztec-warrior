@@ -414,6 +414,14 @@ public class CanvasManager : MonoBehaviour
                 string cadenceString = cadence.ToString("F3");
                 newItemInfo += "\nCadence: " + cadenceString + "\nDescription: " + skill.description;
                 itemInfo.transform.GetChild(2).transform.gameObject.SetActive(false);
+
+                if(item.GetComponent<DoubleJump>() != null)
+                {
+                    //NO FUNCIONA
+                    DoubleJump jump = item.GetComponent<DoubleJump>();
+                    newItemInfo += "\nForce Jump: " + jump.forceJump;
+                }
+
             }
             else
             {

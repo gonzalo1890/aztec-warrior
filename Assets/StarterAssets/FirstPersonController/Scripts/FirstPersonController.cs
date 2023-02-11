@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -91,6 +93,8 @@ namespace StarterAssets
 		public float soundCadence;
 		float nextCheck;
 
+		bool isDashing = false;
+
 		private void Awake()
 		{
 			// get a reference to our main camera
@@ -121,7 +125,8 @@ namespace StarterAssets
 			{
 				JumpAndGravity();
 				GroundedCheck();
-				Move();
+
+				if(!isDashing) Move();
 			}
 		}
 
@@ -132,15 +137,42 @@ namespace StarterAssets
 				CameraRotation();
 			}
 		}
+		#region ActionsMove
+		public void MoveDirection(float _speed, float time)
+		{
+			//isDashing = true;
+			StartCoroutine(DashMove(time, _speed));
+		}
 
+		IEnumerator DashMove(float waitTime, float _speed)
+		{
+			float elapsedTime = 0;
+			while (elapsedTime < waitTime)
+			{
+				//Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+				//_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+				Vector3 vel = _controller.velocity.normalized;
+				_controller.Move(vel * (_speed * Time.deltaTime));
+				elapsedTime += Time.deltaTime;
+				yield return null;
+			}
+			//isDashing = false;
+			yield return null;
+		}
+
+
+		public void Jump(float _JumpHeight)
+		{
+			_verticalVelocity = Mathf.Sqrt(_JumpHeight * -2f * Gravity);
+		}
+		#endregion
 		private void GroundedCheck()
 		{
 			// set sphere position, with offset
 			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
 			Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
 		}
-
-		private void CameraRotation()
+        private void CameraRotation()
 		{
 			// if there is an input
 			if (_input.look.sqrMagnitude >= _threshold)
@@ -215,6 +247,8 @@ namespace StarterAssets
 			// move the player
 			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 		}
+
+		
 
 		private void JumpAndGravity()
 		{

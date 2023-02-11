@@ -14,6 +14,7 @@ public class SkillExtra : Skill
     protected override void Update()
     {
         base.Update();
+        /*
         if (Input.GetButton("Jump") && isEquiped)
         {
             if (isPrepared)
@@ -21,11 +22,18 @@ public class SkillExtra : Skill
                 ActiveSkill();
             }
         }
+        */
+    }
+
+    public override void LevelApply()
+    {
+        base.LevelApply();
     }
 
     public override void ActiveSkill()
     {
         base.ActiveSkill();
+        
         //GameManager.Instance.playerWeapon.actualDamage = damageCalculated;
     }
 }

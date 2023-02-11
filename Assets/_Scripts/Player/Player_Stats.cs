@@ -22,6 +22,21 @@ public class Player_Stats : MonoBehaviour
     public int misil = 0;
     public int granade = 0;
 
+    [Header("Player Grounded")]
+    [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
+    public bool Grounded = true;
+    [Tooltip("Useful for rough ground")]
+    public float GroundedOffset = -0.14f;
+    [Tooltip("The radius of the grounded check. Should match the radius of the CharacterController")]
+    public float GroundedRadius = 0.5f;
+    [Tooltip("What layers the character uses as ground")]
+    public LayerMask GroundLayers;
+
+
+    private void Update()
+    {
+        GroundedCheck();
+    }
 
     public void InitStats()
     {
@@ -279,5 +294,12 @@ public class Player_Stats : MonoBehaviour
     {
         int result = ((value + bloodlust) * 3) / 100;
         ChangeHealth(result);
+    }
+
+    private void GroundedCheck()
+    {
+        // set sphere position, with offset
+        Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
+        Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
     }
 }

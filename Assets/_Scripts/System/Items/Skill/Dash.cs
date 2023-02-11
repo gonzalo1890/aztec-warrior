@@ -20,7 +20,7 @@ public class Dash : SkillAttack
     {
         base.ActiveSkill();
         Player_Skill playerSkill = GameManager.Instance.playerSkill;
-        playerSkill.PlayerMove(playerSkill.cameraMain.transform.forward, 100);
+        playerSkill.PlayerMove(50, 0.1f);
         Debug.Log("SKILL ATTACK: " + itemName);
         //GameManager.Instance.playerWeapon.actualDamage = damageCalculated;
     }
