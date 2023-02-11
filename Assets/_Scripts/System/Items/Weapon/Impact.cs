@@ -9,6 +9,8 @@ public class Impact : MonoBehaviour
     public DamageElement damageElement;
     public List<GameObject> damageElementObjects;
 
+    public List<GameObject> worldMaterials;
+
     public LineRenderer line;
     // Start is called before the first frame update
     void Start()
@@ -33,6 +35,19 @@ public class Impact : MonoBehaviour
         }
         Destroy(particle, 1f);
     }
+
+
+    public void CreateWorldMaterialParticle(Vector3 positionParticle, Transform parentSelect = null, bool isParent = false)
+    {
+        GameObject particle = Instantiate(worldMaterials[0], positionParticle, Quaternion.identity) as GameObject;
+
+        if (isParent)
+        {
+            particle.transform.SetParent(parentSelect);
+        }
+        Destroy(particle, 1f);
+    }
+
     public void CreateElementParticle(Vector3 positionParticle, Transform parentSelect = null, bool isParent = false)
     {
         GameObject elementParticle = null;

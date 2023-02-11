@@ -203,4 +203,6 @@ MonoBehaviour:
   - {fileID: 8011002390816005384, guid: 4390e307a575a584fa976f47189959d7, type: 3}
   - {fileID: 2133921918698148134, guid: 82bde8bbd6198fe4b8edb030f7fdc664, type: 3}
   - {fileID: 8314016673143888671, guid: dd857334b87839a44a956bf1e0c095e1, type: 3}
+  worldMaterials:
+  - {fileID: 5339905039389804114, guid: 383ddc8e8c3eac443b4a136b6ab889b8, type: 3}
   line: {fileID: 6420551909783108009}

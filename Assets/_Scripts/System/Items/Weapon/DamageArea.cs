@@ -9,6 +9,8 @@ public class DamageArea : MonoBehaviour
 
     public DamageElement damageElement;
     public GameObject impact;
+
+    int chanceSpawn = 3;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,14 +24,31 @@ public class DamageArea : MonoBehaviour
         {
             Vector3 hitPoint = other.ClosestPoint(transform.position);
             damageSave.pointDamage = hitPoint;
-            GameObject particle = Instantiate(impact, hitPoint, Quaternion.identity) as GameObject;
-            particle.GetComponent<Impact>().damageElement = damageElement;
-            particle.GetComponent<Impact>().CreateElementParticle(hitPoint, other.transform, true);
-            particle.GetComponent<Impact>().CreateBloodParticle(hitPoint, other.transform, true);
+
+            if (ChanceToSpawn())
+            {
+                GameObject particle = Instantiate(impact, hitPoint, Quaternion.identity) as GameObject;
+                particle.GetComponent<Impact>().damageElement = damageElement;
+                particle.GetComponent<Impact>().CreateElementParticle(hitPoint, other.transform, true);
+                particle.GetComponent<Impact>().CreateBloodParticle(hitPoint, other.transform, true);
+            }
 
 
             other.transform.GetComponent<Idamage>().SetDamage(damageSave);
             Destroy(gameObject);
         }
     }
+
+    bool ChanceToSpawn()
+    {
+        bool result = false;
+
+        if(chanceSpawn > 0)
+        {
+            result = true;
+            chanceSpawn -= 1;
+        }
+        return result;
+    }
+
 }

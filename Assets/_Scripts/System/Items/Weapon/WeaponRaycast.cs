@@ -45,14 +45,14 @@ public class WeaponRaycast : Weapon
                     particle.GetComponent<Impact>().SetLine(GameManager.Instance.playerWeapon.GetShootPoint().position, hit.point, ShootPoint);
                     hit.transform.GetComponent<Idamage>().SetDamage(damageCalculated);
                     GameManager.Instance.playerStats.BloodlustApply(damageCalculated.damageValue);
-                    return;
                 }
 
                 if (hit.transform != null)
                 {
                     GameObject particle = Instantiate(impact, ShootPoint.position, Quaternion.identity) as GameObject;
-
+                    particle.GetComponent<Impact>().CreateWorldMaterialParticle(hit.point, hit.transform, true);
                     particle.GetComponent<Impact>().SetLine(ShootPoint.position, ShootPoint.position + (ray.direction * 10), ShootPoint);
+                    Debug.Log("NO CHOCO EN NADA 2");
                 }
             }
             else
