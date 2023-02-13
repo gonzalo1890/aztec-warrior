@@ -126,6 +126,20 @@ public class CanvasManager : MonoBehaviour
         creditsPanel.SetActive(isActive);
     }
 
+    public void OpenReward(bool value)
+    {
+        RewardObject.SetActive(value);
+        Button reward = GameManager.Instance.playerReward.RewardItems[0].GetComponent<Button>();
+        reward.Select();
+        OpenMenuAction(value);
+    }
+
+    public void ButtonCancelReward()
+    {
+        GameManager.Instance.playerReward.SelectReward(null);
+        OpenReward(false);
+    }
+
     public void OpenMenuAction(bool value)
     {
         GameManager.Instance.menuView = value;
@@ -244,24 +258,18 @@ public class CanvasManager : MonoBehaviour
 
     #endregion
 
-    public void OpenReward(bool value)
-    {
-        RewardObject.SetActive(value);
-        OpenMenuAction(value);
-    }
 
-    public void ButtonCancelReward()
-    {
-        GameManager.Instance.playerReward.SelectReward(null);
-        OpenReward(false);
-    }
 
 
     #region InventoryWeapon
     public void OpenInventoryWeapon(bool value)
     {
         inventoryWeaponObject.SetActive(value);
-        if(value)
+
+        Button weapon1 = GameManager.Instance.playerInventory.weaponItems[0].GetComponent<Button>();
+        weapon1.Select();
+
+        if (value)
         {
             Invoke(nameof(DelayInventory), 1f);
         }else

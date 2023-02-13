@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     public CanvasManager canvasManager;
 
+    public TimeManager timeManager;
+
     public GameObject player;
 
     public Player_Inventory playerInventory;

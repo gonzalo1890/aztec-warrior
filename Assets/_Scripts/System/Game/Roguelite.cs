@@ -122,6 +122,8 @@ public class Roguelite : MonoBehaviour
         Sounds[0].Stop();
         Sounds[0].Play(0, "ambiente");
 
+        Sounds[4].Play();
+
         GameManager.Instance.canvasManager.OpenGamePanel(false);
         GameManager.Instance.canvasManager.OpenDeathPanel(true);
         GameManager.Instance.playerLineage.RestartLineage();
@@ -130,13 +132,16 @@ public class Roguelite : MonoBehaviour
     }
 
     public void FinishDeath()
-    {        
+    {
+        Sounds[4].Stop();
         GameManager.Instance.canvasManager.OpenDeathPanel(false);
         GameManager.Instance.ResetGame();
     }
 
     public void WinGame()
     {
+        Sounds[1].Stop();
+        Sounds[1].Play(6, "Musica");
         GameManager.Instance.canvasManager.OpenWinPanel(true);
         GameManager.Instance.playerStats.ChangeSpirit((int)(GameManager.Instance.playerStats.spirit * 0.1f));
         GameManager.Instance.playerLineage.RestartLineage();
@@ -145,7 +150,6 @@ public class Roguelite : MonoBehaviour
     }
     public void FinishWin()
     {
-        
         GameManager.Instance.canvasManager.OpenDeathPanel(false);
         GameManager.Instance.ResetGame();
     }

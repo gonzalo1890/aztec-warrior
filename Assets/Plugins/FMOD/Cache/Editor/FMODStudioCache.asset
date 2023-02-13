@@ -1,32 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9181526982895922237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Explocion
-  m_EditorClassIdentifier: 
-  Path: event:/Explocion
-  Guid:
-    Data1: 2137001823
-    Data2: 1233810677
-    Data3: -932582766
-    Data4: -141974865
-  Banks:
-  - {fileID: 4636222914762844312}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0.1
-  MaxDistance: 2800
-  Length: 10088
 --- !u!114 &-8960747739269320546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,10 +42,10 @@ MonoBehaviour:
   Path: ../AztecWarriorAssets/aztec warrior/Build/Desktop/musica.bank
   Name: musica
   StudioPath: bank:/musica
-  lastModified: 638111155540000000
+  lastModified: 638118307182313420
   FileSizes:
   - Name: Desktop
-    Value: 4355232
+    Value: 4941184
   Exists: 1
 --- !u!114 &-7998319231461824158
 MonoBehaviour:
@@ -95,11 +68,38 @@ MonoBehaviour:
   Banks:
   - {fileID: 4636222914762844312}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 45
+  Length: 0
+--- !u!114 &-7786944596426434199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/granada
+  m_EditorClassIdentifier: 
+  Path: event:/granada
+  Guid:
+    Data1: -118605064
+    Data2: 1318135373
+    Data3: -745843031
+    Data4: -2101007591
+  Banks:
+  - {fileID: 4636222914762844312}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
   Length: 0
 --- !u!114 &-6042200454414140818
 MonoBehaviour:
@@ -145,6 +145,33 @@ MonoBehaviour:
     Data4: -443819788
   Banks:
   - {fileID: 4636222914762844312}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-5480128728396972414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/gameover
+  m_EditorClassIdentifier: 
+  Path: event:/gameover
+  Guid:
+    Data1: -1845622956
+    Data2: 1243435621
+    Data3: -89571398
+    Data4: 1738630095
+  Banks:
+  - {fileID: -8159349265349107822}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -227,7 +254,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 5773050081770318860}
   IsStream: 1
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 0
   Parameters:
   - {fileID: -6042200454414140818}
@@ -249,7 +276,7 @@ MonoBehaviour:
   Path: ../AztecWarriorAssets/aztec warrior/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638111155360000000
+  lastModified: 638118307146560515
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -304,11 +331,9 @@ MonoBehaviour:
   - {fileID: 9147326318310278898}
   - {fileID: 5555496317167844183}
   - {fileID: 1188729935973335750}
-  - {fileID: -9181526982895922237}
   - {fileID: 6725137096751676911}
   - {fileID: -5546070327166434881}
   - {fileID: -8960747739269320546}
-  - {fileID: 5833122260128952041}
   - {fileID: -4703824873277289043}
   - {fileID: -1013358054707090243}
   - {fileID: 8723488871925429698}
@@ -317,12 +342,17 @@ MonoBehaviour:
   - {fileID: -7998319231461824158}
   - {fileID: 599856372892797141}
   - {fileID: -4888831852797828881}
+  - {fileID: 4313664864639788263}
+  - {fileID: 2576463776181363141}
+  - {fileID: -7786944596426434199}
+  - {fileID: 8567802651907075212}
+  - {fileID: -5480128728396972414}
   EditorParameters: []
   MasterBanks:
   - {fileID: -4212784506883092037}
   StringsBanks:
   - {fileID: 199930296624449074}
-  cacheTime: 638111155640000000
+  cacheTime: 638118307250647535
   cacheVersion: 131601
 --- !u!114 &199930296624449074
 MonoBehaviour:
@@ -339,10 +369,10 @@ MonoBehaviour:
   Path: ../AztecWarriorAssets/aztec warrior/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638111155360000000
+  lastModified: 638118307146670213
   FileSizes:
   - Name: Desktop
-    Value: 1794
+    Value: 1942
   Exists: 1
 --- !u!114 &599856372892797141
 MonoBehaviour:
@@ -398,7 +428,7 @@ MonoBehaviour:
   - {fileID: 5576592329031370880}
   MinDistance: 1
   MaxDistance: 20
-  Length: 140303
+  Length: 145513
 --- !u!114 &1188729935973335750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,7 +482,61 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 90
-  Length: 2000
+  Length: 2020
+--- !u!114 &2576463776181363141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/explocion
+  m_EditorClassIdentifier: 
+  Path: event:/explocion
+  Guid:
+    Data1: 2137001823
+    Data2: 1233810677
+    Data3: -932582766
+    Data4: -141974865
+  Banks:
+  - {fileID: 4636222914762844312}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0.1
+  MaxDistance: 2800
+  Length: 10088
+--- !u!114 &4313664864639788263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/escopeta
+  m_EditorClassIdentifier: 
+  Path: event:/escopeta
+  Guid:
+    Data1: -303424678
+    Data2: 1201030057
+    Data3: 2012011138
+    Data4: -293224644
+  Banks:
+  - {fileID: 4636222914762844312}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 991
 --- !u!114 &4636222914762844312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,10 +552,10 @@ MonoBehaviour:
   Path: ../AztecWarriorAssets/aztec warrior/Build/Desktop/FX.bank
   Name: FX
   StudioPath: bank:/FX
-  lastModified: 638111155360000000
+  lastModified: 638118307146444928
   FileSizes:
   - Name: Desktop
-    Value: 936832
+    Value: 961376
   Exists: 1
 --- !u!114 &5555496317167844183
 MonoBehaviour:
@@ -515,7 +599,7 @@ MonoBehaviour:
   Name: Musica
   StudioPath: 
   Min: 0
-  Max: 5
+  Max: 6
   Default: 0
   ID:
     data1: 1136525808
@@ -539,38 +623,11 @@ MonoBehaviour:
   Path: ../AztecWarriorAssets/aztec warrior/Build/Desktop/pantano.bank
   Name: pantano
   StudioPath: bank:/pantano
-  lastModified: 638111155640000000
+  lastModified: 638118307250647535
   FileSizes:
   - Name: Desktop
-    Value: 16809568
+    Value: 9550880
   Exists: 1
---- !u!114 &5833122260128952041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Granada
-  m_EditorClassIdentifier: 
-  Path: event:/Granada
-  Guid:
-    Data1: -118605064
-    Data2: 1318135373
-    Data3: -745843031
-    Data4: -2101007591
-  Banks:
-  - {fileID: 4636222914762844312}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &6725137096751676911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,6 +648,33 @@ MonoBehaviour:
     Data4: 1561146795
   Banks:
   - {fileID: 4636222914762844312}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &8567802651907075212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/select reward
+  m_EditorClassIdentifier: 
+  Path: event:/select reward
+  Guid:
+    Data1: 1350584643
+    Data2: 1075864269
+    Data3: -706459772
+    Data4: 1723091651
+  Banks:
+  - {fileID: -8159349265349107822}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1

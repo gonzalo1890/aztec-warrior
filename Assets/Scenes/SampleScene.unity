@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 8900000, guid: 619e305f5165a9946b7f72464e44ca4a, type: 3}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.27575955, g: 0.14271879, b: 0.027561283, a: 1}
+  m_IndirectSpecularColor: {r: 0.19713107, g: 0.08718664, b: 0.016904091, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 331569340}
   - component: {fileID: 331569341}
   m_Layer: 0
-  m_Name: Soud_Music
+  m_Name: Sound_Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 838296223}
   - component: {fileID: 838296222}
   m_Layer: 0
-  m_Name: Soud_StartCombat
+  m_Name: Sound_StartCombat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 1330573500}
   - component: {fileID: 1330573499}
   m_Layer: 0
-  m_Name: Soud_EndCombat
+  m_Name: Sound_EndCombat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 1485103139}
   - component: {fileID: 1485103138}
   - component: {fileID: 1485103141}
+  - component: {fileID: 1485103142}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -320,6 +321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasManager: {fileID: 2769819597784478754}
+  timeManager: {fileID: 1485103142}
   player: {fileID: 4416926083347132227}
   playerInventory: {fileID: 4416926083347132243}
   playerStats: {fileID: 4416926083347132244}
@@ -365,8 +367,23 @@ MonoBehaviour:
   - {fileID: 331569341}
   - {fileID: 838296222}
   - {fileID: 1330573499}
-  DebugOn: 1
+  - {fileID: 1892948042}
+  DebugOn: 0
   progressWorld: 0
+--- !u!114 &1485103142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485103137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d34a7c2cc0a7f4b81d24b1cfb143ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowdownFactor: 0.05
+  slowdownLength: 2
 --- !u!114 &1885122285 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4976706441769804161, guid: 2d3a85ecde41a8246a79669975912b74,
@@ -396,6 +413,58 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 20fc27437297e044d996318dcb449a74, type: 2}
+--- !u!1 &1892948041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1892948043}
+  - component: {fileID: 1892948042}
+  m_Layer: 0
+  m_Name: Sound_GameOver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1892948042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892948041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba1ddcc259ef0a41a2f6cfe8647af7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fmodEvent:
+    Guid:
+      Data1: -1845622956
+      Data2: 1243435621
+      Data3: -89571398
+      Data4: 1738630095
+    Path: event:/gameover
+  onStart: 0
+--- !u!4 &1892948043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892948041}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1979352518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1049,10 +1118,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2851391876842194788, guid: 3191f3129cd0b4a4cafb368c564b5953,
+    - target: {fileID: 4099541761086727180, guid: 3191f3129cd0b4a4cafb368c564b5953,
         type: 3}
-      propertyPath: GroundLayers.m_Bits
-      value: 513
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4099541761086727180, guid: 3191f3129cd0b4a4cafb368c564b5953,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4564741665702066894, guid: 3191f3129cd0b4a4cafb368c564b5953,
         type: 3}

@@ -14,7 +14,7 @@ public class SkillAttack : Skill
     protected override void Update()
     {
         base.Update();
-        if (Input.GetButton("Fire2") && isEquiped)
+        if (Input.GetButton("Skill") && isEquiped)
         {
             if (isPrepared)
             {

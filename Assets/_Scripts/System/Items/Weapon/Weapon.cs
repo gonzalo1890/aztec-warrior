@@ -43,7 +43,6 @@ public abstract class Weapon : Item
 
     public Damage damageCalculated;
 
-
     public GameObject impact;
     protected virtual void Update()
     {
@@ -52,22 +51,25 @@ public abstract class Weapon : Item
             return;
         }
 
-            if (Input.GetButton("Fire1") && isEquiped)
+        if (Input.GetAxisRaw("Fire1") != 0)
         {
-
-            if (Time.time > nextCheck)
+            if (isEquiped)
             {
-                if (GameManager.Instance.playerStats.GetActualAmmo() > 0)
-                {
-                    Shoot();
-                }
-                else
-                {
-                    GameManager.Instance.playerWeapon.WeaponNoAmmo();
-                }
-                nextCheck = Time.time + cadence;
-            }
 
+                if (Time.time > nextCheck)
+                {
+                    if (GameManager.Instance.playerStats.GetActualAmmo() > 0)
+                    {
+                        Shoot();
+                    }
+                    else
+                    {
+                        GameManager.Instance.playerWeapon.WeaponNoAmmo();
+                    }
+                    nextCheck = Time.time + cadence;
+                }
+
+            }
         }
     }
 
