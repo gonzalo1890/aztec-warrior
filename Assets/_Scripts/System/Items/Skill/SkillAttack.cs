@@ -23,6 +23,16 @@ public class SkillAttack : Skill
             }
         }
     }
+    public override void LevelApply()
+    {
+        base.LevelApply();
+    }
+
+    public override void UpgradeLevel()
+    {
+        base.UpgradeLevel();
+        GameManager.Instance.canvasManager.SkillAttackEquiped(this);
+    }
 
     public override void ActiveSkill()
     {

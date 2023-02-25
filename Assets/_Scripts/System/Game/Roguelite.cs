@@ -89,7 +89,7 @@ public class Roguelite : MonoBehaviour
         GameManager.Instance.canvasManager.OpenMenu(false);
         GameManager.Instance.canvasManager.OpenRedemption(false);
         GameManager.Instance.canvasManager.OpenGamePanel(true);
-        GameManager.Instance.playerReward.GenerateReward();
+        GameManager.Instance.playerReward.GenerateReward(0);
         cameraStart.gameObject.SetActive(false);
         Sounds[1].Stop();
         Sounds[1].Play(0, "Musica");
@@ -201,5 +201,18 @@ public class Roguelite : MonoBehaviour
         {
             WinGame();
         }
+    }
+
+    public void SlowTime(float timeEffect)
+    {
+        Sounds[1].SetParameter(1, "Slow time");
+        Sounds[0].SetParameter(1, "Slow time");
+        Invoke(nameof(EndSlowSound), timeEffect);
+
+    }
+    void EndSlowSound()
+    {
+        Sounds[1].SetParameter(0, "Slow time");
+        Sounds[0].SetParameter(0, "Slow time");
     }
 }

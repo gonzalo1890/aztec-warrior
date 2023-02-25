@@ -8,10 +8,11 @@ public class DoubleJump : SkillExtra
     public bool isJump = false;
 
     public float forceJump = 5f;
+    public float forceJumpBase;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        forceJumpBase = forceJump;
     }
 
     protected override void Update()
@@ -37,6 +38,7 @@ public class DoubleJump : SkillExtra
     public override void LevelApply()
     {
         base.LevelApply();
+        forceJump = forceJumpBase;
         if (itemLevel != ItemLevel.Common)
         {
             for (int i = 0; i < (int)itemLevel; i++)

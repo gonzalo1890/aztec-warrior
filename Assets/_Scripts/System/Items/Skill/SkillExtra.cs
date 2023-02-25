@@ -7,7 +7,7 @@ public class SkillExtra : Skill
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -30,10 +30,16 @@ public class SkillExtra : Skill
         base.LevelApply();
     }
 
+    public override void UpgradeLevel()
+    {
+        base.UpgradeLevel();
+        GameManager.Instance.canvasManager.SkillExtraEquiped(this);
+    }
+
     public override void ActiveSkill()
     {
         base.ActiveSkill();
-        
+
         //GameManager.Instance.playerWeapon.actualDamage = damageCalculated;
     }
 }

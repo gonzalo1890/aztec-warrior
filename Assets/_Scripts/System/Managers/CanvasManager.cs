@@ -14,14 +14,6 @@ public class CanvasManager : MonoBehaviour
     public GameObject creditsPanel;
     public GameObject Panel32k;
 
-    //Menu ------------------
-
-    public GameObject loading;
-    public GameObject loadSaveMenu;
-    public List<GameObject> savesItems;
-    public RectTransform saveContent;
-    public GameObject itemSaveObject;
-
     //Redemption
     public List<int> basePrice;
     public List<int> actualPrice;
@@ -111,14 +103,6 @@ public class CanvasManager : MonoBehaviour
     {
         panelWin.SetActive(value);
         OpenMenuAction(value);
-    }
-    public void SetLoading(bool isActive)
-    {
-        loading.SetActive(isActive);
-    }
-    public void OpenLoadSaveMenu()
-    {
-        loadSaveMenu.SetActive(!loadSaveMenu.activeSelf);
     }
 
     public void OpenCredits(bool isActive)
@@ -292,6 +276,17 @@ public class CanvasManager : MonoBehaviour
         itemsInventoryWeaponEquipedName.text = weapon.itemName;
     }
 
+    public void SkillAttackEquiped(SkillAttack skillAttack)
+    {
+        itemSkillAttackImage.sprite = skillAttack.itemIcon;
+        itemSkillAttackFrameImage.color = itemlevelColor[(int)skillAttack.itemLevel];
+    }
+    public void SkillExtraEquiped(SkillExtra skillExtra)
+    {
+        itemSkillExtraImage.sprite = skillExtra.itemIcon;
+        itemSkillExtraFrameImage.color = itemlevelColor[(int)skillExtra.itemLevel];
+    }
+
     public void UpdateAmmo(int value)
     {
         if (value == -1)
@@ -388,6 +383,12 @@ public class CanvasManager : MonoBehaviour
             itemInfo.transform.GetChild(2).transform.gameObject.SetActive(false);
         }
 
+        if (item.GetComponent<Upgrade>() != null)
+        {
+            newItemInfo += "+ 1 Level";
+            itemInfo.transform.GetChild(2).transform.gameObject.SetActive(true);
+        }
+
         itemInfo.transform.GetChild(1).GetComponent<Text>().text = newItemNameInfo;
         itemInfo.transform.GetChild(1).GetComponent<Text>().color = itemlevelColor[(int)item.itemLevel];
         itemInfo.transform.GetChild(1).transform.GetChild(0).GetComponent<Text>().text = newItemInfo;
@@ -435,6 +436,12 @@ public class CanvasManager : MonoBehaviour
             {
                 newItemInfo += "\nValue: " + item.itemValue + "\nWeight: " + item.itemWeight;
                 itemInfo.transform.GetChild(2).transform.gameObject.SetActive(false);
+            }
+
+            if (item.GetComponent<Upgrade>() != null)
+            {
+                newItemInfo = "+ 1 Level";
+                itemInfo.transform.GetChild(2).transform.gameObject.SetActive(true);
             }
 
             itemInfoWorld.transform.GetChild(1).GetComponent<Text>().text = newItemInfo;

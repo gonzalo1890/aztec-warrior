@@ -1230,11 +1230,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fmodEventEnter:
     Guid:
-      Data1: 1879129959
-      Data2: 1097936613
-      Data3: 1867769529
-      Data4: 505924323
-    Path: event:/Boton
+      Data1: 401337883
+      Data2: 1198581148
+      Data3: -41006713
+      Data4: 789997207
+    Path: event:/stats up
   fmodEventDown:
     Guid:
       Data1: 1350584643
@@ -2026,11 +2026,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fmodEventEnter:
     Guid:
-      Data1: 1879129959
-      Data2: 1097936613
-      Data3: 1867769529
-      Data4: 505924323
-    Path: event:/Boton
+      Data1: 401337883
+      Data2: 1198581148
+      Data3: -41006713
+      Data4: 789997207
+    Path: event:/stats up
   fmodEventDown:
     Guid:
       Data1: 1421798938
@@ -5069,6 +5069,18 @@ MonoBehaviour:
   - {fileID: 7620323021777270067, guid: 2129bdf0d466b7e47b378eaa13bda2d9, type: 3}
   skillExtras:
   - {fileID: 7090998987702773373, guid: f39bfc6d52e788342afa0529f1fd8020, type: 3}
+  upgrates:
+  - {fileID: 2024925659505025683, guid: caae2deb4d8f7b449b2a82c1eaecbaff, type: 3}
+  - {fileID: 3375210139755695113, guid: c9fde986b19db9c4f9d77ea2faf6bf1b, type: 3}
+  - {fileID: 825878077527698671, guid: e55ff30673ccf8d4abcbe776c4df7dac, type: 3}
+  - {fileID: 5330448207028380352, guid: 1411bce71c4e01d499eabea2b7f66950, type: 3}
+  - {fileID: 2080253762868819228, guid: 50b0ec597c949a7418bc776bd0f49acc, type: 3}
+  - {fileID: 3514201587354395875, guid: 306f6d795eb6a79478bf3b82fff2573e, type: 3}
+  - {fileID: 2235691608529445733, guid: a5259ec2c12991046a3756a60bffd12f, type: 3}
+  - {fileID: 3961282516344975108, guid: 5896f760b021e09479e42a1d0c2bf5d6, type: 3}
+  - {fileID: 956767808281201548, guid: 247d1dbe164d49c4ebbaaf20f2367681, type: 3}
+  - {fileID: 5326345031914646710, guid: f79952e6402ee794faccf861c68433c0, type: 3}
+  - {fileID: 46611695611525234, guid: 6a8ad90f7306c8e41a83018d6efcbf80, type: 3}
   RewardItems:
   - {fileID: 4944871079038419392}
   - {fileID: 1841696766300182379}
@@ -5501,11 +5513,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fmodEventEnter:
     Guid:
-      Data1: 1879129959
-      Data2: 1097936613
-      Data3: 1867769529
-      Data4: 505924323
-    Path: event:/Boton
+      Data1: 401337883
+      Data2: 1198581148
+      Data3: -41006713
+      Data4: 789997207
+    Path: event:/stats up
   fmodEventDown:
     Guid:
       Data1: 1421798938
@@ -6080,11 +6092,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fmodEventEnter:
     Guid:
-      Data1: 1879129959
-      Data2: 1097936613
-      Data3: 1867769529
-      Data4: 505924323
-    Path: event:/Boton
+      Data1: 401337883
+      Data2: 1198581148
+      Data3: -41006713
+      Data4: 789997207
+    Path: event:/stats up
   fmodEventDown:
     Guid:
       Data1: 1421798938
@@ -6241,11 +6253,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fmodEventEnter:
     Guid:
-      Data1: 1879129959
-      Data2: 1097936613
-      Data3: 1867769529
-      Data4: 505924323
-    Path: event:/Boton
+      Data1: 401337883
+      Data2: 1198581148
+      Data3: -41006713
+      Data4: 789997207
+    Path: event:/stats up
   fmodEventDown:
     Guid:
       Data1: 1421798938
@@ -6482,11 +6494,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fmodEventEnter:
     Guid:
-      Data1: 1879129959
-      Data2: 1097936613
-      Data3: 1867769529
-      Data4: 505924323
-    Path: event:/Boton
+      Data1: 401337883
+      Data2: 1198581148
+      Data3: -41006713
+      Data4: 789997207
+    Path: event:/stats up
   fmodEventDown:
     Guid:
       Data1: 1421798938
@@ -6787,6 +6799,7 @@ GameObject:
   - component: {fileID: 7434944411963821005}
   - component: {fileID: 1311792472761963854}
   - component: {fileID: 5795760366880193531}
+  - component: {fileID: 5900644679969263017}
   m_Layer: 5
   m_Name: ButtonCancel
   m_TagString: Untagged
@@ -6909,6 +6922,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5900644679969263017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3237973449922921046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 677f926913fb90c4b857f34c39bff604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fmodEventEnter:
+    Guid:
+      Data1: 1879129959
+      Data2: 1097936613
+      Data3: 1867769529
+      Data4: 505924323
+    Path: event:/Boton
+  fmodEventDown:
+    Guid:
+      Data1: 1421798938
+      Data2: 1243876228
+      Data3: 1144070319
+      Data4: 841041941
+    Path: event:/select
+  onStart: 0
 --- !u!1 &3441697342667342760
 GameObject:
   m_ObjectHideFlags: 0
@@ -8318,11 +8358,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fmodEventEnter:
     Guid:
-      Data1: 1879129959
-      Data2: 1097936613
-      Data3: 1867769529
-      Data4: 505924323
-    Path: event:/Boton
+      Data1: 401337883
+      Data2: 1198581148
+      Data3: -41006713
+      Data4: 789997207
+    Path: event:/stats up
   fmodEventDown:
     Guid:
       Data1: 1421798938
@@ -9022,11 +9062,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fmodEventEnter:
     Guid:
-      Data1: 1879129959
-      Data2: 1097936613
-      Data3: 1867769529
-      Data4: 505924323
-    Path: event:/Boton
+      Data1: 401337883
+      Data2: 1198581148
+      Data3: -41006713
+      Data4: 789997207
+    Path: event:/stats up
   fmodEventDown:
     Guid:
       Data1: 1421798938
@@ -9203,11 +9243,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fmodEventEnter:
     Guid:
-      Data1: 1879129959
-      Data2: 1097936613
-      Data3: 1867769529
-      Data4: 505924323
-    Path: event:/Boton
+      Data1: 401337883
+      Data2: 1198581148
+      Data3: -41006713
+      Data4: 789997207
+    Path: event:/stats up
   fmodEventDown:
     Guid:
       Data1: 1421798938
@@ -9353,12 +9393,6 @@ MonoBehaviour:
   panelPause: {fileID: 4185156246037635111}
   creditsPanel: {fileID: 980461669739794551}
   Panel32k: {fileID: 1783247870546788215}
-  loading: {fileID: 0}
-  loadSaveMenu: {fileID: 0}
-  savesItems: []
-  saveContent: {fileID: 0}
-  itemSaveObject: {fileID: 7102984692659747448, guid: 4771d28d11c236549a4d27cbd5aeebd2,
-    type: 3}
   basePrice: 0a000000080000000c0000000e000000
   actualPrice: 00000000000000000000000000000000
   actualPointsText:
@@ -9658,11 +9692,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fmodEventEnter:
     Guid:
-      Data1: 1879129959
-      Data2: 1097936613
-      Data3: 1867769529
-      Data4: 505924323
-    Path: event:/Boton
+      Data1: 401337883
+      Data2: 1198581148
+      Data3: -41006713
+      Data4: 789997207
+    Path: event:/stats up
   fmodEventDown:
     Guid:
       Data1: 1421798938
@@ -9820,11 +9854,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fmodEventEnter:
     Guid:
-      Data1: 1879129959
-      Data2: 1097936613
-      Data3: 1867769529
-      Data4: 505924323
-    Path: event:/Boton
+      Data1: 401337883
+      Data2: 1198581148
+      Data3: -41006713
+      Data4: 789997207
+    Path: event:/stats up
   fmodEventDown:
     Guid:
       Data1: 1421798938
@@ -12077,11 +12111,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fmodEventEnter:
     Guid:
-      Data1: 1879129959
-      Data2: 1097936613
-      Data3: 1867769529
-      Data4: 505924323
-    Path: event:/Boton
+      Data1: 401337883
+      Data2: 1198581148
+      Data3: -41006713
+      Data4: 789997207
+    Path: event:/stats up
   fmodEventDown:
     Guid:
       Data1: 1421798938
@@ -12682,11 +12716,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fmodEventEnter:
     Guid:
-      Data1: 1879129959
-      Data2: 1097936613
-      Data3: 1867769529
-      Data4: 505924323
-    Path: event:/Boton
+      Data1: 401337883
+      Data2: 1198581148
+      Data3: -41006713
+      Data4: 789997207
+    Path: event:/stats up
   fmodEventDown:
     Guid:
       Data1: 1350584643
@@ -13731,11 +13765,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fmodEventEnter:
     Guid:
-      Data1: 1879129959
-      Data2: 1097936613
-      Data3: 1867769529
-      Data4: 505924323
-    Path: event:/Boton
+      Data1: 401337883
+      Data2: 1198581148
+      Data3: -41006713
+      Data4: 789997207
+    Path: event:/stats up
   fmodEventDown:
     Guid:
       Data1: 1421798938
@@ -14481,11 +14515,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fmodEventEnter:
     Guid:
-      Data1: 1879129959
-      Data2: 1097936613
-      Data3: 1867769529
-      Data4: 505924323
-    Path: event:/Boton
+      Data1: 401337883
+      Data2: 1198581148
+      Data3: -41006713
+      Data4: 789997207
+    Path: event:/stats up
   fmodEventDown:
     Guid:
       Data1: 1350584643

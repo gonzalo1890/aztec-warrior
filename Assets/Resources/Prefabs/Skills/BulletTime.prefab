@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 7620323021777270024}
   - component: {fileID: 5624722126270011612}
   - component: {fileID: 3669969867640914252}
+  - component: {fileID: 2864713884877608360}
   m_Layer: 0
   m_Name: BulletTime
   m_TagString: Untagged
@@ -156,3 +157,24 @@ MonoBehaviour:
   cadence: 4
   nextCheck: 0
   description: Slow down time.
+  SlowSoundEffect: {fileID: 2864713884877608360}
+--- !u!114 &2864713884877608360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7620323021777270067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba1ddcc259ef0a41a2f6cfe8647af7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fmodEvent:
+    Guid:
+      Data1: 339882123
+      Data2: 1339467061
+      Data3: -1141916255
+      Data4: 839310533
+    Path: event:/slow time
+  onStart: 0

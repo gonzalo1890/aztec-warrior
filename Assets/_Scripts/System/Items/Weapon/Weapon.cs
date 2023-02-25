@@ -13,6 +13,7 @@ public abstract class Weapon : Item
 
     //Daño base del arma
     public int damage = 10;
+    private int damageBase;
 
     public AmmoType ammoType = AmmoType.None;
     //Rango de aleatoreidad de daño que puede hacer un arma a partir de su daño base
@@ -21,12 +22,13 @@ public abstract class Weapon : Item
 
     //Cadencia del arma (en segundos)
     public float cadence = 1f;
+    private float cadenceBase;
     float nextCheck;
 
     //Probabilidad de daño critico
     [SerializeField]
     public float criticalHitProbability = 3f;
-
+    private float criticalHitProbabilityBase;
     //Rango de aleatoreidad de daño c que puede hacer un arma a partir de su daño base
     public int RandomRangeCritic = 5;
 
@@ -44,6 +46,12 @@ public abstract class Weapon : Item
     public Damage damageCalculated;
 
     public GameObject impact;
+    private void Awake()
+    {
+        damageBase = damage;
+        cadenceBase = cadence;
+        criticalHitProbabilityBase = criticalHitProbability;
+    }
     protected virtual void Update()
     {
         if (GameManager.Instance.menuView)
@@ -87,6 +95,11 @@ public abstract class Weapon : Item
     public override void LevelApply()
     {
         base.LevelApply();
+
+        damage = damageBase;
+        cadence = cadenceBase;
+        criticalHitProbability = criticalHitProbabilityBase;
+
         if (itemLevel != ItemLevel.Common)
         {
             damage = damage * (int)itemLevel;
@@ -102,6 +115,19 @@ public abstract class Weapon : Item
         damage = damage + GameManager.Instance.playerStats.brutality;
 
     }
+
+    public void UpgradeLevel()
+    {
+        int actualLevel = (int)itemLevel;
+        if(actualLevel < 4)
+        {
+            actualLevel += 1;
+            itemLevel = (ItemLevel)actualLevel;
+        }
+        LevelApply();
+        GameManager.Instance.canvasManager.WeaponEquiped(this);
+    }
+
     public Damage CalculeDamage()
     {
         int value = Random.Range(damage - RandomRange, damage + RandomRange);
@@ -156,5 +182,7 @@ public abstract class Weapon : Item
         }
         return result;
     }
+
+
 
 }

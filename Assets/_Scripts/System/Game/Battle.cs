@@ -46,11 +46,13 @@ public class Battle : MonoBehaviour
 
     void Update()
     {
+        //Si el jugador entra en la zona de combate este inicia
         if(StartArea.getInArea() && !combat)
         {
             StartCombat();
         }
 
+        //Se crea un enemigo cada cierto tiempo
         if (Time.time > nextCheck && combat)
         {
             if (enemyNumCount > 0)
@@ -66,7 +68,7 @@ public class Battle : MonoBehaviour
             {
                 if (combat)
                 {
-                    if (enemyActualSpawned < 1)
+                    if (enemyActualSpawned < 1) //Si ya no quedan enemigos que spawnear
                     {
                         EndCombat();
                     }
@@ -95,7 +97,10 @@ public class Battle : MonoBehaviour
         WallsEnabled(false);
         if (!rewardAdd)
         {
-            GameManager.Instance.playerReward.GenerateReward();
+            if (GameManager.Instance.roguelite.progressWorld < 4)
+            {
+                GameManager.Instance.playerReward.GenerateReward(1);
+            }
             rewardAdd = true;
         }
 
@@ -128,8 +133,8 @@ public class Battle : MonoBehaviour
     public void CreateEnemy()
     {
         int randomPoint = Random.Range(0, SpawnerPoints.Count);
-
-        GameObject enemy = Instantiate(EntitiesSpawn[actualEnemy], SpawnerPoints[randomPoint].position, SpawnerPoints[randomPoint].rotation);
+        int randomEnemy = Random.Range(0, EntitiesSpawn.Count);
+        GameObject enemy = Instantiate(EntitiesSpawn[randomEnemy], SpawnerPoints[randomPoint].position, SpawnerPoints[randomPoint].rotation);
 
         if(enemy.GetComponent<EntityTarget>() != null)
         {

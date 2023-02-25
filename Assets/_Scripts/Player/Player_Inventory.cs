@@ -102,6 +102,14 @@ public class Player_Inventory : MonoBehaviour
             }
         }
 
+        if(item.GetComponent<Upgrade>() != null)
+        {
+            Upgrade upgrade = item.GetComponent<Upgrade>();
+            upgrade.UpgradeItem();
+            return;
+        }
+
+
         item.transform.SetParent(itemsContainer);
         item.transform.localPosition = Vector3.zero;
         item.GetComponent<Collider>().enabled = false;
@@ -286,5 +294,36 @@ public class Player_Inventory : MonoBehaviour
             Destroy(itemClear.gameObject);
         }
         items.Clear();
+    }
+
+
+    public void UpgradeWeapon(string upgrade)
+    {
+        for (int i = 0; i < SlotsWeapon.Count; i++)
+        {
+            if(SlotsWeapon[i] != null)
+            {
+                if (SlotsWeapon[i].itemName == upgrade)
+                {
+                    SlotsWeapon[i].UpgradeLevel();
+                }
+            }
+        }
+    }
+
+    public void UpgradeSkillAttack(string upgrade)
+    {
+        if (actualSkillAttack.itemName == upgrade)
+        {
+            actualSkillAttack.UpgradeLevel();
+        }
+    }
+
+    public void UpgradeSkillExtra(string upgrade)
+    {
+        if (actualSkillExtra.itemName == upgrade)
+        {
+            actualSkillExtra.UpgradeLevel();
+        }
     }
 }

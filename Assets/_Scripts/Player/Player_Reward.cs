@@ -10,29 +10,49 @@ public class Player_Reward : MonoBehaviour
     public List<GameObject> skillAttacks = new List<GameObject>();
     public List<GameObject> skillExtras = new List<GameObject>();
 
+    public List<GameObject> upgrates = new List<GameObject>();
+
     public List<ItemSaved> RewardItems = new List<ItemSaved>();
 
     public List<Item> RewardItemsStock = new List<Item>();
-    // Start is called before the first frame update
-    void Start()
-    {
-        //GenerateReward();
-    }
 
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            GenerateReward();
+            GenerateReward(1);
         }
     }
 
-    public void GenerateReward()
+    public void GenerateReward(int rewardType)
     {
-        RewardItemsStock[0] = GetWeapon().GetComponent<Item>();
-        RewardItemsStock[1] = GetWeapon().GetComponent<Item>();
-        RewardItemsStock[2] = GetSkill().GetComponent<Item>();
+        if (rewardType == 0) //Inicial - Weapon
+        {
+            RewardItemsStock[0] = GetWeapon().GetComponent<Item>();
+            RewardItemsStock[1] = GetWeapon().GetComponent<Item>();
+            RewardItemsStock[2] = GetWeapon().GetComponent<Item>();
+        }
+
+        if (rewardType == 1) //Variada
+        {
+            RewardItemsStock[0] = GetWeapon().GetComponent<Item>();
+            RewardItemsStock[1] = GetSkill().GetComponent<Item>();
+            RewardItemsStock[2] = GetUpgrate().GetComponent<Item>();
+        }
+        if (rewardType == 2) //Skill
+        {
+            RewardItemsStock[0] = GetSkill().GetComponent<Item>();
+            RewardItemsStock[1] = GetSkill().GetComponent<Item>();
+            RewardItemsStock[2] = GetSkill().GetComponent<Item>();
+        }
+
+        if (rewardType == 3) //Upgrate
+        {
+            RewardItemsStock[0] = GetUpgrate().GetComponent<Item>();
+            RewardItemsStock[1] = GetUpgrate().GetComponent<Item>();
+            RewardItemsStock[2] = GetUpgrate().GetComponent<Item>();
+        }
+
 
         RewardItems[0].SetItem(RewardItemsStock[0]);
         RewardItems[1].SetItem(RewardItemsStock[1]);
@@ -52,7 +72,8 @@ public class Player_Reward : MonoBehaviour
                     Destroy(RewardItemsStock[i].gameObject);
                 }
             }
-        }else
+        }
+        else
         {
             for (int i = 0; i < RewardItemsStock.Count; i++)
             {
@@ -79,8 +100,7 @@ public class Player_Reward : MonoBehaviour
         GameObject newItem = Instantiate(objectWeapon, Vector3.zero, Quaternion.identity);
 
         Item item = newItem.GetComponent<Item>();
-        int level = Random.Range(0, 5);
-        item.itemLevel = (ItemLevel)level;
+        item.itemLevel = (ItemLevel)GetRandomLevelProb();
 
         int damageElement = Random.Range(0, 5);
         item.GetComponent<Weapon>().damageElement = (DamageElement)damageElement;
@@ -107,11 +127,53 @@ public class Player_Reward : MonoBehaviour
         GameObject newItem = Instantiate(objectSkill, Vector3.zero, Quaternion.identity);
 
         Item item = newItem.GetComponent<Item>();
-        int level = Random.Range(0, 5);
-        item.itemLevel = (ItemLevel)level;
+
+        item.itemLevel = (ItemLevel)GetRandomLevelProb();
 
         item.LevelApply();
 
         return newItem;
     }
+
+
+    public GameObject GetUpgrate()
+    {
+        GameObject objectUpgrate = null;
+        objectUpgrate = upgrates[Random.Range(0, upgrates.Count)];
+
+        GameObject newItem = Instantiate(objectUpgrate, Vector3.zero, Quaternion.identity);
+
+        Item item = newItem.GetComponent<Item>();
+
+        item.itemLevel = 0;
+        item.LevelApply();
+        return newItem;
+    }
+
+
+    public int GetRandomLevelProb()
+    {
+        int randomLevel = 0;
+
+        int random = Random.Range(0, 100);
+
+        if (random > 98)
+        {
+            randomLevel = 4;
+        }
+        else if (random > 93)
+        {
+            randomLevel = 3;
+        }
+        else if (random > 83)
+        {
+            randomLevel = 2;
+        }
+        else if (random > 58)
+        {
+            randomLevel = 1;
+        }
+        return randomLevel;
+    }
+
 }

@@ -9867,7 +9867,7 @@ MonoBehaviour:
   rb: {fileID: 3249355893851582798}
   damageArea: {fileID: 3469967865253984444, guid: c3058f459447d1649a0f632216c978f0,
     type: 3}
-  particleExplode: {fileID: 6678188031786326704, guid: be15dcf2503cd324bb87b515f6116e59,
+  particleExplode: {fileID: 6678188031786326704, guid: fe18f295f02705341836e65c62fc6ff8,
     type: 3}
 --- !u!54 &3249355893851582798
 Rigidbody:

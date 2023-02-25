@@ -34,6 +34,22 @@ public class ItemSaved : MonoBehaviour
             }
         }
 
+        Upgrade upgrade = null;
+        if(item.GetComponent<Upgrade>() != null)
+        {
+            upgrade = item.GetComponent<Upgrade>();
+            levelColor = GameManager.Instance.canvasManager.itemlevelColor[(int)upgrade.itemLevel];
+            weaponFrame.color = levelColor;
+            weaponIcon.sprite = item.itemIcon;
+            if (weaponName != null)
+            {
+                weaponName.text = item.itemName + " [" + item.itemLevel.ToString() + "]";
+                weaponName.color = levelColor;
+            }
+        }
+
+
+
         Skill skill = null;
         if (item.GetComponent<Skill>() != null)
         {

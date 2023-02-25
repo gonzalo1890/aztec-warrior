@@ -28,6 +28,12 @@ public class AudioEffect : MonoBehaviour
         instance.start();
     }
 
+    public void SetParameter(int value = -1, string name = "")
+    {
+        instance.setParameterByName(name, value);
+    }
+
+
     public void Stop()
     {
         instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);

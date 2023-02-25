@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Dash : SkillAttack
 {
+    public AudioEffect DashSoundEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,10 @@ public class Dash : SkillAttack
     public override void ActiveSkill()
     {
         base.ActiveSkill();
+
+        DashSoundEffect.Stop();
+        DashSoundEffect.Play();
+
         Player_Skill playerSkill = GameManager.Instance.playerSkill;
         playerSkill.PlayerMove(50, 0.1f);
         Debug.Log("SKILL ATTACK: " + itemName);

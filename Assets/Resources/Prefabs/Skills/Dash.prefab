@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 7620323021777270024}
   - component: {fileID: 5624722126270011612}
   - component: {fileID: 1752163349864635029}
+  - component: {fileID: 5890665138586281561}
   m_Layer: 0
   m_Name: Dash
   m_TagString: Untagged
@@ -156,3 +157,24 @@ MonoBehaviour:
   cadence: 8
   nextCheck: 0
   description: Push the player in the direction they're moving.
+  DashSoundEffect: {fileID: 5890665138586281561}
+--- !u!114 &5890665138586281561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7620323021777270067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba1ddcc259ef0a41a2f6cfe8647af7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fmodEvent:
+    Guid:
+      Data1: 1544727060
+      Data2: 1077153091
+      Data3: 313237652
+      Data4: -88246289
+    Path: event:/Dash
+  onStart: 0

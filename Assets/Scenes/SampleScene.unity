@@ -18,7 +18,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.46274513, g: 0.043137256, b: 0, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.002
+  m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.9386859, g: 0.90466136, b: 0.84687346, a: 1}
@@ -299,8 +299,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1485103139}
   - component: {fileID: 1485103138}
-  - component: {fileID: 1485103141}
   - component: {fileID: 1485103142}
+  - component: {fileID: 1485103141}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064924075}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 

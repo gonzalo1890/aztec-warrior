@@ -42,10 +42,10 @@ MonoBehaviour:
   Path: ../AztecWarriorAssets/aztec warrior/Build/Desktop/musica.bank
   Name: musica
   StudioPath: bank:/musica
-  lastModified: 638118307182313420
+  lastModified: 638124324951965955
   FileSizes:
   - Name: Desktop
-    Value: 4941184
+    Value: 4891424
   Exists: 1
 --- !u!114 &-7998319231461824158
 MonoBehaviour:
@@ -70,7 +70,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: -1852743948870327588}
   MinDistance: 1
   MaxDistance: 45
   Length: 0
@@ -101,6 +102,54 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-7409329899184430115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/slow time/Slow time
+  m_EditorClassIdentifier: 
+  Name: Slow time
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2796340309
+    data2: 3454106010
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-7191387544105938767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/musica/Slow time
+  m_EditorClassIdentifier: 
+  Name: Slow time
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2796340309
+    data2: 3454106010
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-6042200454414140818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +201,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-5536395193296516524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Pistola/Slow time
+  m_EditorClassIdentifier: 
+  Name: Slow time
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2796340309
+    data2: 3454106010
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-5480128728396972414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,6 +331,7 @@ MonoBehaviour:
   IsOneShot: 0
   Parameters:
   - {fileID: -6042200454414140818}
+  - {fileID: 7916514108241912979}
   MinDistance: 1
   MaxDistance: 20
   Length: 231065
@@ -276,10 +350,34 @@ MonoBehaviour:
   Path: ../AztecWarriorAssets/aztec warrior/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638118307146560515
+  lastModified: 638124324950197307
   FileSizes:
   - Name: Desktop
     Value: 1036
+  Exists: 1
+--- !u!114 &-1852743948870327588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ametralladora/Slow time
+  m_EditorClassIdentifier: 
+  Name: Slow time
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2796340309
+    data2: 3454106010
+  Type: 1
+  IsGlobal: 0
+  Labels: []
   Exists: 1
 --- !u!114 &-1013358054707090243
 MonoBehaviour:
@@ -347,12 +445,15 @@ MonoBehaviour:
   - {fileID: -7786944596426434199}
   - {fileID: 8567802651907075212}
   - {fileID: -5480128728396972414}
+  - {fileID: 511774917637299220}
+  - {fileID: 3626248259133958485}
+  - {fileID: 6975502302629559512}
   EditorParameters: []
   MasterBanks:
   - {fileID: -4212784506883092037}
   StringsBanks:
   - {fileID: 199930296624449074}
-  cacheTime: 638118307250647535
+  cacheTime: 638124324955759858
   cacheVersion: 131601
 --- !u!114 &199930296624449074
 MonoBehaviour:
@@ -369,11 +470,38 @@ MonoBehaviour:
   Path: ../AztecWarriorAssets/aztec warrior/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638118307146670213
+  lastModified: 638124324950254387
   FileSizes:
   - Name: Desktop
-    Value: 1942
+    Value: 2114
   Exists: 1
+--- !u!114 &511774917637299220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dash
+  m_EditorClassIdentifier: 
+  Path: event:/Dash
+  Guid:
+    Data1: 1544727060
+    Data2: 1077153091
+    Data3: 313237652
+    Data4: -88246289
+  Banks:
+  - {fileID: 4636222914762844312}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &599856372892797141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,9 +554,10 @@ MonoBehaviour:
   IsOneShot: 0
   Parameters:
   - {fileID: 5576592329031370880}
+  - {fileID: -7191387544105938767}
   MinDistance: 1
   MaxDistance: 20
-  Length: 145513
+  Length: 140303
 --- !u!114 &1188729935973335750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,7 +611,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 90
-  Length: 2020
+  Length: 1563
 --- !u!114 &2576463776181363141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,10 +635,38 @@ MonoBehaviour:
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 6545101537041001185}
   MinDistance: 0.1
-  MaxDistance: 2800
+  MaxDistance: 600
   Length: 10088
+--- !u!114 &3626248259133958485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/stats up
+  m_EditorClassIdentifier: 
+  Path: event:/stats up
+  Guid:
+    Data1: 401337883
+    Data2: 1198581148
+    Data3: -41006713
+    Data4: 789997207
+  Banks:
+  - {fileID: 4636222914762844312}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &4313664864639788263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,7 +690,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 5536290521191966200}
   MinDistance: 1
   MaxDistance: 20
   Length: 991
@@ -552,10 +710,34 @@ MonoBehaviour:
   Path: ../AztecWarriorAssets/aztec warrior/Build/Desktop/FX.bank
   Name: FX
   StudioPath: bank:/FX
-  lastModified: 638118307146444928
+  lastModified: 638124324950077825
   FileSizes:
   - Name: Desktop
-    Value: 961376
+    Value: 1265696
+  Exists: 1
+--- !u!114 &5536290521191966200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/escopeta/Slow time
+  m_EditorClassIdentifier: 
+  Name: Slow time
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2796340309
+    data2: 3454106010
+  Type: 1
+  IsGlobal: 0
+  Labels: []
   Exists: 1
 --- !u!114 &5555496317167844183
 MonoBehaviour:
@@ -623,10 +805,34 @@ MonoBehaviour:
   Path: ../AztecWarriorAssets/aztec warrior/Build/Desktop/pantano.bank
   Name: pantano
   StudioPath: bank:/pantano
-  lastModified: 638118307250647535
+  lastModified: 638124324955759858
   FileSizes:
   - Name: Desktop
-    Value: 9550880
+    Value: 9551456
+  Exists: 1
+--- !u!114 &6545101537041001185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/explocion/Slow time
+  m_EditorClassIdentifier: 
+  Name: Slow time
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2796340309
+    data2: 3454106010
+  Type: 1
+  IsGlobal: 0
+  Labels: []
   Exists: 1
 --- !u!114 &6725137096751676911
 MonoBehaviour:
@@ -651,10 +857,63 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: -5536395193296516524}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &6975502302629559512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/slow time
+  m_EditorClassIdentifier: 
+  Path: event:/slow time
+  Guid:
+    Data1: 339882123
+    Data2: 1339467061
+    Data3: -1141916255
+    Data4: 839310533
+  Banks:
+  - {fileID: 4636222914762844312}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -7409329899184430115}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 810
+--- !u!114 &7916514108241912979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambiente/Slow time
+  m_EditorClassIdentifier: 
+  Name: Slow time
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2796340309
+    data2: 3454106010
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &8567802651907075212
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,8 +5,13 @@ using UnityEngine;
 public class BulletTime : SkillAttack
 {
     TimeManager timeManager;
-
-    private float timeEffect = 0.02f;
+    public AudioEffect SlowSoundEffect;
+    private float timeEffect = 0.04f;
+    private float timeEffectBase;
+    private void Awake()
+    {
+        timeEffectBase = timeEffect;
+    }
     protected override void Update()
     {
         base.Update();
@@ -15,11 +20,12 @@ public class BulletTime : SkillAttack
     public override void LevelApply()
     {
         base.LevelApply();
+        timeEffect = timeEffectBase;
         if (itemLevel != ItemLevel.Common)
         {
             for (int i = 0; i < (int)itemLevel; i++)
             {
-                timeEffect = timeEffect + 0.02f;
+                timeEffect = timeEffect + 0.04f;
             }
         }
     }
@@ -27,10 +33,24 @@ public class BulletTime : SkillAttack
     public override void ActiveSkill()
     {
         base.ActiveSkill();
+        SlowSound();
         timeManager = GameManager.Instance.timeManager;
         timeManager.DoSlowmotionTime(timeEffect);
         Debug.Log("SKILL ATTACK: " + itemName);
 
     }
 
+    void SlowSound()
+    {
+        SlowSoundEffect.Stop();
+        SlowSoundEffect.Play(1, "Slow time");
+        GameManager.Instance.roguelite.SlowTime(timeEffect);
+        Invoke(nameof(EndSlowSound), timeEffect);
+    }
+
+    void EndSlowSound()
+    {
+        SlowSoundEffect.SetParameter(0, "Slow time");
+        SlowSoundEffect.Stop();
+    }
 }
