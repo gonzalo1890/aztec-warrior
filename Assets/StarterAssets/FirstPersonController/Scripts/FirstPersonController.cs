@@ -121,7 +121,7 @@ namespace StarterAssets
 
 		private void Update()
 		{
-			if (!GameManager.Instance.menuView)
+			if (!GameManager.Instance.menuView && !GameManager.Instance.pauseOn)
 			{
 				JumpAndGravity();
 				GroundedCheck();
@@ -132,7 +132,7 @@ namespace StarterAssets
 
 		private void LateUpdate()
 		{
-			if (!GameManager.Instance.menuView)
+			if (!GameManager.Instance.menuView && !GameManager.Instance.pauseOn && !GameManager.Instance.playerInventory.wheelActive)
 			{
 				CameraRotation();
 			}

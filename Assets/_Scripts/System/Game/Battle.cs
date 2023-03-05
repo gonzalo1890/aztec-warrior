@@ -95,6 +95,12 @@ public class Battle : MonoBehaviour
         combat = false;
         GameManager.Instance.roguelite.EndCombat();
         WallsEnabled(false);
+
+        if (isEndLevel)
+        {
+            BossDefeat();
+        }
+
         if (!rewardAdd)
         {
             if (GameManager.Instance.roguelite.progressWorld < 4)
@@ -104,10 +110,6 @@ public class Battle : MonoBehaviour
             rewardAdd = true;
         }
 
-        if(isEndLevel)
-        {
-            BossDefeat();
-        }
         Debug.Log("End Combat");
     }
 

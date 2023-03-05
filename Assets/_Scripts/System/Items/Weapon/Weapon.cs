@@ -54,7 +54,7 @@ public abstract class Weapon : Item
     }
     protected virtual void Update()
     {
-        if (GameManager.Instance.menuView)
+        if (GameManager.Instance.menuView && !GameManager.Instance.pauseOn)
         {
             return;
         }
@@ -85,7 +85,7 @@ public abstract class Weapon : Item
     {
         damageCalculated = CalculeDamage();
         GameManager.Instance.playerStats.SetActualAmmo(-1);
-        GameManager.Instance.playerWeapon.GetAnimatorWeapon().SetTrigger("Shoot");
+        GameManager.Instance.playerWeapon.SetAnimatorTrigger("Shoot");
         GameManager.Instance.playerWeapon.WeaponSound();
         GameManager.Instance.playerWeapon.StartParticleShoot();
 
@@ -116,7 +116,7 @@ public abstract class Weapon : Item
 
     }
 
-    public void UpgradeLevel()
+    public void UpgradeLevel(int index)
     {
         int actualLevel = (int)itemLevel;
         if(actualLevel < 4)
@@ -125,7 +125,7 @@ public abstract class Weapon : Item
             itemLevel = (ItemLevel)actualLevel;
         }
         LevelApply();
-        GameManager.Instance.canvasManager.WeaponEquiped(this);
+        GameManager.Instance.canvasManager.WeaponEquiped(this, index);
     }
 
     public Damage CalculeDamage()

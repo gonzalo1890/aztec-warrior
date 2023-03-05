@@ -53,14 +53,21 @@ public class Player_Weapon : MonoBehaviour
         }
     }
 
-    public Animator GetAnimatorWeapon()
+    public void SetAnimatorTrigger(string animTrigger)
     {
         if (weapons[actualWeapon].transform.GetChild(0).GetComponent<Animator>() != null)
         {
-            return weapons[actualWeapon].transform.GetChild(0).GetComponent<Animator>();
-        }else
+            weapons[actualWeapon].transform.GetChild(0).GetComponent<Animator>().SetTrigger(animTrigger);
+        }
+        else
         {
-            return null;
+            for (int i = 0; i < weapons[actualWeapon].transform.GetChild(0).childCount; i++)
+            {
+                if (weapons[actualWeapon].transform.GetChild(0).GetChild(i).GetComponent<Animator>() != null)
+                {
+                    weapons[actualWeapon].transform.GetChild(0).GetChild(i).GetComponent<Animator>().SetTrigger(animTrigger);
+                }
+            }
         }
     }
     
@@ -76,8 +83,10 @@ public class Player_Weapon : MonoBehaviour
     public void CreateDamageArea()
     {
         GameObject damageA = Instantiate(damageArea, damagePoint.position, transform.rotation) as GameObject;
+        damageA.GetComponent<DamageArea>().damageEmitter = GameManager.Instance.player;
         damageA.GetComponent<DamageArea>().damageSave = actualDamage;
         damageA.GetComponent<DamageArea>().damageElement = actualDamage.damageElement;
+        damageA.GetComponent<DamageArea>().damageSave.isMelee = true;
     }
 
     public void StartParticleShoot()

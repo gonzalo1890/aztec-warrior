@@ -52,7 +52,7 @@ public class WeaponRaycast : Weapon
                     GameObject particle = Instantiate(impact, ShootPoint.position, Quaternion.identity) as GameObject;
                     particle.GetComponent<Impact>().CreateWorldMaterialParticle(hit.point, hit.transform, true);
                     particle.GetComponent<Impact>().SetLine(ShootPoint.position, ShootPoint.position + (ray.direction * 10), ShootPoint);
-                    Debug.Log("NO CHOCO EN NADA 2");
+                    //Debug.Log("NO CHOCO EN NADA 2");
                 }
             }
             else
@@ -60,7 +60,7 @@ public class WeaponRaycast : Weapon
                 GameObject particle = Instantiate(impact, ShootPoint.position, Quaternion.identity) as GameObject;
 
                 particle.GetComponent<Impact>().SetLine(ShootPoint.position, ShootPoint.position + (ShootPoint.forward * 10), ShootPoint);
-                Debug.Log("NO CHOCO EN NADA");
+                //Debug.Log("NO CHOCO EN NADA");
             }
         }
 

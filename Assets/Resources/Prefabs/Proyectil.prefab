@@ -176,9 +176,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5027333110923636267}
-  - component: {fileID: 3878507075378357164}
   - component: {fileID: 2740041993547100081}
   - component: {fileID: 3249355893851582798}
+  - component: {fileID: 5414253467321632580}
   m_Layer: 15
   m_Name: Proyectil
   m_TagString: Untagged
@@ -203,19 +203,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &3878507075378357164
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7721806677005473868}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.45
-  m_Center: {x: 0, y: 0, z: 0.15}
 --- !u!114 &2740041993547100081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +221,8 @@ MonoBehaviour:
     type: 3}
   particleExplode: {fileID: 6678188031786326704, guid: be15dcf2503cd324bb87b515f6116e59,
     type: 3}
+  emitter: {fileID: 0}
+  isExplode: 0
 --- !u!54 &3249355893851582798
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -250,6 +239,19 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &5414253467321632580
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7721806677005473868}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.10371441, y: 0.10168213, z: 0.80285776}
+  m_Center: {x: 0.0030486286, y: 0.000000029802322, z: 0.14938086}
 --- !u!1 &7761236221930485375
 GameObject:
   m_ObjectHideFlags: 0

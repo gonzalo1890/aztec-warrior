@@ -27,25 +27,30 @@ public class Player_CanvasInteract : MonoBehaviour
         //Raycast using the Graphics Raycaster and mouse click position
         m_Raycaster.Raycast(m_PointerEventData, results);
 
-        if(results.Count > 0)
+        if (results.Count > 0)
         {
-            if(results[0].gameObject.GetComponent<ItemSaved>() != null)
+            for (int i = 0; i < results.Count; i++)
             {
-                if (results[0].gameObject.GetComponent<RectTransform>() != null)
+                if (results[i].gameObject.GetComponent<ItemSaved>() != null)
                 {
-                    GameManager.Instance.canvasManager.ItemSelected(results[0].gameObject.GetComponent<RectTransform>());
+                    if (results[i].gameObject.GetComponent<ItemSaved>().itemSaved != null)
+                    {
+                        if (results[i].gameObject.GetComponent<RectTransform>() != null)
+                        {
+                            GameManager.Instance.canvasManager.ItemSelected(results[i].gameObject);
+                        }
+                    }
+                    else
+                    {
+                        GameManager.Instance.canvasManager.ItemDeselected();
+                    }
                 }
-            }
-            else
-            {
-                GameManager.Instance.canvasManager.ItemDeselected();
             }
         }
         else
         {
             GameManager.Instance.canvasManager.ItemDeselected();
         }
-
     }
 
 }

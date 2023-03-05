@@ -148,6 +148,7 @@ public class EntityTarget : Entity
     //Ataca cuerpo a cuerpo
     void MeleeAttackState()
     {
+        FaceTarget();
         if (Time.time > meleeNextCheck)
         {
             //Attack Melee
@@ -172,7 +173,8 @@ public class EntityTarget : Entity
     {
         GameObject damageA = Instantiate(attackArea, attackPosition.position, transform.rotation) as GameObject;
         Damage actualDamage = new Damage();
-        actualDamage.damageValue = 5;
+        int randomDamage = Random.Range(50, 100);
+        actualDamage.damageValue = randomDamage;
         actualDamage.damageElement = DamageElement.None;
         damageA.GetComponent<DamagePlayer>().damageValue = actualDamage.damageValue;
         //damageA.GetComponent<DamageArea>().damageElement = actualDamage.damageElement;
@@ -226,6 +228,7 @@ public class EntityTarget : Entity
 
     private IEnumerator AIMtime(float waitTime)
     {
+        //weapon AIM
         float elapsedTime = 0;
         float start = aimIK.solver.GetIKPositionWeight();
         while (elapsedTime < waitTime)
@@ -236,15 +239,42 @@ public class EntityTarget : Entity
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        yield return new WaitForSeconds(0.3f);
-        GetRecoil().Fire(1f);
-        GameObject shoot = Instantiate(proyectileShoot, shootPosition.position, transform.rotation) as GameObject;
+
+        //Shoot
+        yield return new WaitForSeconds(0.1f);
+        Damage enemyDamage = new Damage();
+        int randomDamage = Random.Range(30, 60);
+        enemyDamage.damageValue = randomDamage;
+        enemyDamage.damageElement = 0;
+        enemyDamage.emitter = this.gameObject;
+
+        for (int i = 0; i < 4; i++)
+        {
+            yield return new WaitForSeconds(0.3f);
+
+            if (!isDeath)
+            {
+                FaceTarget();
+                GetRecoil().Fire(1f);
+
+                Vector3 positionAttack = transform.position + new Vector3(0, -0.5f, 0);
+                var lookPos = target.position - positionAttack;
+                //lookPos.y = 0;
+                var rotation = Quaternion.LookRotation(lookPos);
+                //shoot.transform.rotation = rotation;
+
+                GameObject shoot = Instantiate(proyectileShoot, shootPosition.position, rotation) as GameObject;
+                shoot.transform.LookAt(target);
+                shoot.GetComponent<Proyectile>().actualDamage = enemyDamage;
+            }
+        }
+
+        //Weapon down
         yield return new WaitForSeconds(0.3f);
         elapsedTime = 0;
         start = aimIK.solver.GetIKPositionWeight();
         while (elapsedTime < waitTime)
         {
-
             aimIK.solver.SetIKPositionWeight(Mathf.Lerp(start, 0f, (elapsedTime / waitTime)));
             fullBody.solver.SetIKPositionWeight(Mathf.Lerp(start, 0f, (elapsedTime / waitTime)));
             elapsedTime += Time.deltaTime;

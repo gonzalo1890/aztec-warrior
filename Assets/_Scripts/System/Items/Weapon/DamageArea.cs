@@ -5,6 +5,7 @@ using UnityEngine;
 public class DamageArea : MonoBehaviour
 {
     public Damage damageSave;
+    public GameObject damageEmitter;
     public float damageRange = 0.5f;
 
     public DamageElement damageElement;
@@ -24,16 +25,14 @@ public class DamageArea : MonoBehaviour
         {
             Vector3 hitPoint = other.ClosestPoint(transform.position);
             damageSave.pointDamage = hitPoint;
-
-            if (ChanceToSpawn())
+            damageSave.emitter = damageEmitter;
+            if (ChanceToSpawn() && other.GetComponent<Player_Stats>() == null)
             {
                 GameObject particle = Instantiate(impact, hitPoint, Quaternion.identity) as GameObject;
                 particle.GetComponent<Impact>().damageElement = damageElement;
                 particle.GetComponent<Impact>().CreateElementParticle(hitPoint, other.transform, true);
                 particle.GetComponent<Impact>().CreateBloodParticle(hitPoint, other.transform, true);
             }
-
-
             other.transform.GetComponent<Idamage>().SetDamage(damageSave);
             Destroy(gameObject);
         }

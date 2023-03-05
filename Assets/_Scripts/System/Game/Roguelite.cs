@@ -55,11 +55,15 @@ public class Roguelite : MonoBehaviour
 
     public IEnumerator StartCinematic()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
+        GameManager.Instance.canvasManager.OpenLorePanel(true);
         GameManager.Instance.playerData.LoadGame();
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(12);
+        GameManager.Instance.canvasManager.OpenLorePanel(false);
+        yield return new WaitForSeconds(2);
         GameManager.Instance.playerStats.ChangeHealth(99999999);
         GameManager.Instance.canvasManager.OpenMenu(true);
+        GameManager.Instance.canvasManager.UpdatePoint(4);
     }
 
     public void Redemption()

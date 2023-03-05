@@ -18,6 +18,7 @@ public class Player_Inventory : MonoBehaviour
     public Skill actualSkillAttack;
     public Skill actualSkillExtra;
 
+    public bool wheelActive = false;
     void Start()
     {
 
@@ -30,18 +31,33 @@ public class Player_Inventory : MonoBehaviour
 
     void InputProcess()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Q)) //Arma Anterior
         {
-            PreviousWeapon();
+            //PreviousWeapon();
         }
         if (Input.GetKeyDown(KeyCode.E)) //Arma siguiente
         {
-            NextWeapon();
+            //NextWeapon();
         }
-
-        if (Input.GetKeyDown(KeyCode.R)) //Soltar objeto seleccionado
+        */
+        if (!GameManager.Instance.menuView && !GameManager.Instance.pauseOn)
         {
-            //GameManager.Instance.canvasManager.DropItem();
+            if (Input.GetKeyDown(KeyCode.Q)) //Soltar objeto seleccionado
+            {
+                GameManager.Instance.canvasManager.OpenWeaponSelector(true);
+                wheelActive = true;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
+            if (Input.GetKeyUp(KeyCode.Q)) //Soltar objeto seleccionado
+            {
+                GameManager.Instance.canvasManager.OpenWeaponSelector(false);
+                wheelActive = false;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                GameManager.Instance.canvasManager.wheelSelector.SelectWeapon();
+            }
         }
     }
 
@@ -252,7 +268,7 @@ public class Player_Inventory : MonoBehaviour
         weapon.transform.GetChild(0).gameObject.SetActive(false);       
         
 
-        //GameManager.Instance.canvasManager.AddItem(weapon, slot);
+        GameManager.Instance.canvasManager.AddItem(weapon, slot);
 
     }
 
@@ -305,7 +321,7 @@ public class Player_Inventory : MonoBehaviour
             {
                 if (SlotsWeapon[i].itemName == upgrade)
                 {
-                    SlotsWeapon[i].UpgradeLevel();
+                    SlotsWeapon[i].UpgradeLevel(i);
                 }
             }
         }

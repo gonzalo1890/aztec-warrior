@@ -17,17 +17,17 @@ RenderSettings:
   serializedVersion: 9
   m_Fog: 1
   m_FogColor: {r: 0.46274513, g: 0.043137256, b: 0, a: 1}
-  m_FogMode: 3
+  m_FogMode: 1
   m_FogDensity: 0.01
-  m_LinearFogStart: 0
-  m_LinearFogEnd: 300
+  m_LinearFogStart: 50
+  m_LinearFogEnd: 800
   m_AmbientSkyColor: {r: 0.9386859, g: 0.90466136, b: 0.84687346, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: aeab33f69c199e54794f516d31450ec4, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 185fe1a9333128c45b68eadefec9b504, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 8900000, guid: 619e305f5165a9946b7f72464e44ca4a, type: 3}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.19713107, g: 0.08718664, b: 0.016904091, a: 1}
+  m_IndirectSpecularColor: {r: 0.30105847, g: 0.07308123, b: 0.081249766, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -334,6 +334,7 @@ MonoBehaviour:
   targetInfo: {fileID: 60889539378096551}
   saveId: 0
   menuView: 0
+  pauseOn: 0
 --- !u!4 &1485103139
 Transform:
   m_ObjectHideFlags: 0
@@ -1111,6 +1112,11 @@ PrefabInstance:
     - target: {fileID: 1186595481358926296, guid: 3191f3129cd0b4a4cafb368c564b5953,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1888840522810276954, guid: 3191f3129cd0b4a4cafb368c564b5953,
+        type: 3}
+      propertyPath: SlotsWeapon.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1962569849205676898, guid: 3191f3129cd0b4a4cafb368c564b5953,

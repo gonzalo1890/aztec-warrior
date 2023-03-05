@@ -18,11 +18,13 @@ public class WeaponProyectile : Weapon
         if(shooting.GetComponent<Granade>() != null)
         {
             shooting.GetComponent<Granade>().actualDamage = damageCalculated;
+            shooting.GetComponent<Granade>().emitter = GameManager.Instance.player;
         }
 
         if (shooting.GetComponent<Proyectile>() != null)
         {
             shooting.GetComponent<Proyectile>().actualDamage = damageCalculated;
+            shooting.GetComponent<Proyectile>().emitter = GameManager.Instance.player;
         }
         /*Ray ray = Camera.main.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
         if (Physics.Raycast(ray, out RaycastHit hit, 1000, shootLayer))

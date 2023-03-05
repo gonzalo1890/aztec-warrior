@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Stats : MonoBehaviour
+public class Player_Stats : MonoBehaviour, Idamage
 {
     public int health = 1000;
     public int maxHealth = 1000;
+
+    public float absorption = 0;
 
     private bool isDead = false;
     //Lineage
@@ -15,6 +17,8 @@ public class Player_Stats : MonoBehaviour
     public int rage = 0;
     public int agony = 0;
     public int brutality = 0;
+
+    public int extraSlot = 1;
 
     //Weapons
     public int bullet = 0;
@@ -84,23 +88,26 @@ public class Player_Stats : MonoBehaviour
 
     public void ChangeHealth(int value)
     {
-        if(isDead)
+        if (isDead)
         {
             return;
         }
-        if (value < 0)
+        if (value < 0) //ES DAÑO
         {
-            health += (value + rage);
-        }else
+            float actualRage = rage * 0.01f;
+            float damage = value / (1 + absorption + actualRage);
+            health += (int)damage;
+        }
+        else //ES CURACION
         {
             health += value;
         }
 
-        if(health > maxHealth)
+        if (health > maxHealth)
         {
             health = maxHealth;
         }
-        if(health <= 0)
+        if (health <= 0)
         {
             GameManager.Instance.roguelite.Death();
             isDead = true;
@@ -276,6 +283,7 @@ public class Player_Stats : MonoBehaviour
         stats.Add(rage);
         stats.Add(agony);
         stats.Add(brutality);
+        stats.Add(extraSlot);
         return stats;
     }
 
@@ -287,12 +295,22 @@ public class Player_Stats : MonoBehaviour
         rage = stats[3];
         agony = stats[4];
         brutality = stats[5];
+        extraSlot = stats[6];
         UpdateStats();
     }
 
     public void BloodlustApply(int value)
     {
-        int result = ((value + bloodlust) * 3) / 100;
+        if(bloodlust <= 0)
+        {
+            return;
+        }
+
+        int result = (bloodlust * 10) / 100;
+        if(result < 1)
+        {
+            result = 1;
+        }
         ChangeHealth(result);
     }
 
@@ -301,5 +319,27 @@ public class Player_Stats : MonoBehaviour
         // set sphere position, with offset
         Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
         Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+    }
+
+    public void SetAbsorption(float absorptionValue)
+    {
+        absorption = absorptionValue;
+    }
+
+    public void SetDamage(Damage damage)
+    {
+        int damageApply = damage.damageValue;
+
+        if (damage.emitter == this.gameObject)
+        {
+            damageApply = damageApply/6;
+        }
+
+        if (damage.emitter == this.gameObject && damage.isMelee)
+        {
+            damageApply = 0;
+        }
+
+        ChangeHealth(-damageApply);
     }
 }

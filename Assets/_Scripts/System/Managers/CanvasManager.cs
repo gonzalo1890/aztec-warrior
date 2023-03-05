@@ -13,6 +13,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject panelPause;
     public GameObject creditsPanel;
     public GameObject Panel32k;
+    public GameObject PanelLore;
 
     //Redemption
     public List<int> basePrice;
@@ -23,8 +24,10 @@ public class CanvasManager : MonoBehaviour
 
 
     //Stats
+    public GameObject statsGameObject;
     public Slider[] statsBars;
     public Text HealthText;
+    public GameObject playerDamageText;
     public Text spiritText;
     public Text spiritGameText;
     public List<Sprite> skulls = new List<Sprite>();
@@ -41,6 +44,8 @@ public class CanvasManager : MonoBehaviour
     public GameObject RewardObject;
 
     //InventoryWeapon
+    public GameObject weaponSelectorMenu;
+    public WheelSelector wheelSelector;
     public GameObject inventoryWeaponObject;
     public List<Image> itemsInventoryWeapon = new List<Image>();
     public Text itemsInventoryWeaponEquipedName;
@@ -76,6 +81,10 @@ public class CanvasManager : MonoBehaviour
     {
         Panel32k.SetActive(value);
     }
+    public void OpenLorePanel(bool value)
+    {
+        PanelLore.SetActive(value);
+    }
     public void OpenMenu(bool value)
     {
         menuObject.SetActive(value);
@@ -83,7 +92,7 @@ public class CanvasManager : MonoBehaviour
     public void OpenPause(bool value)
     {
         panelPause.SetActive(value);
-        OpenMenuAction(value);
+        //OpenMenuAction(value);
     }
     public void OpenRedemption(bool value)
     {
@@ -118,6 +127,11 @@ public class CanvasManager : MonoBehaviour
         OpenMenuAction(value);
     }
 
+    public void OpenWeaponSelector(bool value)
+    {
+        weaponSelectorMenu.SetActive(value);
+    }
+
     public void ButtonCancelReward()
     {
         GameManager.Instance.playerReward.SelectReward(null);
@@ -146,6 +160,13 @@ public class CanvasManager : MonoBehaviour
     {
         if (stat == 0) //Health
         {
+            if(_value < statsBars[stat].value)
+            {
+                GameObject damagePlayer = Instantiate(playerDamageText, statsGameObject.transform);
+                int resultDamage = (int)statsBars[stat].value - _value;
+                damagePlayer.GetComponent<PlayerTextDamage>().damageApply = -resultDamage;
+            }
+
             float startValue = statsBars[stat].value;
             HealthText.text = _value.ToString() + "/" + GameManager.Instance.playerStats.maxHealth;
             StartCoroutine(AnimStats(startValue, _value, stat));
@@ -171,7 +192,7 @@ public class CanvasManager : MonoBehaviour
     {
         float elapsedTime = 0;
         float waitTime = (startValue - endValue);
-        waitTime = Mathf.Abs(waitTime * 0.005f);
+        waitTime = Mathf.Abs(waitTime * 0.003f);
         while (elapsedTime < waitTime)
         {
             statsBars[stat].value = Mathf.Lerp(startValue, endValue, (elapsedTime / waitTime));
@@ -267,13 +288,19 @@ public class CanvasManager : MonoBehaviour
         OpenMenuAction(true);
     }
 
-    public void WeaponEquiped(Weapon weapon)
+    public void WeaponEquiped(Weapon weapon, int index = -1)
     {
         itemsInventoryWeaponEquiped.sprite = weapon.itemIcon;
         itemsInventoryWeaponEquipedFrame.color = itemlevelColor[(int)weapon.itemLevel];
         itemsInventoryWeaponEquipedElement.sprite = itemElementSprite[(int)weapon.damageElement];
         itemsInventoryWeaponEquipedAmmo.sprite = itemAmmoSprite[(int)weapon.ammoType];
         itemsInventoryWeaponEquipedName.text = weapon.itemName;
+
+        if(index != -1)
+        {
+            wheelSelector.SaveWeapon(weapon, index);
+        }
+
     }
 
     public void SkillAttackEquiped(SkillAttack skillAttack)
@@ -339,12 +366,12 @@ public class CanvasManager : MonoBehaviour
         yield return null;
     }
 
-    public void ItemSelected(RectTransform item)
+    public void ItemSelected(GameObject item)
     {
         //itemSelector.SetActive(true);
         //itemSelector.GetComponent<RectTransform>().position = item.position;
         itemSelect = item.GetComponent<ItemSaved>().itemSaved;
-        itemSelectCanvas = item;
+        itemSelectCanvas = item.GetComponent<RectTransform>();
         ItemInfoCanvasProcess(itemSelect);
     }
     public void ItemDeselected()
@@ -474,7 +501,8 @@ public class CanvasManager : MonoBehaviour
 
         if (item.GetComponent<Weapon>() != null)
         {
-            itemsInventoryWeapon[indexWeapon].sprite = item.itemIcon;
+            //itemsInventoryWeapon[indexWeapon].sprite = item.itemIcon;
+            wheelSelector.SaveWeapon(item, indexWeapon);
         }
 
 
@@ -527,71 +555,79 @@ public class CanvasManager : MonoBehaviour
 
         if (point == 0)
         {
-            if (GameManager.Instance.playerStats.spirit > basePrice[0])
+            if (GameManager.Instance.playerStats.spirit > actualPrice[0])
             {
-                GameManager.Instance.playerStats.spirit -= basePrice[0];
+                GameManager.Instance.playerStats.spirit -= actualPrice[0];
                 GameManager.Instance.playerStats.bloodlust += 1;
             }
         }
 
         if (point == 1)
         {
-            if (GameManager.Instance.playerStats.spirit > basePrice[1])
+            if (GameManager.Instance.playerStats.spirit > actualPrice[1])
             {
-                GameManager.Instance.playerStats.spirit -= basePrice[1];
+                GameManager.Instance.playerStats.spirit -= actualPrice[1];
                 GameManager.Instance.playerStats.rage += 1;
             }
         }
         if (point == 2)
         {
-            if (GameManager.Instance.playerStats.spirit > basePrice[2])
+            if (GameManager.Instance.playerStats.spirit > actualPrice[2])
             {
-                GameManager.Instance.playerStats.spirit -= basePrice[2];
+                GameManager.Instance.playerStats.spirit -= actualPrice[2];
                 GameManager.Instance.playerStats.agony += 1;
             }
         }
         if (point == 3)
         {
-            if (GameManager.Instance.playerStats.spirit > basePrice[3])
+            if (GameManager.Instance.playerStats.spirit > actualPrice[3])
             {
-                GameManager.Instance.playerStats.spirit -= basePrice[3];
+                GameManager.Instance.playerStats.spirit -= actualPrice[3];
                 GameManager.Instance.playerStats.brutality += 1;
             }
         }
         if (point == 4)
         {
-            GameManager.Instance.playerInventory.SlotsWeapon.Add(null);
+            if (GameManager.Instance.playerStats.spirit > 500 && GameManager.Instance.playerStats.extraSlot < 4)
+            {
+                GameManager.Instance.playerStats.spirit -= 500;
+                GameManager.Instance.playerStats.extraSlot += 1;
+            }
         }
         UpdateStats(1, GameManager.Instance.playerStats.spirit);
         UpdatePoint(point);
     }
 
+
     public void UpdatePoint(int point)
     {
-        //CalculeNewCost(point);
+        CalculeNewCost(point);
         if (point == 0)
         {
             actualPointsText[0].text = GameManager.Instance.playerStats.bloodlust.ToString();
-            actualPriceText[0].text = basePrice[0].ToString();
         }
         if (point == 1)
         {
             actualPointsText[1].text = GameManager.Instance.playerStats.rage.ToString();
-            actualPriceText[1].text = basePrice[1].ToString();
         }
         if (point == 2)
         {
             actualPointsText[2].text = GameManager.Instance.playerStats.agony.ToString();
-            actualPriceText[2].text = basePrice[2].ToString();
         }
         if (point == 3)
         {
             actualPointsText[3].text = GameManager.Instance.playerStats.brutality.ToString();
-            actualPriceText[3].text = basePrice[3].ToString();
+
         }
         if (point == 4)
         {
-            //GameManager.Instance.playerInventory.SlotsWeapon.Add(null);
+            GameManager.Instance.playerInventory.SlotsWeapon = new List<Weapon>(2);
+            for (int i = 0; i < GameManager.Instance.playerStats.extraSlot; i++)
+            {
+                GameManager.Instance.playerInventory.SlotsWeapon.Add(null);
+            }
+            actualPointsText[4].text = "[" + GameManager.Instance.playerStats.extraSlot.ToString() + "/ 4]";
+            wheelSelector.UpdateSlots(GameManager.Instance.playerStats.extraSlot);
         }
     }
 
@@ -600,46 +636,53 @@ public class CanvasManager : MonoBehaviour
         if (point == 0)
         {
             actualPrice[0] = basePrice[0];
+            float aux = actualPrice[0];
             //RoboDeVida
-            for (int i = 0; i < GameManager.Instance.playerStats.rage; i++)
+            for (int i = 0; i < GameManager.Instance.playerStats.bloodlust; i++)
             {
-                actualPrice[0] = (int)(actualPrice[0] * 1.2f);
+                aux = aux * 1.11f;
             }
+            actualPrice[0] = (int)aux;
             actualPriceText[0].text = actualPrice[0].ToString();
         }
 
         if (point == 1)
         {
             actualPrice[1] = basePrice[1];
+            float aux = actualPrice[1];
             //Furia
             for (int i = 0; i < GameManager.Instance.playerStats.rage; i++)
             {
-                actualPrice[1] = (int)(actualPrice[1] * 1.2f);
+                aux = aux * 1.07f;
             }
+            actualPrice[1] = (int)aux;
             actualPriceText[1].text = actualPrice[1].ToString();
         }
 
         if (point == 2)
         {
             actualPrice[2] = basePrice[2];
-
+            float aux = actualPrice[2];
             //Agonia
             for (int i = 0; i < GameManager.Instance.playerStats.agony; i++)
             {
-                actualPrice[2] = (int)(actualPrice[2] * 1.2f);
+                aux = aux * 1.02f;
             }
+            actualPrice[2] = (int)aux;
             actualPriceText[2].text = actualPrice[2].ToString();
         }
 
         if (point == 3)
         {
             actualPrice[3] = basePrice[3];
+            float aux = actualPrice[3];
             //Brutalidad
             for (int i = 0; i < GameManager.Instance.playerStats.brutality; i++)
             {
-                actualPrice[3] = (int)(actualPrice[3] * 1.2f);
+                aux = aux * 1.09f;
             }
-            actualPriceText[2].text = actualPrice[2].ToString();
+            actualPrice[3] = (int)aux;
+            actualPriceText[3].text = actualPrice[3].ToString();
         }
     }
 
@@ -655,7 +698,10 @@ public class CanvasManager : MonoBehaviour
 
     #endregion
 
-
+    public Color GetLevelColor(int index)
+    {
+        return itemlevelColor[index];
+    }
 
 
 }

@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     public bool menuView = false;
 
-    bool pauseOn = false;
+    public bool pauseOn = false;
     private void Awake()
     {
         if (!Instance)
@@ -69,32 +69,35 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!menuView)
         {
-            pauseOn = !pauseOn;
-            canvasManager.OpenPause(pauseOn);
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                pauseOn = !pauseOn;
+                canvasManager.OpenPause(pauseOn);
+                if (pauseOn)
+                {
+                    timeManager.resetTime();
+                    Time.timeScale = 0f;
+                }
+                else
+                {
+                    Time.timeScale = 1f;
+                }
+            }
+
             if (pauseOn)
             {
-                Time.timeScale = 0f;
-            }
-            else
-            {
-                Time.timeScale = 1f;
-            }
-        }
-
-        if (pauseOn)
-        {
-            if (Input.GetKeyDown(KeyCode.F1))
-            {
-                roguelite.ResetGame();
-            }
-            if (Input.GetKeyDown(KeyCode.F2))
-            {
-                Application.Quit();
+                if (Input.GetKeyDown(KeyCode.F1))
+                {
+                    roguelite.ResetGame();
+                }
+                if (Input.GetKeyDown(KeyCode.F2))
+                {
+                    Application.Quit();
+                }
             }
         }
-
     }
     public void ResetGame()
     {
@@ -145,4 +148,6 @@ public class Damage
     public DamageElement damageElement;
     public bool isCritic;
     public Vector3 pointDamage;
+    public GameObject emitter;
+    public bool isMelee = false;
 }

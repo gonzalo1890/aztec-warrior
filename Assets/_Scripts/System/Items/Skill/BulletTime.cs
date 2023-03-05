@@ -6,6 +6,7 @@ public class BulletTime : SkillAttack
 {
     TimeManager timeManager;
     public AudioEffect SlowSoundEffect;
+    public AudioEffect SlowSoundEnter;
     private float timeEffect = 0.04f;
     private float timeEffectBase;
     private void Awake()
@@ -42,6 +43,8 @@ public class BulletTime : SkillAttack
 
     void SlowSound()
     {
+        SlowSoundEnter.Stop();
+        SlowSoundEnter.Play(0, "Slow time");
         SlowSoundEffect.Stop();
         SlowSoundEffect.Play(1, "Slow time");
         GameManager.Instance.roguelite.SlowTime(timeEffect);
@@ -51,6 +54,7 @@ public class BulletTime : SkillAttack
     void EndSlowSound()
     {
         SlowSoundEffect.SetParameter(0, "Slow time");
+        SlowSoundEffect.Play(0, "Slow time");
         SlowSoundEffect.Stop();
     }
 }

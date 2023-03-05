@@ -10,19 +10,14 @@ public class Skill : Item
     public bool isPrepared = false;
 
     public float cadence = 1f;
-    private float cadenceBase;
+    public float cadenceBase = 1f;
     public float nextCheck;
 
     public string description;
-    void Awake()
-    {
-        cadenceBase = cadence;
-    }
-
 
     protected virtual void Update()
     {
-        if (GameManager.Instance.menuView)
+        if (GameManager.Instance.menuView && !GameManager.Instance.pauseOn)
         {
             return;
         }
@@ -30,7 +25,6 @@ public class Skill : Item
         if (Time.time > nextCheck)
         {
             isPrepared = true;
-            nextCheck = Time.time + cadence;
         }
     }
     public override void LevelApply()
@@ -63,6 +57,7 @@ public class Skill : Item
     {
         
         isPrepared = false;
+        nextCheck = Time.time + cadence;
         //damageCalculated = CalculeDamage();
 
         //GameManager.Instance.playerWeapon.GetAnimatorWeapon().SetTrigger("Shoot");
